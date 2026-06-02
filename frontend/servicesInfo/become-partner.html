@@ -1,0 +1,271 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Become a Partner - ServiceHub</title>
+    <link rel="stylesheet" href="../css/become-partner.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- Confetti Library for joyful effect -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+    <link rel="stylesheet" href="/frontend/css/footer.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="become-partner-page">
+    <!-- Navbar -->
+<nav class="navbar">
+    <div class="logo">ServiceHub</div>
+    <ul class="nav-links">
+        <!-- <li><a href="frontend/index.html">Home</a></li>
+        <li><a href="frontend/services.html">Services</a></li>
+        <li><a href="frontend/become-partner.html" class="active">Become Partner</a></li>
+        <li><a href="frontend/about.html">About</a></li>
+        <li><a href="frontend/my-bookings.html">My Bookings</a></li>
+        <li><a href="frontend/wallet.html">Community Chat</a></li>
+        <li class="profile-dropdown">
+            <a href="#">Login / Profile &#9662;</a>
+            <ul class="dropdown">
+                <li><a href="frontend/profile.html">My Profile</a></li>
+                <li><a href="frontend/reviews.html">My Reviews</a></li>
+                <li><a href="frontend/logout.html">Logout</a></li>
+            </ul>
+        </li> -->
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../services/all-services.html">Services</a></li>
+        <li><a href="become-partner.html" class="active">Become Partner</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="../your-booking/mybooking.html">My Bookings</a></li>
+        <li><a href="../tranjection/wallet.html">Community Chat</a></li>
+        <li class="profile-dropdown">
+            <a href="javascript:void(0)">Login / Profile &#9662;</a>
+            <ul class="dropdown">
+                <li><a href="../profile/login.html">My Profile</a></li>
+                <li><a href="review.html">My Reviews</a></li>
+                <li><a href="../profile/logout.html">Logout</a></li>
+            </ul>
+        </li>
+    </ul>
+</nav>
+
+
+    <!-- Banner -->
+    <section class="partner-banner">
+        <div class="banner-inner">
+            <div class="banner-text">
+                <h1>Join ServiceHub as a Partner</h1>
+                <p>Grow your business and reach thousands of customers nearby. Fast onboarding · Secure payouts · Reliable jobs.</p>
+            </div>
+            <div class="banner-visual timetable-visual" aria-label="Employee schedule">
+                <div class="timetable-card compact">
+                    <p class="shift-eyebrow">Employee Shedule</p>
+                    <h3>Day - Monday to Saturday</h3>
+                    <div class="mini-shift-grid simple-grid">
+                        <div class="mini-time morning timing-row full-width">☀ Morning Timing <span>6:00 AM - 12:00 PM</span></div>
+                        <div class="mini-time evening timing-row full-width">🌙 Afternoon Timing <span>2:00 PM - 6:00 PM</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Partner Form -->
+    <section class="partner-form-section">
+        <h2>Partner Registration Form</h2>
+        <div class="form-wrapper">
+            <div class="form-bg" aria-hidden="true">
+                <span class="blob b1"></span>
+                <span class="blob b2"></span>
+                <span class="blob b3"></span>
+            </div>
+            <div class="form-content">
+                <form class="partner-form" id="partnerForm">
+            <label for="name">Full Name</label>
+            <input type="text" id="name" name="name" placeholder="Your full name" required>
+
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="Your email address" required>
+
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" name="phone" placeholder="Your phone number" required>
+
+            <label for="service">Service Category</label>
+            <select id="service" name="service" required>
+                <option value="">Select Service</option>
+                <option value="plumber">Plumber</option>
+                <option value="electrician">Electrician</option>
+                <option value="ac-repair">AC Repair</option>
+                <option value="salon">Salon</option>
+                <option value="car-cleaner">Car Cleaner</option>
+                <option value="home-tutor">Home Tutor</option>
+            </select>
+
+            <label for="shift">Preferred Work Shift</label>
+            <select id="shift" name="shift" required>
+                <option value="">Select Your Shift</option>
+                <option value="morning">Morning Shift (6 AM - 12 PM)</option>
+                <option value="afternoon">Afternoon Shift (2 PM - 6 PM)</option>
+                <option value="both">Both Shifts</option>
+            </select>
+
+            <label for="experience">Experience (Years)</label>
+            <input type="number" id="experience" name="experience" min="0" placeholder="Years of experience" required>
+
+            <label for="address">Address</label>
+            <textarea id="address" name="address" placeholder="Your service area address" required></textarea>
+
+            <button type="submit" class="btn">Register as Partner</button>
+                </form>
+            </div>
+
+            <!-- Promo card: animated/stylish image frame + CTA -->
+            <aside class="promo-card" aria-label="Partner benefits">
+                <div class="promo-inner">
+                    <div class="promo-image-frame">
+                        <img src="../images/salon-service-image/hair-spa.avif" alt="Partner benefits image">
+                    </div>
+                    <div class="promo-body">
+                        <h3>Why Partner With Us?</h3>
+                        <ul>
+                            <li>Steady jobs in your area</li>
+                            <li>Fast payouts & secure platform</li>
+                            <li>Verified customers & support</li>
+                        </ul>
+                        <button class="btn promo-btn" id="promoApply">Apply Now</button>
+                        
+                        <div class="encouragement-section">
+                            <p class="encouragement-text">Join thousands of successful partners earning an average of <strong>₹40,000 - ₹60,000 monthly</strong>. Build your own business with flexible work hours and grow your income with consistent customer bookings.</p>
+                            <div class="encouragement-badges">
+                                <div class="badge">🏆 4.8★ Rating</div>
+                                <div class="badge">👥 10K+ Partners</div>
+                                <div class="badge">📱 Easy App</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- FAQ Accordion -->
+            <section class="partner-faq" aria-label="Partner FAQs">
+                <h3>Frequently Asked Questions</h3>
+                <div class="faq-list">
+                    <div class="faq-item">
+                        <button class="faq-question" aria-expanded="false">How long until my application is reviewed?</button>
+                        <div class="faq-answer">We typically review applications within 48 hours. You'll receive an email or SMS update.</div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question" aria-expanded="false">How do payouts work?</button>
+                        <div class="faq-answer">Payouts are processed weekly via bank transfer. Add your payout details on onboarding.</div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question" aria-expanded="false">Do I need my own tools?</button>
+                        <div class="faq-answer">Yes — most categories require you to bring your own tools. We list required equipment per service.</div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question" aria-expanded="false">Can I choose which jobs to accept?</button>
+                        <div class="faq-answer">Yes — you can accept jobs that fit your schedule and location preferences via the partner app.</div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question" aria-expanded="false">What is my service area coverage?</button>
+                        <div class="faq-answer">We serve areas within 2 km around your primary service location. This ensures timely service delivery and excellent customer satisfaction.</div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question" aria-expanded="false">Can I work one shift or both shifts?</button>
+                        <div class="faq-answer">Yes! You can register for morning shifts (6 AM - 12 PM), afternoon shifts (2 PM - 6 PM), or both shifts, depending on your availability and preference.</div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </section>
+    <script src="../js/become-partner.js"></script>
+    <script>
+    // Promo CTA scroll-to-form behavior
+    document.addEventListener('DOMContentLoaded', () => {
+        const promo = document.getElementById('promoApply');
+        if (promo) promo.addEventListener('click', (e) => {
+            e.preventDefault();
+            const el = document.getElementById('partnerForm');
+            if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            try { el.querySelector('input,select,textarea').focus(); } catch (err){}
+        });
+    });
+    </script>
+    <script>
+    // FAQ accordion toggle behavior
+    document.addEventListener('DOMContentLoaded', () => {
+        const items = document.querySelectorAll('.faq-item');
+        items.forEach(item => {
+            const btn = item.querySelector('.faq-question');
+            const ans = item.querySelector('.faq-answer');
+            btn.addEventListener('click', () => {
+                const expanded = btn.getAttribute('aria-expanded') === 'true';
+                // toggle this one
+                btn.setAttribute('aria-expanded', String(!expanded));
+                if (!expanded) ans.classList.add('show'); else ans.classList.remove('show');
+            });
+        });
+    });
+    </script>
+
+
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a class="footer-logo" href="/frontend/index.html" aria-label="ServiceHub Home">
+                        <img src="/frontend/images/servicehub-logo.svg" alt="ServiceHub logo">
+                    </a>
+                    <h3>ServiceHub</h3>
+                    <p>Trusted home services, fair conversations, and reliable support for customers, workers, and partners.</p>
+                    <div class="footer-pills">
+                        <span>Verified Pros</span>
+                        <span>Fair Pricing</span>
+                        <span>Fast Booking</span>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h4>Explore</h4>
+                    <div class="footer-links">
+                        <a class="footer-link" href="/frontend/services/all-services.html">Services</a>
+                        <a class="footer-link" href="/frontend/servicesInfo/about.html">About</a>
+                        <a class="footer-link" href="/frontend/servicesInfo/partners.html">Partners</a>
+                        <a class="footer-link" href="/frontend/tranjection/wallet.html">Community Chat</a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h4>Company</h4>
+                    <div class="footer-links">
+                        <a class="footer-link" href="/frontend/servicesInfo/become-partner.html">Become Partner</a>
+                        <a class="footer-link" href="/frontend/your-booking/mybooking.html">My Bookings</a>
+                        <a class="footer-link" href="/frontend/servicesInfo/review.html">Reviews</a>
+                        <a class="footer-link" href="/frontend/profile/login.html">Login</a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h4>Why ServiceHub</h4>
+                    <p class="footer-note">Built for smooth booking, honest service, and a better experience for every home.</p>
+                    <div class="footer-links">
+                        <strong>Support</strong>
+                        <span class="footer-meta"><span>24×7 help</span><span>Fast replies</span></span>
+                        <span class="footer-meta"><span>Fair disputes</span><span>Community trust</span></span>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-meta">
+                    <span>© 2026 ServiceHub</span>
+                    <span>Made for customers, workers, and partners.</span>
+                </div>
+                <div class="footer-socials" aria-label="ServiceHub social links">
+                    <a href="https://www.linkedin.com/in/faiyaj-ansari-293413366" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                    <a href="https://github.com/Git-Hub-prog/Git-Hub-prog" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+                    <a href="https://www.instagram.com/faiyaj4553?igsh=MXBwNTJnMDR4NGs1ZA==" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                </div>
+                <div class="footer-note">A modern service platform that keeps things clear, quick, and fair.</div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
+
+

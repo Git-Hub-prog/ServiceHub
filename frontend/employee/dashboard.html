@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Dashboard — ServiceHub</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="dashboard.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <div class="navbar-left">
+            <a class="navbar-logo" href="#">
+                <div class="logo-icon">🏢</div>
+                ServiceHub<span class="logo-dot"></span>
+            </a>
+            <div class="navbar-divider"></div>
+            <span class="navbar-subtitle">Employee Dashboard</span>
+        </div>
+        <div class="navbar-right">
+            <button class="nav-icon-btn" id="notificationBtn" title="Notifications">
+                🔔
+                <span class="notif-badge" id="notificationBadge">3</span>
+            </button>
+            <button class="nav-icon-btn" id="profileMenuBtn" title="Profile">👤</button>
+            <button class="nav-logout-btn" id="logoutBtn"><span>🚪</span> Logout</button>
+        </div>
+    </nav>
+
+    <main class="page">
+
+        <div class="welcome-banner">
+            <div>
+                <div class="welcome-tag">Today's Overview</div>
+                <div class="welcome-heading">Welcome back, <span id="welcomeName">Employee</span> 👋</div>
+                <div class="welcome-sub">Here's your performance snapshot for this week</div>
+            </div>
+            <div class="welcome-meta">
+                <div class="meta-pill">
+                    <span class="val" id="metaJobs">—</span>
+                    <span class="lbl">Total Jobs</span>
+                </div>
+                <div class="meta-divider"></div>
+                <div class="meta-pill">
+                    <span class="val" id="metaRating">—</span>
+                    <span class="lbl">Avg Rating</span>
+                </div>
+                <div class="meta-divider"></div>
+                <div class="meta-pill">
+                    <span class="val" id="metaRevenue">—</span>
+                    <span class="lbl">This Week</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="top-grid">
+
+            <div class="profile-card">
+                <div class="profile-avatar-wrap">
+                    <div class="profile-avatar">
+                        👨‍🔧
+                        <div class="avatar-ring"></div>
+                    </div>
+                    <div class="profile-name" id="profileName">—</div>
+                    <div class="profile-emp-id" id="profileId">—</div>
+                    <span class="status-pill active" id="statusBadge">Active</span>
+                </div>
+                <div class="profile-info-list">
+                    <div class="info-item">
+                        <span class="lbl"><span class="dot"></span>Service</span>
+                        <span class="val" id="profileService">—</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="lbl"><span class="dot"></span>Experience</span>
+                        <span class="val" id="profileExperience">—</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="lbl"><span class="dot"></span>Mobile</span>
+                        <span class="val" id="profileMobile">—</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="lbl"><span class="dot"></span>Email</span>
+                        <span class="val" id="profileEmail">—</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="lbl"><span class="dot"></span>Location</span>
+                        <span class="val" id="profileLocation">—</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="lbl"><span class="dot"></span>Joined</span>
+                        <span class="val" id="profileJoined">—</span>
+                    </div>
+                </div>
+                <button class="edit-btn">✏️ Edit Profile</button>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-card" data-accent="teal">
+                    <div class="stat-icon-wrap">📊</div>
+                    <div class="stat-label">Total Jobs</div>
+                    <div class="stat-value" id="totalJobs">0</div>
+                    <div class="stat-hint">Every completed job builds your reputation.</div>
+                </div>
+                <div class="stat-card" data-accent="gold">
+                    <div class="stat-icon-wrap">💰</div>
+                    <div class="stat-label">Weekly Revenue</div>
+                    <div class="stat-value" id="weeklyRevenue">Rs 0</div>
+                    <div class="stat-hint">Your skill is turning effort into earnings.</div>
+                </div>
+                <div class="stat-card" data-accent="green">
+                    <div class="stat-icon-wrap">⭐</div>
+                    <div class="stat-label">Avg Rating</div>
+                    <div class="stat-value" id="avgRating">0.0</div>
+                    <div class="stat-hint">Great service creates loyal customers.</div>
+                </div>
+                <div class="stat-card" data-accent="red">
+                    <div class="stat-icon-wrap">⏳</div>
+                    <div class="stat-label">Pending Jobs</div>
+                    <div class="stat-value" id="pendingJobs">0</div>
+                    <div class="stat-hint">Quick response wins trust and bookings.</div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="bottom-grid">
+
+            <div class="glass-card bookings-card">
+                <div class="bookings-header">
+                    <div class="section-title" style="margin-bottom:0">
+                        <div class="icon">📋</div> Recent Bookings
+                    </div>
+                    <div class="filter-tabs">
+                        <button class="filter-tab active" data-filter="all">All</button>
+                        <button class="filter-tab" data-filter="pending">Pending</button>
+                        <button class="filter-tab" data-filter="accepted">Accepted</button>
+                        <button class="filter-tab" data-filter="wait">Wait</button>
+                        <button class="filter-tab" data-filter="ontheway">On The Way</button>
+                        <button class="filter-tab" data-filter="arrived">Arrived</button>
+                        <button class="filter-tab" data-filter="completed">Completed</button>
+                    </div>
+                </div>
+                <div class="table-wrap">
+                    <div id="bookingsTableBody" class="bookings-list"></div>
+                </div>
+            </div>
+
+            <div class="glass-card chart-card">
+                <div class="section-title">
+                    <div class="icon">📈</div> Last 7 Days Earnings
+                </div>
+                <div class="chart-wrap">
+                    <canvas id="revenueChart"></canvas>
+                </div>
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- PROFILE EDIT MODAL -->
+    <div class="modal-overlay" id="editProfileModal">
+        <div class="modal-box">
+            <div class="modal-header">
+                <h2 class="modal-title">Edit Profile</h2>
+                <button class="modal-close" id="closeEditBtn">✕</button>
+            </div>
+            <form id="editProfileForm">
+                <div class="form-group">
+                    <label class="form-label" for="editName">Full Name</label>
+                    <input class="form-input" type="text" id="editName" placeholder="Enter your full name" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="editEmail">Email Address</label>
+                    <input class="form-input" type="email" id="editEmail" placeholder="Enter your email" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="editMobile">Mobile Number</label>
+                    <input class="form-input" type="tel" id="editMobile" placeholder="Enter mobile number" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="editExperience">Experience (Years)</label>
+                    <input class="form-input" type="number" id="editExperience" placeholder="Years of experience"
+                        required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="editLocation">Location</label>
+                    <input class="form-input" type="text" id="editLocation" placeholder="City, State" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="editJoined">Joined Date</label>
+                    <input class="form-input" type="text" id="editJoined" readonly>
+                </div>
+                <div class="modal-actions">
+                    <button type="submit" class="btn-primary">💾 Save Changes</button>
+                    <button type="button" class="btn-ghost" id="cancelEditBtn">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- NOTIFICATION PANEL -->
+    <div class="notif-panel" id="notificationPanel">
+        <div class="notif-panel-header">
+            <span class="notif-panel-title">Notifications</span>
+            <button class="notif-panel-close" id="closeNotificationBtn">✕</button>
+        </div>
+        <div class="notif-list">
+            <div class="notif-item">
+                <div class="notif-icon">✅</div>
+                <div>
+                    <div class="notif-text-title">Booking Completed</div>
+                    <div class="notif-text-msg">Your booking #12345 has been marked as completed successfully.</div>
+                    <div class="notif-time">2 hours ago</div>
+                </div>
+            </div>
+            <div class="notif-item">
+                <div class="notif-icon">💰</div>
+                <div>
+                    <div class="notif-text-title">Payment Received</div>
+                    <div class="notif-text-msg">₹2,500 has been credited to your account for completed service.</div>
+                    <div class="notif-time">4 hours ago</div>
+                </div>
+            </div>
+            <div class="notif-item">
+                <div class="notif-icon">📬</div>
+                <div>
+                    <div class="notif-text-title">New Booking Request</div>
+                    <div class="notif-text-msg">You have a new booking request from Rajesh Kumar. Review and accept.
+                    </div>
+                    <div class="notif-time">1 hour ago</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- BOOKING DETAILS MODAL -->
+    <div class="modal-overlay" id="bookingModal">
+        <div class="modal-box">
+            <div class="modal-header">
+                <h2 class="modal-title">Booking Details</h2>
+                <button class="modal-close" id="closeBookingModal">✕</button>
+            </div>
+            <div id="bookingDetailsContainer"></div>
+        </div>
+    </div>
+
+    <script>
+        const token = localStorage.getItem('employeeToken');
+        if (!token) window.location.href = 'login.html';
+
+        let currentFilter = 'all';
+        let bookings = [];
+        let revenueChart = null;
+
+        async function apiFetch(url, options = {}) {
+            const fullUrl = url.startsWith('http') ? url : `http://localhost:5000${url}`;
+            const response = await fetch(fullUrl, {
+                ...options,
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${token}`,
+                    ...(options.headers || {})
+                }
+            });
+            const raw = await response.text();
+            let data = {};
+            try { data = raw ? JSON.parse(raw) : {}; }
+            catch { data = { message: raw || 'Unexpected server response' }; }
+            if (!response.ok) throw new Error(data.message || `Request failed (${response.status})`);
+            return data;
+        }
+
+        const fmtMoney = v => `Rs ${Number(v || 0).toLocaleString('en-IN')}`;
+        const fmtDate = v => {
+            const d = new Date(v);
+            return isNaN(d) ? '—' : d.toLocaleString('en-IN', { day: '2-digit', month: 'short', hour: '2-digit', minute: '2-digit' });
+        };
+
+        async function initDashboard() {
+            setupEvents();
+            try {
+                await Promise.all([loadProfile(), loadStats(), loadBookings()]);
+                renderBookings();
+            } catch (err) {
+                alert(err.message || 'Session expired. Please log in again.');
+                localStorage.removeItem('employeeToken');
+                localStorage.removeItem('employeeId');
+                window.location.href = 'login.html';
+            }
+        }
+
+        async function loadProfile() {
+            const data = await apiFetch('/api/employee/profile');
+            const emp = data.employee || {};
+            const location = [emp.location?.city, emp.location?.state].filter(Boolean).join(', ') || '—';
+            document.getElementById('welcomeName').textContent = emp.fullName || 'Employee';
+            document.getElementById('profileName').textContent = emp.fullName || '—';
+            document.getElementById('profileId').textContent = emp.employeeId || '—';
+            document.getElementById('profileService').textContent = emp.serviceCategory || '—';
+            document.getElementById('profileExperience').textContent = `${emp.experience || 0} years`;
+            document.getElementById('profileMobile').textContent = emp.phone || '—';
+            document.getElementById('profileEmail').textContent = emp.email || '—';
+            document.getElementById('profileLocation').textContent = location;
+            document.getElementById('profileJoined').textContent = emp.joinedDate
+                ? new Date(emp.joinedDate).toLocaleDateString('en-IN', { month: 'short', year: 'numeric' }) : '—';
+            const badge = document.getElementById('statusBadge');
+            const status = (emp.status || 'active').toLowerCase();
+            badge.textContent = status === 'active' ? 'Active' : status;
+            if (status !== 'active') badge.className = 'status-pill offline';
+        }
+
+        async function loadStats() {
+            const data = await apiFetch('/api/employee/dashboard-stats');
+            const s = data.stats || {};
+            const wRev = Number(s.weeklyRevenue || 0);
+            const jobs = Number(s.totalJobsCompleted || 0);
+            const rating = Number(s.avgRating || 0).toFixed(1);
+            const pending = Number(s.pendingJobs || 0);
+            document.getElementById('totalJobs').textContent = jobs;
+            document.getElementById('weeklyRevenue').textContent = fmtMoney(wRev);
+            document.getElementById('avgRating').textContent = rating;
+            document.getElementById('pendingJobs').textContent = pending;
+            document.getElementById('metaJobs').textContent = jobs;
+            document.getElementById('metaRating').textContent = rating + '★';
+            document.getElementById('metaRevenue').textContent = fmtMoney(wRev);
+            initRevenueChart(wRev);
+        }
+
+        async function loadBookings() {
+            const qs = currentFilter === 'all' ? '' : `?status=${encodeURIComponent(currentFilter)}`;
+            const data = await apiFetch(`/api/employee/bookings${qs}`);
+            bookings = Array.isArray(data.bookings) ? data.bookings : [];
+        }
+
+        function renderBookings() {
+            const container = document.getElementById('bookingsTableBody');
+            container.innerHTML = '';
+            if (!bookings.length) {
+                container.innerHTML = `<div style="text-align: center; padding: 40px; color: rgba(255,255,255,0.5); font-style: italic;">No bookings found for this filter.</div>`;
+                return;
+            }
+            bookings.forEach(b => {
+                const status = String(b.status || '').toLowerCase();
+                const payment = String(b.paymentStatus || 'pending').toLowerCase();
+                const statusClass = { pending: 'badge-pending', accepted: 'badge-accepted', inprogress: 'badge-inprogress', completed: 'badge-completed', wait: 'badge-wait', ontheway: 'badge-ontheway', arrived: 'badge-arrived' }[status] || 'badge-pending';
+
+                let actions = '';
+                if (status === 'pending') {
+                    actions = `<button class="act-btn accept" onclick="acceptBooking('${b._id}')">✓ Accept</button>`;
+                } else if (status === 'accepted') {
+                    actions = `
+          <button class="act-btn wait" onclick="updateBookingStatus('${b._id}', 'wait')">⏸ Wait</button>
+          <button class="act-btn ontheway" onclick="updateBookingStatus('${b._id}', 'ontheway')">🚗 On Way</button>
+        `;
+                } else if (status === 'wait') {
+                    actions = `
+          <button class="act-btn ontheway" onclick="updateBookingStatus('${b._id}', 'ontheway')">🚗 On Way</button>
+        `;
+                } else if (status === 'ontheway') {
+                    actions = `
+          <button class="act-btn arrived" onclick="updateBookingStatus('${b._id}', 'arrived')">✓ Arrived</button>
+        `;
+                } else if (status === 'arrived') {
+                    actions = `
+          <button class="act-btn complete" onclick="completeBooking('${b._id}')">✓ Done</button>
+        `;
+                }
+
+                const customerLocation = b.customer?.location || b.customerLocation || '—';
+                const customerPhone = b.customer?.phone || b.customerPhone || '—';
+                const description = b.serviceDescription || b.description || '—';
+                const amount = b.amount || b.price || 0;
+                const slotTime = fmtDate(b.scheduledFor || b.createdAt);
+                const serviceName = b.service || b.serviceType || '—';
+
+                const card = document.createElement('div');
+                card.className = 'booking-card';
+                card.innerHTML = `
+        <div class="booking-row-main">
+          <div class="booking-info">
+            <div class="booking-detail">
+              <div class="booking-detail-label">Booking ID</div>
+              <div class="booking-detail-value id">${b.bookingId || b._id || '—'}</div>
+            </div>
+            <div class="booking-detail">
+              <div class="booking-detail-label">Service</div>
+              <div class="booking-detail-value service">${serviceName}</div>
+            </div>
+            <div class="booking-detail">
+              <div class="booking-detail-label">Slot Time</div>
+              <div class="booking-detail-value">${slotTime}</div>
+            </div>
+            <div class="booking-detail">
+              <div class="booking-detail-label">Location</div>
+              <div class="booking-detail-value location">${customerLocation}</div>
+            </div>
+          </div>
+          <div style="display: flex; gap: 12px; align-items: center; flex-wrap: wrap;">
+            <span class="badge ${statusClass}">${status}</span>
+            <span style="color: ${payment === 'completed' ? '#51cf66' : '#ff6b6b'}; font-weight: 700; font-size: 11px; text-transform: uppercase;">${payment}</span>
+            <div class="action-group">${actions || '<span style="color:var(--text-3);font-size:12px">—</span>'}</div>
+          </div>
+        </div>
+        
+        <div class="booking-details-expanded">
+          <div class="detail-item">
+            <div class="detail-label">👤 Customer Name</div>
+            <div class="detail-value">${b.customerName || b.customer?.name || '—'}</div>
+          </div>
+          <div class="detail-item">
+            <div class="detail-label">📞 Customer Phone</div>
+            <div class="detail-value">${customerPhone}</div>
+          </div>
+          <div class="detail-item">
+            <div class="detail-label">💰 Amount</div>
+            <div class="detail-value">${fmtMoney(amount)}</div>
+          </div>
+          <div class="detail-item" style="grid-column: 1 / -1;">
+            <div class="detail-label">📋 Service Details</div>
+            <div class="detail-value description">${description}</div>
+          </div>
+        </div>
+      `;
+                container.appendChild(card);
+            });
+        }
+
+        function initRevenueChart(weeklyRevenue) {
+            const ctx = document.getElementById('revenueChart').getContext('2d');
+            if (revenueChart) revenueChart.destroy();
+            const avg = weeklyRevenue / 7;
+            const data = [.55, .70, .85, .95, 1.05, 1.18, 1.32].map(f => Math.round(avg * f));
+            revenueChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+                    datasets: [{
+                        label: 'Earnings (Rs)',
+                        data,
+                        borderColor: '#0d9488',
+                        backgroundColor: 'rgba(13,148,136,.08)',
+                        borderWidth: 2.5,
+                        fill: true,
+                        tension: 0.42,
+                        pointBackgroundColor: '#0d9488',
+                        pointBorderColor: '#131f38',
+                        pointBorderWidth: 2,
+                        pointRadius: 5,
+                        pointHoverRadius: 7
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    interaction: { intersect: false, mode: 'index' },
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            backgroundColor: '#1a2540',
+                            borderColor: 'rgba(13,148,136,.4)',
+                            borderWidth: 1,
+                            titleColor: '#94a3b8',
+                            bodyColor: '#f1f5f9',
+                            callbacks: { label: ctx => ` Rs ${Number(ctx.raw).toLocaleString('en-IN')}` }
+                        }
+                    },
+                    scales: {
+                        x: { grid: { color: 'rgba(255,255,255,.04)' }, ticks: { color: '#475569', font: { size: 11 } } },
+                        y: {
+                            beginAtZero: true,
+                            grid: { color: 'rgba(255,255,255,.05)' },
+                            ticks: { color: '#475569', font: { size: 11 }, callback: v => `Rs ${Number(v).toLocaleString('en-IN')}` }
+                        }
+                    }
+                }
+            });
+        }
+
+        async function acceptBooking(id) {
+            try { await apiFetch(`/api/employee/bookings/${id}/accept`, { method: 'POST' }); await loadBookings(); renderBookings(); }
+            catch (e) { alert(e.message || 'Failed to accept booking'); }
+        }
+
+        async function updateBookingStatus(id, newStatus) {
+            try {
+                await apiFetch(`/api/employee/bookings/${id}/status`, {
+                    method: 'PUT',
+                    body: JSON.stringify({ status: newStatus })
+                });
+                await loadBookings();
+                renderBookings();
+            }
+            catch (e) { alert(e.message || `Failed to update status to ${newStatus}`); }
+        }
+
+        async function completeBooking(id) {
+            try { await apiFetch(`/api/employee/bookings/${id}/complete`, { method: 'POST' }); await loadBookings(); renderBookings(); }
+            catch (e) { alert(e.message || 'Failed to complete booking'); }
+        }
+
+        function openEditProfile() {
+            document.getElementById('editName').value = document.getElementById('profileName').textContent;
+            document.getElementById('editEmail').value = document.getElementById('profileEmail').textContent;
+            document.getElementById('editMobile').value = document.getElementById('profileMobile').textContent;
+            document.getElementById('editExperience').value = document.getElementById('profileExperience').textContent.split(' ')[0];
+            document.getElementById('editLocation').value = document.getElementById('profileLocation').textContent;
+            document.getElementById('editJoined').value = document.getElementById('profileJoined').textContent;
+            document.getElementById('editProfileModal').classList.add('show');
+        }
+
+        function closeEditProfile() {
+            document.getElementById('editProfileModal').classList.remove('show');
+        }
+
+        async function saveProfile(e) {
+            e.preventDefault();
+            const fullName = document.getElementById('editName').value.trim();
+            const phone = document.getElementById('editMobile').value.trim();
+            const experience = Number(document.getElementById('editExperience').value || 0);
+            const rawLoc = document.getElementById('editLocation').value.trim();
+            const [city = '', state = ''] = rawLoc.split(',').map(x => x.trim());
+            try {
+                await apiFetch('/api/employee/profile', { method: 'PUT', body: JSON.stringify({ fullName, phone, experience, location: { city, state } }) });
+                await loadProfile();
+                alert('Profile updated successfully!');
+                closeEditProfile();
+            } catch (e) { alert(e.message || 'Failed to update profile'); }
+        }
+
+        function setupEvents() {
+            document.querySelectorAll('.filter-tab').forEach(btn => {
+                btn.addEventListener('click', async function () {
+                    document.querySelectorAll('.filter-tab').forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    currentFilter = this.dataset.filter;
+                    await loadBookings();
+                    renderBookings();
+                });
+            });
+            document.querySelector('.edit-btn').addEventListener('click', openEditProfile);
+            document.getElementById('closeEditBtn').addEventListener('click', closeEditProfile);
+            document.getElementById('cancelEditBtn').addEventListener('click', closeEditProfile);
+            document.getElementById('editProfileForm').addEventListener('submit', saveProfile);
+            document.getElementById('notificationBtn').addEventListener('click', () => {
+                document.getElementById('notificationPanel').classList.toggle('show');
+            });
+            document.getElementById('closeNotificationBtn').addEventListener('click', () => {
+                document.getElementById('notificationPanel').classList.remove('show');
+            });
+            document.getElementById('logoutBtn').addEventListener('click', () => {
+                localStorage.removeItem('employeeToken');
+                localStorage.removeItem('employeeId');
+                window.location.href = 'login.html';
+            });
+            document.getElementById('closeBookingModal').addEventListener('click', () => {
+                document.getElementById('bookingModal').classList.remove('show');
+            });
+            window.addEventListener('click', e => {
+                if (e.target === document.getElementById('editProfileModal')) closeEditProfile();
+                if (e.target === document.getElementById('bookingModal')) document.getElementById('bookingModal').classList.remove('show');
+            });
+            document.addEventListener('keydown', e => {
+                if (e.key === 'Escape') {
+                    closeEditProfile();
+                    document.getElementById('bookingModal').classList.remove('show');
+                    document.getElementById('notificationPanel').classList.remove('show');
+                }
+            });
+        }
+
+        window.addEventListener('DOMContentLoaded', initDashboard);
+    </script>
+</body>
+
+</html>

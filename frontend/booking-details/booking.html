@@ -1,0 +1,236 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Service</title>
+    <link rel="stylesheet" href="../css/booking.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/frontend/css/footer.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+<nav class="navbar booking-navbar">
+    <div class="logo">ServiceHub</div>
+    <ul class="nav-links">
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../services/all-services.html">Services</a></li>
+        <li><a href="../servicesInfo/become-partner.html">Become Partner</a></li>
+        <li><a href="../servicesInfo/partners.html">Partner List</a></li>
+        <li><a href="../your-booking/mybooking.html">My Bookings</a></li>
+        <li class="profile-dropdown">
+            <a href="javascript:void(0)">Login / Profile &#9662;</a>
+            <ul class="dropdown">
+                <li><a href="../profile/login.html">Login</a></li>
+                <li><a href="../profile/logout.html">Logout</a></li>
+            </ul>
+        </li>
+    </ul>
+</nav>
+
+<main class="scene">
+    <div class="animated-bg" aria-hidden="true">
+        <div class="blob b1"></div>
+        <div class="blob b2"></div>
+        <div class="blob b3"></div>
+        <div class="floating-image f1"></div>
+        <div class="floating-image f2"></div>
+    </div>
+
+    <section class="card-viewport">
+        <article class="card" id="tiltCard">
+            <div class="card-frame">
+                <header class="card-header">
+                    <h1>Book Your Service</h1>
+                    <p class="tagline">Quick, trusted professionals — scheduled at your convenience.</p>
+                </header>
+
+                <div class="card-content">
+                    <div class="form-stack">
+                        <form id="bookingForm" class="booking-form">
+                            <div class="input-row">
+                                <label>Service</label>
+                                <input type="text" id="service" readonly>
+                            </div>
+
+                            <div class="input-row two-col">
+                                <div>
+                                    <label>Price</label>
+                                    <input type="text" id="price" readonly>
+                                </div>
+                                <div>
+                                    <label>Preferred Date</label>
+                                    <input type="date" id="date" required>
+                                </div>
+                            </div>
+
+                            <div class="input-row two-col">
+                                <div>
+                                    <label>Location</label>
+                                    <select id="location" required>
+                                        <option value="">Select Location (within ~3 km)</option>
+                                        <option>Alkapuri</option>
+                                        <option>Raopura</option>
+                                        <option>Sayajiganj</option>
+                                        <option>Fatehgunj</option>
+                                        <option>Manjalpur</option>
+                                        <option>Akota</option>
+                                        <option>Karelibaug</option>
+                                        <option>Subhanpura</option>
+                                        <option>Gotri</option>
+                                        <option>Ajwa Road</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label>Shift</label>
+                                    <select id="shift" required>
+                                        <option value="">Select shift</option>
+                                        <option>Morning</option>
+                                        <option>Afternoon</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="input-row two-col">
+                                <div>
+                                    <label>Serving Time</label>
+                                    <select id="servingTime" required>
+                                        <option value="">Select time</option>
+                                        <option>6:00 AM - 7:00 AM</option>
+                                        <option>7:00 AM - 8:00 AM</option>
+                                        <option>8:00 AM - 9:00 AM</option>
+                                        <option>9:00 AM - 10:00 AM</option>
+                                        <option>10:00 AM - 11:00 AM</option>
+                                        <option>11:00 AM - 12:00 PM</option>
+                                        <option>2:00 PM - 3:00 PM</option>
+                                        <option>3:00 PM - 4:00 PM</option>
+                                        <option>4:00 PM - 5:00 PM</option>
+                                        <option>5:00 PM - 6:00 PM</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label>Landmark</label>
+                                    <input type="text" id="landmark" placeholder="Nearby shop, tower, or gate">
+                                </div>
+                            </div>
+
+                            <div class="input-row">
+                                <label>Full Name</label>
+                                <input type="text" id="name" required>
+                            </div>
+
+                            <div class="input-row">
+                                <label>Mobile Number</label>
+                                <input type="tel" id="phone" required>
+                            </div>
+
+                            <div class="input-row">
+                                <label>Address</label>
+                                <textarea id="address" required></textarea>
+                            </div>
+
+                            <div class="actions">
+                                <button type="submit" class="confirm">Confirm Booking</button>
+                                <p id="msg" class="msg"></p>
+                            </div>
+                        </form>
+
+                        <div class="form-note">
+                            <div class="info-bubble">
+                                <strong>Schedule</strong>
+                                <span>Hourly slots: 6:00 AM - 12:00 PM</span>
+                                <span>Lunch break: 12:00 PM - 2:00 PM</span>
+                                <span>Hourly slots: 2:00 PM - 6:00 PM</span>
+                            </div>
+                            <div class="help-text">Tip: Choose an available hour and confirm booking — a pro will call to confirm ETA.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </article>
+
+        <section class="quote-band">
+            <span class="quote-mark">“</span>
+            <p>Every booking deserves a polished finish, a punctual expert, and a home that feels cared for.</p>
+            <span class="quote-author">Fast, trusted, and handled with attention.</span>
+        </section>
+
+        <section class="side-frames-container" aria-hidden="true">
+            <div class="side-frame left-frame">
+                <img src="../images/plumber.jpg" alt="Professional plumbing service">
+                <div class="frame-label">Expert Plumbing</div>
+            </div>
+            <div class="side-frame right-frame">
+                <img src="../images/ac-repair.webp" alt="AC repair and maintenance service">
+                <div class="frame-label">AC Solutions</div>
+            </div>
+        </section>
+    </section>
+</main>
+
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script src="../js/booking.js"></script>
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a class="footer-logo" href="/frontend/index.html" aria-label="ServiceHub Home">
+                        <img src="/frontend/images/servicehub-logo.svg" alt="ServiceHub logo">
+                    </a>
+                    <h3>ServiceHub</h3>
+                    <p>Trusted home services, fair conversations, and reliable support for customers, workers, and partners.</p>
+                    <div class="footer-pills">
+                        <span>Verified Pros</span>
+                        <span>Fair Pricing</span>
+                        <span>Fast Booking</span>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h4>Explore</h4>
+                    <div class="footer-links">
+                        <a class="footer-link" href="/frontend/services/all-services.html">Services</a>
+                        <a class="footer-link" href="/frontend/servicesInfo/about.html">About</a>
+                        <a class="footer-link" href="/frontend/servicesInfo/partners.html">Partners</a>
+                        <a class="footer-link" href="/frontend/tranjection/wallet.html">Community Chat</a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h4>Company</h4>
+                    <div class="footer-links">
+                        <a class="footer-link" href="/frontend/servicesInfo/become-partner.html">Become Partner</a>
+                        <a class="footer-link" href="/frontend/your-booking/mybooking.html">My Bookings</a>
+                        <a class="footer-link" href="/frontend/servicesInfo/review.html">Reviews</a>
+                        <a class="footer-link" href="/frontend/profile/login.html">Login</a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h4>Why ServiceHub</h4>
+                    <p class="footer-note">Built for smooth booking, honest service, and a better experience for every home.</p>
+                    <div class="footer-links">
+                        <strong>Support</strong>
+                        <span class="footer-meta"><span>24×7 help</span><span>Fast replies</span></span>
+                        <span class="footer-meta"><span>Fair disputes</span><span>Community trust</span></span>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-meta">
+                    <span>© 2026 ServiceHub</span>
+                    <span>Made for customers, workers, and partners.</span>
+                </div>
+                <div class="footer-socials" aria-label="ServiceHub social links">
+                    <a href="https://www.linkedin.com/in/faiyaj-ansari-293413366" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                    <a href="https://github.com/Git-Hub-prog/Git-Hub-prog" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+                    <a href="https://www.instagram.com/faiyaj4553?igsh=MXBwNTJnMDR4NGs1ZA==" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                </div>
+                <div class="footer-note">A modern service platform that keeps things clear, quick, and fair.</div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
+
+
+
+

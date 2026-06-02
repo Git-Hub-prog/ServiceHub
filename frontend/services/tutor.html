@@ -1,0 +1,206 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home Tutor & Coaching Services</title>
+    <link rel="stylesheet" href="../css/tutor.css">
+    <link rel="stylesheet" href="../css/services-theme.css">
+    <link rel="stylesheet" href="/frontend/css/footer.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="service-theme theme-tutor">
+
+<header class="top-banner">
+    <h1>Find Your Perfect Tutor</h1>
+    <p>Expert Teachers • Home Tuition • Online Coaching</p>
+</header>
+
+<div class="container">
+
+    <!-- Sidebar -->
+    <aside class="categories">
+        <h2>Subjects</h2>
+        <ul>
+            <li>Maths</li>
+            <li>Science</li>
+            <li>English</li>
+            <li>Computer</li>
+            <li>History</li>
+            <li>Geography</li>
+            <li>Physics</li>
+            <li>Chemistry</li>
+            <li>Biology</li>
+        </ul>
+    </aside>
+
+    <!-- Services -->
+    <section class="services">
+
+        <div class="tutor-card">
+            <img src="../images/tutor-images/math-wizard.jpg" alt="Math">
+            <h3>Mathematics Tutor</h3>
+            <p>Home tuition for class 1-12 & competitive exams.</p>
+            <span>₹499 / session</span>
+            <button onclick="bookService('Mathematics Tutor', 499)">Hire Tutor</button>
+        </div>
+
+        <div class="tutor-card">
+            <img src="../images/tutor-images/Einstein.jpg" alt="Science">
+            <h3>Science Tutor</h3>
+            <p>Physics, Chemistry & Biology home tutoring.</p>
+            <span>₹599 / session</span>
+            <button onclick="bookService('Science Tutor', 599)">Hire Tutor</button>
+        </div>
+
+        <div class="tutor-card">
+            <img src="../images/tutor-images/learn-english.jpeg" alt="English">
+            <h3>English Language</h3>
+            <p>Grammar, writing & speaking skills training.</p>
+            <span>₹449 / session</span>
+            <button onclick="bookService('English Language', 449)">Hire Tutor</button>
+        </div>
+
+        <div class="tutor-card">
+            <img src="../images/tutor-images/computer-class.webp" alt="Computer">
+            <h3>Computer Training</h3>
+            <p>Basics, coding, typing & MS Office.</p>
+            <span>₹699 / session</span>
+            <button onclick="bookService('Computer Training', 699)">Hire Tutor</button>
+        </div>
+
+        <div class="tutor-card">
+            <img src="../images/tutor-images/physics.jpeg" alt="Physics">
+            <h3>Physics</h3>
+            <p>Concept clarity & numerical practice.</p>
+            <span>₹599 / session</span>
+            <button onclick="bookService('Physics', 599)">Hire Tutor</button>
+        </div>
+
+        <div class="tutor-card">
+            <img src="../images/tutor-images/chemestry.webp" alt="Chemistry">
+            <h3>Chemistry</h3>
+            <p>Organic, inorganic & practical concepts.</p>
+            <span>₹599 / session</span>
+            <button onclick="bookService('Chemistry', 599)">Hire Tutor</button>
+        </div>
+
+        <div class="tutor-card">
+            <img src="../images/tutor-images/biology.jpeg" alt="Biology">
+            <h3>Biology</h3>
+            <p>Complete syllabus & diagrams explained.</p>
+            <span>₹549 / session</span>
+            <button onclick="bookService('Biology', 549)">Hire Tutor</button>
+        </div>
+
+        <div class="tutor-card">
+            <img src="../images/tutor-images/world-history.jpg" alt="History">
+            <h3>History</h3>
+            <p>Fun & easy explanation of historical events.</p>
+            <span>₹449 / session</span>
+            <button onclick="bookService('History', 449)">Hire Tutor</button>
+        </div>
+
+        <div class="tutor-card">
+            <img src="../images/tutor-images/economics.webp" alt="Economics">
+            <h3>Economics</h3>
+            <p>Micro, macro & business economics.</p>
+            <span>₹699 / session</span>
+            <button onclick="bookService('Economics', 699)">Hire Tutor</button>
+        </div>
+
+        <div class="tutor-card">
+            <img src="../images/tutor-images/programming.jpg" alt="Programming">
+            <h3>Programming Tutor</h3>
+            <p>Python, Java, C++, Web Development.</p>
+            <span>₹999 / session</span>
+            <button onclick="bookService('Programming Tutor', 999)">Hire Tutor</button>
+        </div>
+
+        <div class="tutor-card">
+            <img src="../images/tutor-images/kids-coaching.jpg" alt="Kids Coaching">
+            <h3>Kids Coaching</h3>
+            <p>Reading, writing & homework support.</p>
+            <span>₹349 / session</span>
+            <button onclick="bookService('Kids Coaching', 349)">Hire Tutor</button>
+        </div>
+
+        <div class="tutor-card">
+            <img src="../images/tutor-images/competitive-exam.webp" alt="Competitive Exams">
+            <h3>Competitive Exams</h3>
+            <p>SSC, Banking, Railway, NEET, JEE.</p>
+            <span>₹1299 / session</span>
+            <button onclick="bookService('Competitive Exams', 1299)">Hire Tutor</button>
+        </div>
+
+    </section>
+</div>
+
+<script>
+function bookService(serviceName, price) {
+    localStorage.setItem("serviceName", serviceName);
+    localStorage.setItem("servicePrice", price);
+    window.location.href = `${window.location.pathname.includes("/frontend/") ? "/frontend" : ""}/booking-details/booking.html`;
+}
+</script>
+
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a class="footer-logo" href="/frontend/index.html" aria-label="ServiceHub Home">
+                        <img src="/frontend/images/servicehub-logo.svg" alt="ServiceHub logo">
+                    </a>
+                    <h3>ServiceHub</h3>
+                    <p>Trusted home services, fair conversations, and reliable support for customers, workers, and partners.</p>
+                    <div class="footer-pills">
+                        <span>Verified Pros</span>
+                        <span>Fair Pricing</span>
+                        <span>Fast Booking</span>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h4>Explore</h4>
+                    <div class="footer-links">
+                        <a class="footer-link" href="/frontend/services/all-services.html">Services</a>
+                        <a class="footer-link" href="/frontend/servicesInfo/about.html">About</a>
+                        <a class="footer-link" href="/frontend/servicesInfo/partners.html">Partners</a>
+                        <a class="footer-link" href="/frontend/tranjection/wallet.html">Community Chat</a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h4>Company</h4>
+                    <div class="footer-links">
+                        <a class="footer-link" href="/frontend/servicesInfo/become-partner.html">Become Partner</a>
+                        <a class="footer-link" href="/frontend/your-booking/mybooking.html">My Bookings</a>
+                        <a class="footer-link" href="/frontend/servicesInfo/review.html">Reviews</a>
+                        <a class="footer-link" href="/frontend/profile/login.html">Login</a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h4>Why ServiceHub</h4>
+                    <p class="footer-note">Built for smooth booking, honest service, and a better experience for every home.</p>
+                    <div class="footer-links">
+                        <strong>Support</strong>
+                        <span class="footer-meta"><span>24×7 help</span><span>Fast replies</span></span>
+                        <span class="footer-meta"><span>Fair disputes</span><span>Community trust</span></span>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-meta">
+                    <span>© 2026 ServiceHub</span>
+                    <span>Made for customers, workers, and partners.</span>
+                </div>
+                <div class="footer-socials" aria-label="ServiceHub social links">
+                    <a href="https://www.linkedin.com/in/faiyaj-ansari-293413366" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                    <a href="https://github.com/Git-Hub-prog/Git-Hub-prog" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+                    <a href="https://www.instagram.com/faiyaj4553?igsh=MXBwNTJnMDR4NGs1ZA==" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                </div>
+                <div class="footer-note">A modern service platform that keeps things clear, quick, and fair.</div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
+
+

@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Console - ServiceHub</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="../css/dashboard.css">
+</head>
+<body>
+  <div class="layout">
+    <aside class="side">
+      <div class="brand">
+        <i class="fas fa-layer-group"></i> ServiceHub
+      </div>
+      <div class="menu">
+        <button data-view="overview" class="active">
+          <i class="fas fa-chart-line"></i> Overview
+        </button>
+        <button data-view="partners">
+          <i class="fas fa-user-tie"></i> Partners
+        </button>
+        <button data-view="bookings">
+          <i class="fas fa-calendar-check"></i> Bookings
+        </button>
+        <button data-view="users">
+          <i class="fas fa-users"></i> Users
+        </button>
+        <button data-view="services">
+          <i class="fas fa-tools"></i> Services
+        </button>
+      </div>
+      <button id="logoutBtn" class="logout">
+        <i class="fas fa-sign-out-alt"></i> Logout
+      </button>
+    </aside>
+
+    <main class="main">
+
+      <!-- NAVBAR -->
+      <div class="navbar">
+        <div class="navbar-left">
+          <button class="hamburger" id="hamburgerBtn" style="display: none;">
+            <i class="fas fa-bars"></i>
+          </button>
+          <div>
+            <h1 class="title">Admin Console</h1>
+            <p class="sub">Manage your platform, real-time insights</p>
+          </div>
+        </div>
+        <div class="navbar-right">
+          <div class="search-box">
+            <input type="text" id="globalSearch" placeholder="🔍 Search bookings, users...">
+          </div>
+          <button class="navbar-btn" title="Notifications">
+            <i class="fas fa-bell"></i>
+          </button>
+          <button class="navbar-btn" title="Admin Profile">
+            <i class="fas fa-user-circle"></i>
+          </button>
+        </div>
+      </div>
+
+      <div id="apiNote" class="note"></div>
+
+      <!-- ===== OVERVIEW VIEW ===== -->
+      <section id="view-overview" class="view">
+        <!-- Metric Cards -->
+        <div class="grid" id="metricCards"></div>
+
+        <!-- Service Overview -->
+        <div style="margin-top: 24px;">
+          <h3 style="font-size: 18px; font-weight: 700; margin-bottom: 16px; color: var(--ink);">
+            📊 Service Overview
+          </h3>
+          <div class="service-grid" id="serviceOverview"></div>
+        </div>
+
+        <!-- Charts Section -->
+        <div style="margin-top: 28px; display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 20px;">
+          <div style="background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 20px; box-shadow: 0 2px 12px rgba(0,0,0,0.06); min-height: 380px;">
+            <h4 style="font-weight: 700; color: var(--ink); margin-bottom: 16px;">💰 Revenue Trend</h4>
+            <div style="position: relative; height: 320px; width: 100%;">
+              <canvas id="revenueChart"></canvas>
+            </div>
+          </div>
+          <div style="background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 20px; box-shadow: 0 2px 12px rgba(0,0,0,0.06); min-height: 380px;">
+            <h4 style="font-weight: 700; color: var(--ink); margin-bottom: 16px;">📈 Booking Trends</h4>
+            <div style="position: relative; height: 320px; width: 100%;">
+              <canvas id="bookingChart"></canvas>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="view-partners" class="view panel hidden">
+        <h3>Partners</h3>
+        <div class="toolbar">
+          <select id="partnerStatusFilter">
+            <option value="">All statuses</option>
+            <option value="pending">Pending</option>
+            <option value="approved">Approved</option>
+            <option value="rejected">Rejected</option>
+          </select>
+          <button id="loadPartners" class="btn">Reload Partners</button>
+        </div>
+        <table>
+          <thead><tr><th>Name</th><th>Email</th><th>Service</th><th>Status</th><th>Actions</th></tr></thead>
+          <tbody id="partnersBody"></tbody>
+        </table>
+      </section>
+
+      <section id="view-bookings" class="view panel hidden">
+        <h3>Bookings</h3>
+        <div class="toolbar">
+          <select id="bookingStatusFilter">
+            <option value="">All booking status</option>
+            <option value="pending">Pending</option>
+            <option value="completed">Completed</option>
+            <option value="cancelled">Cancelled</option>
+          </select>
+          <button id="loadBookings" class="btn">Reload Bookings</button>
+        </div>
+        <table>
+          <thead><tr><th>Service</th><th>Customer</th><th>Completed By</th><th>Status</th><th>Payment</th><th>Price</th><th>Action</th></tr></thead>
+          <tbody id="bookingsBody"></tbody>
+        </table>
+      </section>
+
+      <section id="view-users" class="view panel hidden">
+        <h3>Users (Customers Only)</h3>
+        <div class="toolbar">
+          <input id="userSearch" placeholder="Search name/email">
+          <button id="loadUsers" class="btn">Reload Users</button>
+        </div>
+        <table>
+          <thead><tr><th>Name</th><th>Email</th><th>Role</th></tr></thead>
+          <tbody id="usersBody"></tbody>
+        </table>
+      </section>
+
+      <section id="view-services" class="view panel hidden">
+        <h3>Service Categories</h3>
+        <div class="toolbar">
+          <input id="svcCategoryId" placeholder="categoryId (e.g. plumber)">
+          <input id="svcCategoryTitle" placeholder="categoryTitle (e.g. Plumbing)">
+          <button id="createServiceBtn" class="btn">Create Category</button>
+          <button id="loadServices" class="btn alt">Reload Categories</button>
+        </div>
+        <table>
+          <thead><tr><th>Category ID</th><th>Title</th><th>Services Count</th></tr></thead>
+          <tbody id="servicesBody"></tbody>
+        </table>
+      </section>
+    </main>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+        <div class="footer-inner">
+          <div class="footer-grid">
+            <div class="footer-brand">
+              <div style="width: 40px; height: 40px; background: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 24px; margin-bottom: 12px;">🏠</div>
+              <h3>ServiceHub</h3>
+              <p>Trusted home services, fair conversations, and reliable support for customers, workers, and partners.</p>
+              <div class="footer-pills">
+                <span>Verified Pros</span>
+                <span>Fair Pricing</span>
+                <span>Fast Booking</span>
+              </div>
+            </div>
+            <div class="footer-column">
+              <h4>Explore</h4>
+              <div class="footer-links">
+                <a class="footer-link" href="#" onclick="showView('overview')">Dashboard</a>
+                <a class="footer-link" href="../servicesInfo/about.html">About</a>
+                <a class="footer-link" href="../servicesInfo/partners.html">Partners</a>
+                <a class="footer-link" href="../tranjection/wallet.html">Community Chat</a>
+              </div>
+            </div>
+            <div class="footer-column">
+              <h4>Company</h4>
+              <div class="footer-links">
+                <a class="footer-link" href="../servicesInfo/become-partner.html">Become Partner</a>
+                <a class="footer-link" href="#" onclick="showView('bookings')">My Bookings</a>
+                <a class="footer-link" href="../servicesInfo/review.html">Reviews</a>
+                <a class="footer-link" href="../profile/login.html">Login</a>
+              </div>
+            </div>
+            <div class="footer-column">
+              <h4>Why ServiceHub</h4>
+              <p class="footer-note">Built for smooth admin management, honest service, and a better experience for every platform.</p>
+              <div class="footer-links">
+                <strong>Support</strong>
+                <span class="footer-meta"><span>24/7 help</span><span>Fast replies</span></span>
+                <span class="footer-meta"><span>Fair disputes</span><span>Community trust</span></span>
+              </div>
+            </div>
+          </div>
+          <div class="footer-bottom">
+            <div class="footer-meta">
+              <span>© 2026 ServiceHub</span>
+              <span>Made for customers, workers, and partners.</span>
+            </div>
+            <div class="footer-socials" aria-label="ServiceHub social links">
+              <a href="https://www.linkedin.com/in/faiyaj-ansari-293413366" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+              <a href="https://github.com/Git-Hub-prog/Git-Hub-prog" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+              <a href="https://www.instagram.com/faiyaj4553?igsh=MXBwNTJnMDR4NGs1ZA==" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            </div>
+            <div class="footer-note">A modern admin platform that keeps things clear, quick, and fair.</div>
+          </div>
+        </div>
+      </footer>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="../js/admin-dashboard.js"></script>
+</body>
+</html>

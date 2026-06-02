@@ -1,0 +1,88 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #fff4fb;
+    margin: 0;
+    padding: 0;
+}
+
+.banner {
+    background: linear-gradient(135deg, #ff80b5, #ffb3d9);
+    color: white;
+    text-align: center;
+    padding: 40px 20px;
+}
+
+.banner h1 {
+    font-size: 42px;
+}
+
+.banner p {
+    font-size: 18px;
+    margin-top: 10px;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 28px;
+    margin: 20px 0;
+    color: #d14d87;
+}
+
+.service-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 25px;
+    padding: 25px;
+}
+
+.card {
+    background-color: white;
+    border-radius: 15px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(255, 105, 180, 0.3);
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 6px 15px rgba(255, 105, 180, 0.45);
+}
+
+.card img {
+    width: 100%;
+    border-radius: 15px;
+}
+
+.card h3 {
+    margin-top: 15px;
+    font-size: 20px;
+    color: #c73479;
+}
+
+.card p {
+    font-size: 14px;
+    color: #444;
+}
+
+.card span {
+    display: block;
+    margin: 10px 0;
+    font-weight: bold;
+    color: #d14d87;
+    font-size: 18px;
+}
+
+button {
+    background-color: #ff66a3;
+    color: white;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+button:hover {
+    background-color: #ff3385;
+}

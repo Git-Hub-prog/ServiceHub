@@ -1,0 +1,188 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Salon at Home Services</title>
+    <link rel="stylesheet" href="../css/salon.css">
+    <link rel="stylesheet" href="../css/services-theme.css">
+    <link rel="stylesheet" href="/frontend/css/footer.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="service-theme theme-salon">
+
+<header class="banner">
+    <h1>Salon At Home</h1>
+    <p>Beauty & Grooming Services at Your Doorstep</p>
+</header>
+
+<h2 class="section-title">Popular Beauty Services</h2>
+
+<div class="service-grid">
+
+    <div class="card">
+        <img src="../images/salon-service-image/facial-service.jpeg" alt="Facial">
+        <h3>Facial & Cleanup</h3>
+        <p>Glow & relax with premium facials</p>
+        <span>₹799</span>
+        <button onclick="bookService('Facial & Cleanup', 799)">Book Now</button>
+    </div>
+
+    <div class="card">
+        <img src="../images/salon-service-image/waxing-service.jpeg" alt="Waxing">
+        <h3>Waxing</h3>
+        <p>Full body & hand/leg waxing</p>
+        <span>₹499</span>
+        <button onclick="bookService('Waxing', 499)">Book Now</button>
+    </div>
+
+    <div class="card">
+        <img src="../images/salon-service-image/hair-cut.jpg" alt="Haircut">
+        <h3>Haircut & Styling</h3>
+        <p>Professional haircuts & blow dry</p>
+        <span>₹349</span>
+        <button onclick="bookService('Haircut & Styling', 349)">Book Now</button>
+    </div>
+
+    <div class="card">
+        <img src="../images/salon-service-image/manucure -service.jpg" alt="Manicure">
+        <h3>Manicure</h3>
+        <p>Hand care & nail shine</p>
+        <span>₹399</span>
+        <button onclick="bookService('Manicure', 399)">Book Now</button>
+    </div>
+
+    <div class="card">
+        <img src="../images/salon-service-image/pedicure-service.jpeg" alt="Pedicure">
+        <h3>Pedicure</h3>
+        <p>Relaxing pedicure & foot spa</p>
+        <span>₹449</span>
+        <button onclick="bookService('Pedicure', 449)">Book Now</button>
+    </div>
+
+    <div class="card">
+        <img src="../images/salon-service-image/threading-service.webp" alt="Threading">
+        <h3>Threading</h3>
+        <p>Eyebrow & upper-lip threading</p>
+        <span>₹99</span>
+        <button onclick="bookService('Threading', 99)">Book Now</button>
+    </div>
+
+    <div class="card">
+        <img src="../images/salon-service-image/hair-coloring.jpeg" alt="Hair Color">
+        <h3>Hair Coloring</h3>
+        <p>Global & streaks coloring</p>
+        <span>₹999</span>
+        <button onclick="bookService('Hair Coloring', 999)">Book Now</button>
+    </div>
+
+    <div class="card">
+        <img src="../images/salon-service-image/bridal-makeup.jpeg" alt="Bridal Makeup">
+        <h3>Bridal Makeup</h3>
+        <p>Professional bridal makeover</p>
+        <span>₹6999</span>
+        <button onclick="bookService('Bridal Makeup', 6999)">Book Now</button>
+    </div>
+
+    <div class="card">
+        <img src="../images/salon-service-image/hair-spa.avif" alt="Hair Spa">
+        <h3>Hair Spa</h3>
+        <p>Deep nourishment & smooth hair</p>
+        <span>₹799</span>
+        <button onclick="bookService('Hair Spa', 799)">Book Now</button>
+    </div>
+
+    <div class="card">
+        <img src="../images/salon-service-image/bleaching-service.jpg" alt="Bleach">
+        <h3>Bleach</h3>
+        <p>Full body & face bleach</p>
+        <span>₹399</span>
+        <button onclick="bookService('Bleach', 399)">Book Now</button>
+    </div>
+
+    <div class="card">
+        <img src="../images/salon-service-image/de-tan-pack.webp" alt="Detan">
+        <h3>De-Tan Pack</h3>
+        <p>Instant tan removal treatment</p>
+        <span>₹499</span>
+        <button onclick="bookService('De-Tan Pack', 499)">Book Now</button>
+    </div>
+
+    <div class="card">
+        <img src="../images/salon-service-image/parti-makeup.jpg" alt="Makeup">
+        <h3>Party Makeup</h3>
+        <p>Perfect look for any function</p>
+        <span>₹1999</span>
+        <button onclick="bookService('Party Makeup', 1999)">Book Now</button>
+    </div>
+
+</div>
+
+<script>
+function bookService(serviceName, price) {
+    localStorage.setItem("serviceName", serviceName);
+    localStorage.setItem("servicePrice", price);
+    window.location.href = `${window.location.pathname.includes("/frontend/") ? "/frontend" : ""}/booking-details/booking.html`;
+}
+</script>
+
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a class="footer-logo" href="/frontend/index.html" aria-label="ServiceHub Home">
+                        <img src="/frontend/images/servicehub-logo.svg" alt="ServiceHub logo">
+                    </a>
+                    <h3>ServiceHub</h3>
+                    <p>Trusted home services, fair conversations, and reliable support for customers, workers, and partners.</p>
+                    <div class="footer-pills">
+                        <span>Verified Pros</span>
+                        <span>Fair Pricing</span>
+                        <span>Fast Booking</span>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h4>Explore</h4>
+                    <div class="footer-links">
+                        <a class="footer-link" href="/frontend/services/all-services.html">Services</a>
+                        <a class="footer-link" href="/frontend/servicesInfo/about.html">About</a>
+                        <a class="footer-link" href="/frontend/servicesInfo/partners.html">Partners</a>
+                        <a class="footer-link" href="/frontend/tranjection/wallet.html">Community Chat</a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h4>Company</h4>
+                    <div class="footer-links">
+                        <a class="footer-link" href="/frontend/servicesInfo/become-partner.html">Become Partner</a>
+                        <a class="footer-link" href="/frontend/your-booking/mybooking.html">My Bookings</a>
+                        <a class="footer-link" href="/frontend/servicesInfo/review.html">Reviews</a>
+                        <a class="footer-link" href="/frontend/profile/login.html">Login</a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h4>Why ServiceHub</h4>
+                    <p class="footer-note">Built for smooth booking, honest service, and a better experience for every home.</p>
+                    <div class="footer-links">
+                        <strong>Support</strong>
+                        <span class="footer-meta"><span>24×7 help</span><span>Fast replies</span></span>
+                        <span class="footer-meta"><span>Fair disputes</span><span>Community trust</span></span>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-meta">
+                    <span>© 2026 ServiceHub</span>
+                    <span>Made for customers, workers, and partners.</span>
+                </div>
+                <div class="footer-socials" aria-label="ServiceHub social links">
+                    <a href="https://www.linkedin.com/in/faiyaj-ansari-293413366" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                    <a href="https://github.com/Git-Hub-prog/Git-Hub-prog" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+                    <a href="https://www.instagram.com/faiyaj4553?igsh=MXBwNTJnMDR4NGs1ZA==" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                </div>
+                <div class="footer-note">A modern service platform that keeps things clear, quick, and fair.</div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
+
+

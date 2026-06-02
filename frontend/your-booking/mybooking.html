@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Bookings</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/mybooking.css">
+    <link rel="stylesheet" href="../css/footer.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <nav class="navbar booking-navbar">
+        <div class="logo">ServiceHub</div>
+        <ul class="nav-links">
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="../services/all-services.html">Services</a></li>
+            <li><a href="../servicesInfo/become-partner.html">Become Partner</a></li>
+            <li><a href="../servicesInfo/partners.html">Partner List</a></li>
+            <li><a class="active" href="../your-booking/mybooking.html">My Bookings</a></li>
+            <li class="profile-dropdown">
+                <a href="javascript:void(0)">Login / Profile &#9662;</a>
+                <ul class="dropdown">
+                    <li><a href="../profile/login.html">Login</a></li>
+                    <li><a href="../profile/logout.html">Logout</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="page-orb orb-left"></div>
+    <div class="page-orb orb-right"></div>
+    <main class="booking-app">
+        <section class="hero-panel">
+            <div class="hero-copy">
+                <div class="crumbs">Home <span>•</span> <strong>My Bookings</strong></div>
+                <h1>One place for every service you booked.</h1>
+                <p class="subtitle">Watch live progress, review your service history, and jump back into booking in a few clicks.</p>
+
+                <div class="hero-actions">
+                    <button class="ghost-btn" id="refreshButton" type="button"><i class="fa-solid fa-rotate"></i> Refresh</button>
+                    <a class="solid-btn" href="../services/all-services.html"><i class="fa-solid fa-bolt"></i> Book a new service</a>
+                </div>
+
+                <div class="stats-grid" id="summaryStats">
+                    <article class="stat-card">
+                        <span class="stat-label">Total bookings</span>
+                        <strong id="totalBookings">0</strong>
+                    </article>
+                    <article class="stat-card">
+                        <span class="stat-label">Active now</span>
+                        <strong id="activeBookingsCount">0</strong>
+                    </article>
+                    <article class="stat-card">
+                        <span class="stat-label">Completed</span>
+                        <strong id="completedBookingsCount">0</strong>
+                    </article>
+                    <article class="stat-card">
+                        <span class="stat-label">Paid</span>
+                        <strong id="paidBookingsCount">0</strong>
+                    </article>
+                </div>
+            </div>
+
+            <aside class="hero-visual">
+                <div class="visual-stack">
+                    <div class="visual-card visual-card-main">
+                        <img src="../images/booking-illustration.svg" alt="Booking dashboard illustration">
+                    </div>
+                    <div class="visual-card visual-card-accent">
+                        <img src="../images/car-cleaning.avif" alt="Car service preview">
+                    </div>
+                    <div class="floating-chip chip-top">Live ETA updates</div>
+                    <div class="floating-chip chip-bottom">Status, payment, support</div>
+                </div>
+            </aside>
+        </section>
+
+        <section class="toolbar-panel" aria-label="Booking filters">
+            <div class="search-wrap">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input id="bookingSearch" type="search" placeholder="Search service, address, worker or status">
+            </div>
+            <div class="filter-pills" id="statusFilters">
+                <button class="filter-pill is-active" data-filter="all" type="button">All</button>
+                <button class="filter-pill" data-filter="active" type="button">Active</button>
+                <button class="filter-pill" data-filter="completed" type="button">Completed</button>
+                <button class="filter-pill" data-filter="cancelled" type="button">Cancelled</button>
+            </div>
+        </section>
+
+        <section class="tracking-section section-shell" id="trackingSection">
+            <div class="section-head">
+                <div>
+                    <h2>Live tracking</h2>
+                    <p>Current booking status, assigned worker, and next step.</p>
+                </div>
+                <div class="live-pill"><span></span> Live tracking</div>
+            </div>
+            <div id="trackingContent"></div>
+        </section>
+
+        <section class="history-section section-shell" id="historySection">
+            <div class="section-head">
+                <div>
+                    <h2>Your bookings</h2>
+                    <p>All services you have booked, split into active and past appointments.</p>
+                </div>
+                <div class="section-note">Sorts by newest first</div>
+            </div>
+            <div id="activeBookingList"></div>
+            <div id="pastBookingList"></div>
+        </section>
+
+        <section class="support-strip section-shell">
+            <div>
+                <h2>Need help with a booking?</h2>
+                <p>Open your service details, contact the assigned worker, or jump back to the service catalog.</p>
+            </div>
+            <div class="support-actions">
+                <a class="ghost-btn" href="../services/all-services.html"><i class="fa-solid fa-layer-group"></i> Explore services</a>
+                <a class="ghost-btn" href="../servicesInfo/about.html"><i class="fa-solid fa-circle-info"></i> About ServiceHub</a>
+            </div>
+        </section>
+    </main>
+
+    <script src="../js/mybooking.js"></script>
+    <script src="../js/services-data.js"></script>
+
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a class="footer-logo" href="../index.html" aria-label="ServiceHub Home">
+                        <img src="../images/servicehub-logo.svg" alt="ServiceHub logo">
+                    </a>
+                    <h3>ServiceHub</h3>
+                    <p>Trusted home services, fair conversations, and reliable support for customers, workers, and partners.</p>
+                    <div class="footer-pills">
+                        <span>Verified Pros</span>
+                        <span>Fair Pricing</span>
+                        <span>Fast Booking</span>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h4>Explore</h4>
+                    <div class="footer-links">
+                        <a class="footer-link" href="../services/all-services.html">Services</a>
+                        <a class="footer-link" href="../servicesInfo/about.html">About</a>
+                        <a class="footer-link" href="../servicesInfo/partners.html">Partners</a>
+                        <a class="footer-link" href="../tranjection/wallet.html">Community Chat</a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h4>Company</h4>
+                    <div class="footer-links">
+                        <a class="footer-link" href="../servicesInfo/become-partner.html">Become Partner</a>
+                        <a class="footer-link" href="../your-booking/mybooking.html">My Bookings</a>
+                        <a class="footer-link" href="../servicesInfo/review.html">Reviews</a>
+                        <a class="footer-link" href="../profile/login.html">Login</a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h4>Why ServiceHub</h4>
+                    <p class="footer-note">Built for smooth booking, honest service, and a better experience for every home.</p>
+                    <div class="footer-links">
+                        <strong>Support</strong>
+                        <span class="footer-meta"><span>24×7 help</span><span>Fast replies</span></span>
+                        <span class="footer-meta"><span>Fair disputes</span><span>Community trust</span></span>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-meta">
+                    <span>© 2026 ServiceHub</span>
+                    <span>Made for customers, workers, and partners.</span>
+                </div>
+                <div class="footer-socials" aria-label="ServiceHub social links">
+                    <a href="https://www.linkedin.com/in/faiyaj-ansari-293413366" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                    <a href="https://github.com/Git-Hub-prog/Git-Hub-prog" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+                    <a href="https://www.instagram.com/faiyaj4553?igsh=MXBwNTJnMDR4NGs1ZA==" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                </div>
+                <div class="footer-note">A modern service platform that keeps things clear, quick, and fair.</div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

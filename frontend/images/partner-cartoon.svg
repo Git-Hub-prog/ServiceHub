@@ -1,0 +1,115 @@
+<svg width="360" height="240" viewBox="0 0 360 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="360" y2="240" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#DFF3FF"/>
+      <stop offset="0.58" stop-color="#AEE3FF"/>
+      <stop offset="1" stop-color="#77C7F7"/>
+    </linearGradient>
+    <linearGradient id="horizonGlow" x1="180" y1="96" x2="180" y2="240" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#FFFFFF" stop-opacity="0"/>
+      <stop offset="1" stop-color="#FFFFFF" stop-opacity="0.24"/>
+    </linearGradient>
+    <linearGradient id="skin" x1="0" y1="0" x2="0" y2="1" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#FFD7C2"/>
+      <stop offset="1" stop-color="#F4B99E"/>
+    </linearGradient>
+    <linearGradient id="shirt" x1="0" y1="0" x2="0" y2="1" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#1F2937"/>
+      <stop offset="1" stop-color="#111827"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="360" height="240" rx="24" fill="url(#bg)"/>
+  <rect width="360" height="240" rx="24" fill="url(#horizonGlow)"/>
+
+  <!-- sun -->
+  <circle cx="310" cy="42" r="22" fill="#FFF7C7" fill-opacity="0.95"/>
+  <circle cx="310" cy="42" r="32" fill="#FFF7C7" fill-opacity="0.18"/>
+
+  <!-- clouds -->
+  <g fill="#FFFFFF" fill-opacity="0.92">
+    <ellipse cx="70" cy="46" rx="18" ry="12"/>
+    <ellipse cx="86" cy="44" rx="12" ry="10"/>
+    <ellipse cx="56" cy="48" rx="12" ry="9"/>
+
+    <ellipse cx="136" cy="72" rx="16" ry="10"/>
+    <ellipse cx="150" cy="70" rx="10" ry="8"/>
+    <ellipse cx="124" cy="74" rx="10" ry="8"/>
+
+    <ellipse cx="268" cy="74" rx="14" ry="9"/>
+    <ellipse cx="281" cy="72" rx="9" ry="7"/>
+    <ellipse cx="256" cy="76" rx="9" ry="7"/>
+  </g>
+
+  <circle cx="56" cy="42" r="18" fill="#7DD3FC" fill-opacity="0.5"/>
+  <circle cx="82" cy="58" r="8" fill="#BFDBFE" fill-opacity="0.8"/>
+  <circle cx="100" cy="36" r="6" fill="#FDBA74" fill-opacity="0.55"/>
+  <circle cx="44" cy="66" r="6" fill="#BAE6FD" fill-opacity="0.7"/>
+
+  <!-- organic frame instead of square panel -->
+  <g filter="url(#frameShadow)">
+    <path d="M205 34C244 10 317 16 332 54C345 88 341 141 321 160C299 181 260 188 232 177C201 165 180 139 178 111C176 81 183 46 205 34Z" fill="#FFFFFF" fill-opacity="0.20"/>
+    <path d="M214 44C248 22 308 26 320 58C331 87 327 129 312 145C293 166 260 173 237 166C212 158 196 137 193 113C190 87 194 56 214 44Z" fill="#EAF9FF" fill-opacity="0.65"/>
+  </g>
+
+  <!-- speech bubble -->
+  <g filter="url(#shadow)">
+    <rect x="92" y="20" width="154" height="74" rx="22" fill="#FFFFFF" fill-opacity="0.98"/>
+    <path d="M123 94L108 108L135 96" fill="#FFFFFF" fill-opacity="0.98"/>
+    <text x="118" y="43" fill="#EF4444" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="700">My client said:</text>
+    <text x="118" y="60" fill="#1F2937" font-family="Inter, Arial, sans-serif" font-size="11" font-weight="600">“We need this fixed</text>
+    <text x="118" y="74" fill="#1F2937" font-family="Inter, Arial, sans-serif" font-size="11" font-weight="600">ASAP... by yesterday.”</text>
+    <text x="118" y="88" fill="#475569" font-family="Inter, Arial, sans-serif" font-size="10" font-style="italic">Sir, I’m a plumber, not a time machine!</text>
+  </g>
+
+  <!-- character -->
+  <g transform="translate(220 56)">
+    <circle cx="32" cy="20" r="18" fill="url(#skin)"/>
+    <path d="M14 18C14 5 21 0 32 0C43 0 50 5 50 18V20H14V18Z" fill="#1F2937"/>
+    <circle cx="25" cy="21" r="2.2" fill="#111827"/>
+    <circle cx="39" cy="21" r="2.2" fill="#111827"/>
+    <path d="M25 29C29 33 35 33 39 29" stroke="#C2410C" stroke-width="2.2" stroke-linecap="round"/>
+    <rect x="20" y="38" width="24" height="58" rx="10" fill="url(#skin)"/>
+    <path d="M10 50H20V94H10C5.5 94 2 90.5 2 86V58C2 53.6 5.5 50 10 50Z" fill="#1F2937"/>
+    <path d="M44 50H54C58.4 50 62 53.6 62 58V86C62 90.5 58.4 94 54 94H44V50Z" fill="#1F2937"/>
+    <rect x="16" y="94" width="32" height="40" rx="8" fill="#1F2937"/>
+    <rect x="11" y="130" width="42" height="10" rx="5" fill="#0F172A"/>
+    <rect x="58" y="114" width="24" height="10" rx="5" fill="#CBD5E1" transform="rotate(10 58 114)"/>
+    <circle cx="72" cy="124" r="5" fill="#F8FAFC" stroke="#94A3B8" stroke-width="2"/>
+    <rect x="58" y="110" width="8" height="22" rx="4" fill="#38BDF8" transform="rotate(10 58 110)"/>
+    <rect x="20" y="108" width="24" height="8" rx="4" fill="#F97316"/>
+    <circle cx="22" cy="168" r="7" fill="#38BDF8"/>
+    <circle cx="50" cy="168" r="7" fill="#38BDF8"/>
+  </g>
+
+  <!-- little name card -->
+  <g>
+    <rect x="246" y="154" width="54" height="28" rx="14" fill="#FFFFFF" fill-opacity="0.98"/>
+    <rect x="254" y="160" width="18" height="8" rx="2" fill="#EF4444"/>
+    <rect x="254" y="172" width="30" height="4" rx="2" fill="#CBD5E1"/>
+    <rect x="284" y="160" width="8" height="12" rx="2" fill="#0EA5A4"/>
+  </g>
+
+  <defs>
+    <filter id="frameShadow" x="170" y="0" width="170" height="200" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+      <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+      <feOffset dy="8"/>
+      <feGaussianBlur stdDeviation="10"/>
+      <feComposite in2="hardAlpha" operator="out"/>
+      <feColorMatrix type="matrix" values="0 0 0 0 0.06 0 0 0 0 0.12 0 0 0 0 0.2 0 0 0 0.22 0"/>
+      <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow"/>
+      <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow" result="shape"/>
+    </filter>
+    <filter id="shadow" x="80" y="8" width="180" height="120" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+      <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+      <feOffset dy="6"/>
+      <feGaussianBlur stdDeviation="8"/>
+      <feComposite in2="hardAlpha" operator="out"/>
+      <feColorMatrix type="matrix" values="0 0 0 0 0.05 0 0 0 0 0.09 0 0 0 0 0.18 0 0 0 0.35 0"/>
+      <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow"/>
+      <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow" result="shape"/>
+    </filter>
+  </defs>
+</svg>

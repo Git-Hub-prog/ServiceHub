@@ -1,0 +1,214 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Plumber Services</title>
+    <link rel="stylesheet" href="../css/plumber.css">
+    <link rel="stylesheet" href="../css/services-theme.css">
+    <link rel="stylesheet" href="/frontend/css/footer.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="service-theme theme-plumber">
+
+<header class="header">
+    <h2>Plumber Services</h2>
+</header>
+
+<section class="banner">
+    <h1>Expert Plumbers at Your Doorstep</h1>
+    <p>Affordable | Reliable | Quick Service | Trusted Professionals</p>
+</section>
+
+<section class="services-container">
+
+    <div class="service-card">
+        <img src="../images/plumber-imgages/leakage-repairing.jpg">
+        <h3>Leakage Repair</h3>
+        <p>Fix pipe leakage, taps & bathroom issues.</p>
+        <div class="price">₹299</div>
+        <button onclick="bookService('Leakage Repair', 299)">Book Now</button>
+    </div>
+
+    <div class="service-card">
+        <img src="../images/plumber-imgages/tap-installation.jpg">
+        <h3>Tap Installation</h3>
+        <p>Install or replace taps & mixers.</p>
+        <div class="price">₹199</div>
+        <button onclick="bookService('Tap Installation', 199)">Book Now</button>
+    </div>
+
+    <div class="service-card">
+        <img src="../images/plumber-imgages/shawer-installation.jpeg">
+        <h3>Shower Installation</h3>
+        <p>Install shower panels & bathroom fittings.</p>
+        <div class="price">₹499</div>
+        <button onclick="bookService('Shower Installation', 499)">Book Now</button>
+    </div>
+
+    <div class="service-card">
+        <img src="../images/plumber-imgages/clogs-remove.webp">
+        <h3>Clog Removal</h3>
+        <p>Drain & toilet clog clearing.</p>
+        <div class="price">₹399</div>
+        <button onclick="bookService('Clog Removal', 399)">Book Now</button>
+    </div>
+
+    <div class="service-card">
+        <img src="../images/plumber-imgages/water-tank-pipe.jpg">
+        <h3>Water Tank Pipe Repair</h3>
+        <p>Overhead & underground pipelines.</p>
+        <div class="price">₹699</div>
+        <button onclick="bookService('Water Tank Pipe Repair', 699)">Book Now</button>
+    </div>
+
+    <div class="service-card">
+        <img src="../images/plumber-imgages/motor-installation.webp">
+        <h3>Motor Installation</h3>
+        <p>Water pump installation & repair.</p>
+        <div class="price">₹899</div>
+        <button onclick="bookService('Motor Installation', 899)">Book Now</button>
+    </div>
+
+    <div class="service-card">
+        <img src="../images/plumber-imgages/bathroom-fitting.jpg">
+        <h3>Bathroom Fittings</h3>
+        <p>Jet sprays, basins, flush & pipes.</p>
+        <div class="price">₹499</div>
+        <button onclick="bookService('Bathroom Fittings', 499)">Book Now</button>
+    </div>
+
+    <div class="service-card">
+        <img src="../images/plumber-imgages/kitchen-sink-repair.jpg">
+        <h3>Kitchen Sink Repair</h3>
+        <p>Sink blockage & pipe change.</p>
+        <div class="price">₹349</div>
+        <button onclick="bookService('Kitchen Sink Repair', 349)">Book Now</button>
+    </div>
+
+    <div class="service-card">
+        <img src="../images/plumber-imgages/pipe-replacement.jpg">
+        <h3>Pipe Replacement</h3>
+        <p>Old pipe removal & replacement.</p>
+        <div class="price">₹899</div>
+        <button onclick="bookService('Pipe Replacement', 899)">Book Now</button>
+    </div>
+
+    <div class="service-card">
+        <img src="../images/plumber-imgages/water-valve-repair.webp">
+        <h3>Water Valve Repair</h3>
+        <p>Repair or replace stop valves.</p>
+        <div class="price">₹299</div>
+        <button onclick="bookService('Water Valve Repair', 299)">Book Now</button>
+    </div>
+
+    <div class="service-card">
+        <img src="../images/plumber-imgages/flush-tank-repair.jpeg">
+        <h3>Flush Tank Repair</h3>
+        <p>Western & Indian flush systems.</p>
+        <div class="price">₹449</div>
+        <button onclick="bookService('Flush Tank Repair', 449)">Book Now</button>
+    </div>
+
+    <div class="service-card">
+        <img src="../images/plumber-imgages/gayser installation.webp">
+        <h3>Geyser Installation</h3>
+        <p>Instant & storage geysers fitting.</p>
+        <div class="price">₹799</div>
+        <button onclick="bookService('Geyser Installation', 799)">Book Now</button>
+    </div>
+
+    <div class="service-card">
+        <img src="../images/plumber-imgages/water-filter-pipe.jpeg">
+        <h3>Water Filter Pipe Setup</h3>
+        <p>RO & filter pipe fitting.</p>
+        <div class="price">₹249</div>
+        <button onclick="bookService('Water Filter Pipe Setup', 249)">Book Now</button>
+    </div>
+
+    <div class="service-card">
+        <img src="../images/plumber-imgages/basement-water-leak-repair.jpg">
+        <h3>Basement Water Leak Repair</h3>
+        <p>Detect & seal water leakage.</p>
+        <div class="price">₹1499</div>
+        <button onclick="bookService('Basement Water Leak Repair', 1499)">Book Now</button>
+    </div>
+
+    <div class="service-card">
+        <img src="../images/plumber-imgages/emergency-plumbing.png">
+        <h3>Emergency Plumbing</h3>
+        <p>Urgent 24x7 service available.</p>
+        <div class="price">₹1999</div>
+        <button onclick="bookService('Emergency Plumbing', 1999)">Book Now</button>
+    </div>
+
+</section>
+
+<script>
+function bookService(serviceName, price) {
+    localStorage.setItem("serviceName", serviceName);
+    localStorage.setItem("servicePrice", price);
+    window.location.href = `${window.location.pathname.includes("/frontend/") ? "/frontend" : ""}/booking-details/booking.html`;
+}
+</script>
+
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a class="footer-logo" href="/frontend/index.html" aria-label="ServiceHub Home">
+                        <img src="/frontend/images/servicehub-logo.svg" alt="ServiceHub logo">
+                    </a>
+                    <h3>ServiceHub</h3>
+                    <p>Trusted home services, fair conversations, and reliable support for customers, workers, and partners.</p>
+                    <div class="footer-pills">
+                        <span>Verified Pros</span>
+                        <span>Fair Pricing</span>
+                        <span>Fast Booking</span>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h4>Explore</h4>
+                    <div class="footer-links">
+                        <a class="footer-link" href="/frontend/services/all-services.html">Services</a>
+                        <a class="footer-link" href="/frontend/servicesInfo/about.html">About</a>
+                        <a class="footer-link" href="/frontend/servicesInfo/partners.html">Partners</a>
+                        <a class="footer-link" href="/frontend/tranjection/wallet.html">Community Chat</a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h4>Company</h4>
+                    <div class="footer-links">
+                        <a class="footer-link" href="/frontend/servicesInfo/become-partner.html">Become Partner</a>
+                        <a class="footer-link" href="/frontend/your-booking/mybooking.html">My Bookings</a>
+                        <a class="footer-link" href="/frontend/servicesInfo/review.html">Reviews</a>
+                        <a class="footer-link" href="/frontend/profile/login.html">Login</a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h4>Why ServiceHub</h4>
+                    <p class="footer-note">Built for smooth booking, honest service, and a better experience for every home.</p>
+                    <div class="footer-links">
+                        <strong>Support</strong>
+                        <span class="footer-meta"><span>24×7 help</span><span>Fast replies</span></span>
+                        <span class="footer-meta"><span>Fair disputes</span><span>Community trust</span></span>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-meta">
+                    <span>© 2026 ServiceHub</span>
+                    <span>Made for customers, workers, and partners.</span>
+                </div>
+                <div class="footer-socials" aria-label="ServiceHub social links">
+                    <a href="https://www.linkedin.com/in/faiyaj-ansari-293413366" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                    <a href="https://github.com/Git-Hub-prog/Git-Hub-prog" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+                    <a href="https://www.instagram.com/faiyaj4553?igsh=MXBwNTJnMDR4NGs1ZA==" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                </div>
+                <div class="footer-note">A modern service platform that keeps things clear, quick, and fair.</div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
+
+

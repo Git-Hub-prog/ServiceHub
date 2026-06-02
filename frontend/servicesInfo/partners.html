@@ -1,0 +1,206 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Service Partners - ServiceHub</title>
+    <link rel="stylesheet" href="../css/become-partner.css">
+    <style>
+        .partners-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            padding: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .partner-card {
+            background: linear-gradient(180deg, var(--card-top, #ffffff), var(--card-bottom, #f8fbff));
+            border-radius: 20px;
+            padding: 0;
+            overflow: hidden;
+            box-shadow: 0 14px 32px rgba(15, 23, 42, 0.12);
+            border: 1px solid rgba(148, 163, 184, 0.18);
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+        .partner-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 18px 40px rgba(15, 23, 42, 0.18);
+        }
+        .partner-card-inner {
+            padding: 22px 22px 20px;
+            position: relative;
+        }
+        .partner-topbar {
+            height: 9px;
+            background: linear-gradient(90deg, var(--card-accent-1, #38bdf8), var(--card-accent-2, #fb7185));
+        }
+        .partner-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+            gap: 10px;
+        }
+        .partner-name {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: #111827;
+        }
+        .partner-category {
+            background: var(--chip-bg, #dbeafe);
+            color: var(--chip-text, #1e40af);
+            padding: 5px 12px;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            white-space: nowrap;
+        }
+        .partner-avatar-wrap {
+            display: flex;
+            justify-content: center;
+            margin: 16px 0 14px;
+        }
+        .partner-avatar {
+            width: 116px;
+            height: 116px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid rgba(255,255,255,0.9);
+            box-shadow: 0 10px 24px rgba(15, 23, 42, 0.18);
+            background: #fff;
+        }
+        .partner-info {
+            color: #4b5563;
+            font-size: 0.875rem;
+            margin-bottom: 9px;
+            text-align: left;
+        }
+        .partner-info strong {
+            color: #374151;
+        }
+        .partner-body {
+            margin-top: 8px;
+            padding-top: 14px;
+            border-top: 1px solid rgba(148, 163, 184, 0.18);
+        }
+        .loading-box {
+            text-align: center;
+            padding: 100px;
+            font-size: 1.2rem;
+            color: #6b7280;
+        }
+        .badge-recent {
+            background: #def7ec;
+            color: #03543f;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            margin-left: 10px;
+        }
+    </style>
+    <link rel="stylesheet" href="/css/footer.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="logo">ServiceHub</div>
+    <ul class="nav-links">
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../services/all-services.html">Services</a></li>
+        <li><a href="become-partner.html">Become Partner</a></li>
+        <li><a href="partners.html" class="active">Partner List</a></li>
+        <li><a href="../your-booking/mybooking.html">My Bookings</a></li>
+        <li class="profile-dropdown">
+            <a href="javascript:void(0)">Login / Profile &#9662;</a>
+            <ul class="dropdown">
+                <li><a href="../profile/login.html">Login</a></li>
+                <li><a href="../profile/logout.html">Logout</a></li>
+            </ul>
+        </li>
+    </ul>
+</nav>
+
+<section class="partner-banner">
+    <div class="banner-inner">
+        <div class="banner-copy">
+            <h1>Our Professional Partners</h1>
+            <p>The specialized experts making your lives easier every day.</p>
+        </div>
+
+        <div class="banner-visual timetable-visual" aria-hidden="true">
+            <img src="../images/partner-cartoon.svg" alt="Cartoon partner illustration" style="width:100%; height:100%; object-fit:contain; display:block;">
+        </div>
+    </div>
+</section>
+
+<div id="loading" class="loading-box">
+    <p>Loading our expert partners...</p>
+</div>
+
+<div id="partnersGrid" class="partners-grid" style="display: none;">
+    <!-- Partners cards will be injected here -->
+</div>
+
+<script src="../js/partners.js"></script>
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a class="footer-logo" href="/index.html" aria-label="ServiceHub Home">
+                        <img src="/images/servicehub-logo.svg" alt="ServiceHub logo">
+                    </a>
+                    <h3>ServiceHub</h3>
+                    <p>Trusted home services, fair conversations, and reliable support for customers, workers, and partners.</p>
+                    <div class="footer-pills">
+                        <span>Verified Pros</span>
+                        <span>Fair Pricing</span>
+                        <span>Fast Booking</span>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h4>Explore</h4>
+                    <div class="footer-links">
+                        <a class="footer-link" href="/services/all-services.html">Services</a>
+                        <a class="footer-link" href="/servicesInfo/about.html">About</a>
+                        <a class="footer-link" href="/servicesInfo/partners.html">Partners</a>
+                        <a class="footer-link" href="/tranjection/wallet.html">Community Chat</a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h4>Company</h4>
+                    <div class="footer-links">
+                        <a class="footer-link" href="/servicesInfo/become-partner.html">Become Partner</a>
+                        <a class="footer-link" href="/your-booking/mybooking.html">My Bookings</a>
+                        <a class="footer-link" href="/servicesInfo/review.html">Reviews</a>
+                        <a class="footer-link" href="/profile/login.html">Login</a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h4>Why ServiceHub</h4>
+                    <p class="footer-note">Built for smooth booking, honest service, and a better experience for every home.</p>
+                    <div class="footer-links">
+                        <strong>Support</strong>
+                        <span class="footer-meta"><span>24×7 help</span><span>Fast replies</span></span>
+                        <span class="footer-meta"><span>Fair disputes</span><span>Community trust</span></span>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-meta">
+                    <span>© 2026 ServiceHub</span>
+                    <span>Made for customers, workers, and partners.</span>
+                </div>
+                <div class="footer-socials" aria-label="ServiceHub social links">
+                    <a href="https://www.linkedin.com/in/faiyaj-ansari-293413366" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                    <a href="https://github.com/Git-Hub-prog/Git-Hub-prog" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+                    <a href="https://www.instagram.com/faiyaj4553?igsh=MXBwNTJnMDR4NGs1ZA==" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                </div>
+                <div class="footer-note">A modern service platform that keeps things clear, quick, and fair.</div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

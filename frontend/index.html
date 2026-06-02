@@ -1,0 +1,312 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Service Marketplace</title>
+    <!-- Modern Font: Outfit -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="/frontend/css/footer.css">
+</head>
+<body>
+
+<nav class="navbar">
+    <!-- LEFT -->
+    <div class="left">
+        <a class="logo" href="index.html" aria-label="ServiceHub Home">
+            <img src="images/servicehub-logo.svg" alt="ServiceHub logo">
+        </a>
+        <div class="search-box">
+            <i class="fas fa-search" style="position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: #64748B;"></i>
+            <input 
+                type="text"
+                id="serviceSearch"
+                placeholder="Search services..."
+                onkeyup="searchServices()"
+            />
+            <div class="search-results" id="searchResults"></div>
+        </div>
+    </div>
+
+    <!-- CENTER -->
+    <div class="center">
+        <a href="index.html"><i class="fas fa-home"></i> Home</a>
+
+        <div class="dropdown">
+            <button class="drop-btn" id="servicesBtn"><i class="fas fa-tools"></i> Services <i class="fas fa-chevron-down" style="font-size: 10px; margin-left: 5px;"></i></button>
+            <div class="drop-content" id="servicesDropdown">
+                <a href="services/service-category.html?category=plumber">Plumber</a>
+                <a href="services/service-category.html?category=electrician">Electrician</a>
+                <a href="services/service-category.html?category=ac-repair">AC Repair</a>
+                <a href="services/service-category.html?category=salon">Salon at Home</a>
+                <a href="services/service-category.html?category=car-cleaner">Car Cleaner</a>
+                <a href="services/service-category.html?category=tutor">Tutor</a>
+            </div>
+        </div>
+
+        <a href="servicesInfo/become-partner.html"><i class="fas fa-handshake"></i> Become Partner</a>
+        <a href="servicesInfo/partners.html"><i class="fas fa-users"></i> Partner List</a>
+        <a href="servicesInfo/about.html"><i class="fas fa-info-circle"></i> About</a>
+    </div>
+
+    <!-- RIGHT -->
+    <div class="right">
+        <a href="your-booking/mybooking.html"><i class="fas fa-calendar-check"></i> My Bookings</a>
+        <a href="tranjection/wallet.html"><i class="fas fa-comments"></i> Community Chat</a>
+
+        <div class="profile-menu">
+            <button id="profileBtn"><i class="fas fa-user-circle"></i> Profile <i class="fas fa-chevron-down" style="font-size: 10px; margin-left: 5px;"></i></button>
+            <div class="profile-dropdown" id="profileDropdown">
+                <a href="profile/login.html"><i class="fas fa-sign-in-alt"></i> Login</a>
+                <a href="servicesInfo/review.html"><i class="fas fa-star"></i> My Reviews</a>
+                <a href="profile/logout.html"><i class="fas fa-sign-out-alt"></i> Logout</a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<!-- HERO BANNER -->
+<section class="hero">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="hero-content">
+        <h1>Premium Services <br><span class="highlight">At Your Doorstep</span></h1>
+        <p>Book expert electricians, plumbers, cleaners, salon professionals, tutors & much more with just a few clicks!</p>
+        <button class="btn-primary" onclick="window.location.href='services/all-services.html'">
+            Book a Service <i class="fas fa-arrow-right"></i>
+        </button>
+    </div>
+</section>
+
+<!-- POPULAR SERVICES -->
+<section class="section-title">
+    <h2>Popular Services</h2>
+</section>
+
+<section class="services-grid">
+    <!-- Plumber -->
+    <a href="services/service-category.html?category=plumber" class="service-link">
+        <div class="service-card">
+            <div class="img-wrapper"><img src="images/plumber.jpg" alt="Plumber Service"></div>
+            <h3>Plumber</h3>
+            <p>Expert plumbing solutions</p>
+        </div>
+    </a>
+
+    <!-- Electrician -->
+    <a href="services/service-category.html?category=electrician" class="service-link">
+        <div class="service-card">
+            <div class="img-wrapper"><img src="images/Electricians.jpeg" alt="Electrician"></div>
+            <h3>Electrician</h3>
+            <p>Safe electrical repairs</p>
+        </div>
+    </a>
+    
+    <!-- AC Repair -->
+    <a href="services/service-category.html?category=ac-repair" class="service-link">
+        <div class="service-card">
+            <div class="img-wrapper"><img src="images/ac-repair.webp" alt="AC Repair"></div>
+            <h3>AC Repair</h3>
+            <p>Cooling guaranteed</p>
+        </div>
+    </a>
+    
+    <!-- Salon -->
+    <a href="services/service-category.html?category=salon" class="service-link">
+        <div class="service-card">
+            <div class="img-wrapper"><img src="images/salon.webp" alt="Salon at Home"></div>
+            <h3>Salon at Home</h3>
+            <p>Beauty services at home</p>
+        </div>
+    </a>
+    
+    <!-- Car Cleaner -->
+    <a href="services/service-category.html?category=car-cleaner" class="service-link">
+        <div class="service-card">
+            <div class="img-wrapper"><img src="images/car-cleaning.avif" alt="Car Cleaner"></div>
+            <h3>Car Cleaner</h3>
+            <p>Spotless car washing</p>
+        </div>
+    </a>
+    
+    <!-- Home Tutor -->
+    <a href="services/service-category.html?category=tutor" class="service-link">
+        <div class="service-card">
+            <div class="img-wrapper"><img src="images/tutor.jpg" alt="Home Tutor"></div>
+            <h3>Home Tutor</h3>
+            <p>Quality education</p>
+        </div>
+    </a>
+</section>
+<section class="section-title">
+    <h2>The ServiceHub Experience</h2>
+    <p style="text-align: center; color: var(--text-muted); margin-top: -30px; margin-bottom: 40px;">See how we bring expert help to your doorstep</p>
+</section>
+
+<section class="ai-video-showcase">
+    <div class="video-container">
+        <div class="video-overlay">
+            <div class="live-badge"><span class="dot"></span> LIVE DEMO</div>
+            <div class="video-content">
+                <div class="scene-text active" data-scene="1">
+                    <h3>Step 1: Book in Seconds</h3>
+                    <p>Choose your service and book an expert with just a few taps.</p>
+                </div>
+                <div class="scene-text" data-scene="2">
+                    <h3>Step 2: Expert Arrival</h3>
+                    <p>Our verified professionals arrive at your doorstep in 60 minutes.</p>
+                </div>
+                <div class="scene-text" data-scene="3">
+                    <h3>Step 3: Quality Service</h3>
+                    <p>Relax while our experts handle everything with precision and care.</p>
+                </div>
+                <div class="scene-text" data-scene="4">
+                    <h3>Step 4: Job Well Done</h3>
+                    <p>Enjoy your day with a perfectly finished service and total peace of mind.</p>
+                </div>
+            </div>
+        </div>
+        <div class="video-stages">
+            <div class="stage stage-1 active" style="background-image: url('images/journey-1.png');"></div>
+            <div class="stage stage-2" style="background-image: url('images/journey-2.png');"></div>
+            <div class="stage stage-3" style="background-image: url('images/journey-3.png');"></div>
+            <div class="stage stage-4" style="background-image: url('images/journey-4.png');"></div>
+        </div>
+        <div class="video-progress">
+            <div class="progress-bar"></div>
+        </div>
+    </div>
+</section>
+
+<!-- WHY CHOOSE US -->
+<section class="why-us">
+    <h2>Why Choose Us?</h2>
+    <div class="why-grid">
+        <div class="why-card"><i class="fas fa-user-shield"></i><h3>Verified Professionals</h3><p>Every service provider undergoes a strict background check.</p></div>
+        <div class="why-card"><i class="fas fa-tags"></i><h3>Transparent Pricing</h3><p>No hidden charges. Enjoy affordable prices and pay securely.</p></div>
+        <div class="why-card"><i class="fas fa-bolt"></i><h3>Lightning Fast</h3><p>Book instantly & get the service delivered within 60 minutes.</p></div>
+        <div class="why-card"><i class="fas fa-headset"></i><h3>24/7 Support</h3><p>Our dedicated customer support team is always available.</p></div>
+    </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="section-title">
+    <h2>What Customers Say</h2>
+</section>
+
+<section class="testimonial-section">
+    <div class="testimonial">
+        <p>“Amazing service! The electrician came in 30 minutes and solved everything quickly.”</p>
+        <div class="author"><div class="avatar">R</div><h4>Rohan Patil</h4></div>
+    </div>
+    <div class="testimonial">
+        <p>“I booked salon at home for my sister, service was professional, hygienic.”</p>
+        <div class="author"><div class="avatar">N</div><h4>Neha Sharma</h4></div>
+    </div>
+    <div class="testimonial">
+        <p>“Affordable and trustworthy. Booked AC repair. Fully satisfied!”</p>
+        <div class="author"><div class="avatar">F</div><h4>Faizal Khan</h4></div>
+    </div>
+</section>
+
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a class="footer-logo" href="/frontend/index.html" aria-label="ServiceHub Home">
+                        <img src="/frontend/images/servicehub-logo.svg" alt="ServiceHub logo">
+                    </a>
+                    <h3>ServiceHub</h3>
+                    <p>Trusted home services, fair conversations, and reliable support for customers, workers, and partners.</p>
+                    <div class="footer-pills">
+                        <span>Verified Pros</span>
+                        <span>Fair Pricing</span>
+                        <span>Fast Booking</span>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h4>Explore</h4>
+                    <div class="footer-links">
+                        <a class="footer-link" href="/frontend/services/all-services.html">Services</a>
+                        <a class="footer-link" href="/frontend/servicesInfo/about.html">About</a>
+                        <a class="footer-link" href="/frontend/servicesInfo/partners.html">Partners</a>
+                        <a class="footer-link" href="/frontend/tranjection/wallet.html">Community Chat</a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h4>Company</h4>
+                    <div class="footer-links">
+                        <a class="footer-link" href="/frontend/servicesInfo/become-partner.html">Become Partner</a>
+                        <a class="footer-link" href="/frontend/your-booking/mybooking.html">My Bookings</a>
+                        <a class="footer-link" href="/frontend/servicesInfo/review.html">Reviews</a>
+                        <a class="footer-link" href="/frontend/profile/login.html">Login</a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h4>Why ServiceHub</h4>
+                    <p class="footer-note">Built for smooth booking, honest service, and a better experience for every home.</p>
+                    <div class="footer-links">
+                        <strong>Support</strong>
+                        <span class="footer-meta"><span>24×7 help</span><span>Fast replies</span></span>
+                        <span class="footer-meta"><span>Fair disputes</span><span>Community trust</span></span>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-meta">
+                    <span>© 2026 ServiceHub</span>
+                    <span>Made for customers, workers, and partners.</span>
+                </div>
+                <div class="footer-socials" aria-label="ServiceHub social links">
+                    <a href="https://www.linkedin.com/in/faiyaj-ansari-293413366" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                    <a href="https://github.com/Git-Hub-prog/Git-Hub-prog" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+                    <a href="https://www.instagram.com/faiyaj4553?igsh=MXBwNTJnMDR4NGs1ZA==" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                </div>
+                <div class="footer-note">A modern service platform that keeps things clear, quick, and fair.</div>
+            </div>
+        </div>
+    </footer>
+
+<script src="js/services-data.js"></script>
+<script src="js/script.js"></script>
+<script>
+(() => {
+    const stages = Array.from(document.querySelectorAll('.ai-video-showcase .stage'));
+    const texts = Array.from(document.querySelectorAll('.ai-video-showcase .scene-text'));
+    const progressBar = document.querySelector('.ai-video-showcase .progress-bar');
+
+    if (!stages.length || !texts.length) return;
+
+    let current = 0;
+    const duration = 4000;
+
+    const setActive = (index) => {
+        stages.forEach((stage, i) => stage.classList.toggle('active', i === index));
+        texts.forEach((text, i) => text.classList.toggle('active', i === index));
+
+        if (progressBar) {
+            progressBar.style.transition = 'none';
+            progressBar.style.width = '0%';
+            progressBar.offsetHeight;
+            progressBar.style.transition = `width ${duration}ms linear`;
+            progressBar.style.width = '100%';
+        }
+    };
+
+    setActive(current);
+
+    if (window.__serviceHubDemoTimer) {
+        clearInterval(window.__serviceHubDemoTimer);
+    }
+
+    window.__serviceHubDemoTimer = setInterval(() => {
+        current = (current + 1) % stages.length;
+        setActive(current);
+    }, duration);
+})();
+</script>
+</body>
+</html>

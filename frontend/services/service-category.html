@@ -1,0 +1,243 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Service Category</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/plumber.css">
+    <link rel="stylesheet" href="../css/services-theme.css">
+    <style>
+        .no-services {
+            text-align: center;
+            padding: 50px;
+            color: #64748b;
+        }
+
+        .header h2 {
+            text-transform: capitalize;
+        }
+
+        #error-msg {
+            color: #ef4444;
+            text-align: center;
+            padding: 20px;
+            display: none;
+            font-weight: 600;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+    <link rel="stylesheet" href="/frontend/css/footer.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="service-theme theme-category">
+
+<header class="header">
+    <h2 id="categoryTitle">Service Hub</h2>
+</header>
+
+<section class="banner" id="categoryBanner">
+    <h1 id="bannerTitle">Quality Services</h1>
+    <p>Affordable | Reliable | Quick Service | Trusted Professionals</p>
+</section>
+
+<div id="error-msg"></div>
+
+<section class="services-container" id="servicesGrid">
+    <div style="text-align: center; padding: 40px; width: 100%;">
+        <div style="display: inline-block; width: 40px; height: 40px; border: 4px solid #f3f3f3; border-top: 4px solid #3498db; border-radius: 50%; animation: spin 1s linear infinite;"></div>
+        <p>Loading services...</p>
+    </div>
+</section>
+
+<script src="../js/services-data.js"></script>
+<script>
+    function bookService(serviceName, price) {
+        localStorage.setItem("serviceName", serviceName);
+        localStorage.setItem("servicePrice", price);
+        window.location.href = `${window.location.pathname.includes("/frontend/") ? "/frontend" : ""}/booking-details/booking.html`;
+    }
+
+    function resolveFrontendImagePath(rawPath) {
+        if (!rawPath) return "../images/placeholder.jpg";
+        if (/^(https?:)?\/\//i.test(rawPath) || rawPath.startsWith("data:")) return rawPath;
+
+        const p = String(rawPath).trim().replace(/\\/g, "/");
+        const origin = window.location.origin;
+        const hasFrontendPrefix = window.location.pathname.includes("/frontend/");
+        const frontendPrefix = hasFrontendPrefix ? "/frontend" : "";
+
+        if (p.startsWith("/frontend/")) return `${origin}${p}`;
+        if (p.startsWith("frontend/")) return `${origin}/${p}`;
+        if (p.startsWith("/images/")) return `${origin}${frontendPrefix}${p}`;
+        if (p.startsWith("../images/")) return `${origin}${frontendPrefix}/images/${p.replace("../images/", "")}`;
+        if (p.startsWith("./images/")) return `${origin}${frontendPrefix}/images/${p.replace("./images/", "")}`;
+        if (p.startsWith("images/")) return `${origin}${frontendPrefix}/${p}`;
+        if (p.startsWith("/")) return `${origin}${p}`;
+        return `${origin}${frontendPrefix}/${p}`;
+    }
+
+    function renderError(msg) {
+        const grid = document.getElementById("servicesGrid");
+        const errorBox = document.getElementById("error-msg");
+        grid.innerHTML = "";
+        errorBox.textContent = msg;
+        errorBox.style.display = "block";
+    }
+
+    async function loadCategoryData(categoryId) {
+        const apiUrl = `http://localhost:5000/api/services/${categoryId}`;
+        try {
+            const response = await fetch(apiUrl);
+            if (!response.ok) throw new Error(`Server responded with ${response.status}`);
+            return await response.json();
+        } catch (error) {
+            const localData = Array.isArray(window.servicesData) ? window.servicesData : [];
+            const category = localData.find((c) => c.categoryId === categoryId);
+            if (category) {
+                return category;
+            }
+            throw error;
+        }
+    }
+
+    function applyCategoryTheme(categoryId) {
+        const themeMap = {
+            plumber: "theme-plumber",
+            electrician: "theme-electrician",
+            "ac-repair": "theme-ac",
+            salon: "theme-salon",
+            "car-cleaner": "theme-car",
+            tutor: "theme-tutor"
+        };
+
+        document.body.classList.remove(
+            "theme-category",
+            "theme-plumber",
+            "theme-electrician",
+            "theme-ac",
+            "theme-salon",
+            "theme-car",
+            "theme-tutor"
+        );
+
+        document.body.classList.add("service-theme");
+        document.body.classList.add(themeMap[categoryId] || "theme-category");
+    }
+
+    document.addEventListener("DOMContentLoaded", async () => {
+        const urlParams = new URLSearchParams(window.location.search);
+        const categoryId = urlParams.get("category");
+
+        if (!categoryId) {
+            window.location.href = "../index.html";
+            return;
+        }
+
+        applyCategoryTheme(categoryId);
+
+        try {
+            const data = await loadCategoryData(categoryId);
+
+            document.title = data.categoryTitle || "Services";
+            document.getElementById("categoryTitle").textContent = data.categoryTitle;
+            document.getElementById("bannerTitle").textContent = data.categoryTitle;
+
+            const grid = document.getElementById("servicesGrid");
+            grid.innerHTML = "";
+
+            if (!data.services || data.services.length === 0) {
+                grid.innerHTML = `<div class="no-services"><h2>No services available for this category.</h2></div>`;
+                return;
+            }
+
+            data.services.forEach((service) => {
+                const card = document.createElement("div");
+                card.className = "service-card";
+                const imgPath = resolveFrontendImagePath(service.image);
+
+                card.innerHTML = `
+                    <div class="img-container" style="overflow: hidden; height: 180px;">
+                        <img src="${imgPath}" alt="${service.title}" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.src='${resolveFrontendImagePath("../images/placeholder.jpg")}'">
+                    </div>
+                    <h3>${service.title}</h3>
+                    <p>${service.description}</p>
+                    <div class="price">?${service.price}</div>
+                    <button class="book-now-btn">Book Now</button>
+                `;
+
+                const btn = card.querySelector(".book-now-btn");
+                btn.onclick = () => bookService(service.title, service.price);
+
+                grid.appendChild(card);
+            });
+        } catch (error) {
+            console.error("Fetch Error:", error);
+            renderError("Could not load services from backend or local data.");
+        }
+    });
+</script>
+
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a class="footer-logo" href="/frontend/index.html" aria-label="ServiceHub Home">
+                        <img src="/frontend/images/servicehub-logo.svg" alt="ServiceHub logo">
+                    </a>
+                    <h3>ServiceHub</h3>
+                    <p>Trusted home services, fair conversations, and reliable support for customers, workers, and partners.</p>
+                    <div class="footer-pills">
+                        <span>Verified Pros</span>
+                        <span>Fair Pricing</span>
+                        <span>Fast Booking</span>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h4>Explore</h4>
+                    <div class="footer-links">
+                        <a class="footer-link" href="/frontend/services/all-services.html">Services</a>
+                        <a class="footer-link" href="/frontend/servicesInfo/about.html">About</a>
+                        <a class="footer-link" href="/frontend/servicesInfo/partners.html">Partners</a>
+                        <a class="footer-link" href="/frontend/tranjection/wallet.html">Community Chat</a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h4>Company</h4>
+                    <div class="footer-links">
+                        <a class="footer-link" href="/frontend/servicesInfo/become-partner.html">Become Partner</a>
+                        <a class="footer-link" href="/frontend/your-booking/mybooking.html">My Bookings</a>
+                        <a class="footer-link" href="/frontend/servicesInfo/review.html">Reviews</a>
+                        <a class="footer-link" href="/frontend/profile/login.html">Login</a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h4>Why ServiceHub</h4>
+                    <p class="footer-note">Built for smooth booking, honest service, and a better experience for every home.</p>
+                    <div class="footer-links">
+                        <strong>Support</strong>
+                        <span class="footer-meta"><span>24×7 help</span><span>Fast replies</span></span>
+                        <span class="footer-meta"><span>Fair disputes</span><span>Community trust</span></span>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-meta">
+                    <span>© 2026 ServiceHub</span>
+                    <span>Made for customers, workers, and partners.</span>
+                </div>
+                <div class="footer-socials" aria-label="ServiceHub social links">
+                    <a href="https://www.linkedin.com/in/faiyaj-ansari-293413366" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                    <a href="https://github.com/Git-Hub-prog/Git-Hub-prog" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+                    <a href="https://www.instagram.com/faiyaj4553?igsh=MXBwNTJnMDR4NGs1ZA==" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                </div>
+                <div class="footer-note">A modern service platform that keeps things clear, quick, and fair.</div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

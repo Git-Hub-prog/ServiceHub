@@ -1,0 +1,126 @@
+body {
+    margin: 0;
+    background: #fff8e6;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Banner */
+.top-banner {
+    background: linear-gradient(120deg, #ff9f1c, #2ec4b6);
+    text-align: center;
+    color: white;
+    padding: 40px;
+}
+
+.top-banner h1 {
+    font-size: 42px;
+}
+
+.top-banner p {
+    margin-top: 10px;
+    font-size: 19px;
+}
+
+/* Layout */
+.container {
+    display: flex;
+    padding: 20px;
+    gap: 30px;
+}
+
+/* Sidebar */
+.categories {
+    width: 250px;
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 0 8px rgba(255,159,28,0.5);
+    height: fit-content;
+}
+
+.categories h2 {
+    margin-bottom: 15px;
+    color: #ff7a00;
+    text-align: center;
+}
+
+.categories ul {
+    list-style: none;
+    padding: 0;
+}
+
+.categories li {
+    padding: 10px;
+    margin-bottom: 8px;
+    border-radius: 8px;
+    cursor: pointer;
+    background: #fef3d4;
+    transition: 0.2s;
+}
+
+.categories li:hover {
+    background: #ffca80;
+}
+
+/* Services Section */
+.services {
+    flex: 1;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 25px;
+}
+
+.tutor-card {
+    width: 280px;
+    background: white;
+    border-radius: 12px;
+    padding: 15px;
+    box-shadow: 0 3px 10px rgba(46,196,182,0.4);
+    text-align: center;
+    transition: 0.3s;
+}
+
+.tutor-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 5px 15px rgba(255,159,28,0.5);
+}
+
+.tutor-card img {
+    width: 100%;
+    border-radius: 10px;
+    height: 160px;
+    object-fit: cover;
+}
+
+.tutor-card h3 {
+    margin-top: 10px;
+    color: #ff7a00;
+    font-size: 20px;
+}
+
+.tutor-card p {
+    font-size: 14px;
+    color: #444;
+}
+
+.tutor-card span {
+    display: block;
+    margin: 8px 0;
+    font-size: 18px;
+    font-weight: bold;
+    color: #2ec4b6;
+}
+
+button {
+    background: #2ec4b6;
+    border: none;
+    padding: 8px 18px;
+    color: white;
+    font-weight: bold;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #279e93;
+}

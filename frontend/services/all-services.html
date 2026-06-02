@@ -1,0 +1,140 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>All Services</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="../css/all-services.css">
+    <link rel="stylesheet" href="../css/services-theme.css">
+    <link rel="stylesheet" href="../css/call.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/frontend/css/footer.css">
+</head>
+<body class="service-theme theme-all-services">
+
+<nav class="navbar">
+    <div class="nav-left">
+        <span class="logo">Serve<span>Now</span></span>
+
+        <div class="location">
+            <!-- City fixed to Vadodara for this deployment -->
+            <label class="sr-only" for="citySelect">City</label>
+            <select id="citySelect" aria-label="City select">
+                <option value="vadodara" selected>Vadodara, Gujarat</option>
+            </select>
+
+            <!-- Service area / neighborhood list (approx. within ~3 km of Vadodara city center) -->
+            <label for="locationSelect" class="location-label">Service Area</label>
+            <select id="locationSelect" aria-label="Service location">
+                <option value="">Select Location (within ~3 km)</option>
+                <option value="alkapuri">Alkapuri</option>
+                <option value="raopura">Raopura</option>
+                <option value="sayajiganj">Sayajiganj</option>
+                <option value="fatehgunj">Fatehgunj</option>
+                <option value="manjalpur">Manjalpur</option>
+                <option value="akota">Akota</option>
+                <option value="karelibaug">Karelibaug</option>
+                <option value="subhanpura">Subhanpura</option>
+                <option value="gotri">Gotri</option>
+                <option value="ajwa-road">Ajwa Road</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="nav-center">Trusted Services</div>
+
+    <div class="nav-right">
+        <div class="search-box">
+            <i class="fas fa-search"></i>
+            <input type="text" id="serviceSearch" placeholder="Search services...">
+        </div>
+
+        <div class="call-wrapper">
+            <button class="call-btn" onclick="toggleCallMenu()">Call Head Office</button>
+
+            <div class="call-menu" id="callMenu">
+                <a href="tel:+919876543210">+91 98765 43210</a>
+                <a href="tel:+919123456789">+91 91234 56789</a>
+            </div>
+        </div>
+
+        <div class="rating-badge">? 4.8</div>
+    </div>
+</nav>
+
+<header class="services-hero">
+    <div class="hero-content">
+        <p class="hero-kicker">One Platform, Many Experts</p>
+        <h1>All Home & Lifestyle Services</h1>
+        <p class="hero-subtitle">
+            From car cleaning and salon care to plumber and electrician support, discover trusted professionals for every need.
+        </p>
+    </div>
+</header>
+
+<main id="dynamic-services-container"></main>
+
+<script src="../js/services-data.js"></script>
+<script src="../js/all-services.js"></script>
+<script src="../js/call.js"></script>
+
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a class="footer-logo" href="/frontend/index.html" aria-label="ServiceHub Home">
+                        <img src="/frontend/images/servicehub-logo.svg" alt="ServiceHub logo">
+                    </a>
+                    <h3>ServiceHub</h3>
+                    <p>Trusted home services, fair conversations, and reliable support for customers, workers, and partners.</p>
+                    <div class="footer-pills">
+                        <span>Verified Pros</span>
+                        <span>Fair Pricing</span>
+                        <span>Fast Booking</span>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h4>Explore</h4>
+                    <div class="footer-links">
+                        <a class="footer-link" href="/frontend/services/all-services.html">Services</a>
+                        <a class="footer-link" href="/frontend/servicesInfo/about.html">About</a>
+                        <a class="footer-link" href="/frontend/servicesInfo/partners.html">Partners</a>
+                        <a class="footer-link" href="/frontend/tranjection/wallet.html">Community Chat</a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h4>Company</h4>
+                    <div class="footer-links">
+                        <a class="footer-link" href="/frontend/servicesInfo/become-partner.html">Become Partner</a>
+                        <a class="footer-link" href="/frontend/your-booking/mybooking.html">My Bookings</a>
+                        <a class="footer-link" href="/frontend/servicesInfo/review.html">Reviews</a>
+                        <a class="footer-link" href="/frontend/profile/login.html">Login</a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h4>Why ServiceHub</h4>
+                    <p class="footer-note">Built for smooth booking, honest service, and a better experience for every home.</p>
+                    <div class="footer-links">
+                        <strong>Support</strong>
+                        <span class="footer-meta"><span>24×7 help</span><span>Fast replies</span></span>
+                        <span class="footer-meta"><span>Fair disputes</span><span>Community trust</span></span>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-meta">
+                    <span>© 2026 ServiceHub</span>
+                    <span>Made for customers, workers, and partners.</span>
+                </div>
+                <div class="footer-socials" aria-label="ServiceHub social links">
+                    <a href="https://www.linkedin.com/in/faiyaj-ansari-293413366" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                    <a href="https://github.com/Git-Hub-prog/Git-Hub-prog" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+                    <a href="https://www.instagram.com/faiyaj4553?igsh=MXBwNTJnMDR4NGs1ZA==" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                </div>
+                <div class="footer-note">A modern service platform that keeps things clear, quick, and fair.</div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
