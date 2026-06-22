@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reviews & Feedback - ServiceHub</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/review.css">
+    <link rel="stylesheet" href="/frontend/css/footer.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar review-navbar">
+        <div class="logo">ServiceHub</div>
+        <ul class="nav-links">
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="../services/all-services.html">Services</a></li>
+            <li><a href="../servicesInfo/become-partner.html">Become Partner</a></li>
+            <li><a href="../servicesInfo/partners.html">Partner List</a></li>
+            <li><a href="../your-booking/mybooking.html">My Bookings</a></li>
+            <li><a class="active" href="../servicesInfo/review.html">Reviews</a></li>
+        </ul>
+    </nav>
+
+    <main class="review-page">
+        <section class="hero-shell">
+            <div class="hero-copy">
+                <span class="eyebrow"><i class="fa-solid fa-heart"></i> Voice of the customer</span>
+                <h1>Share feedback that shapes better service.</h1>
+                <p>Tell us what worked, what didn’t, and where the company should improve. Your review helps us decide faster, fix issues earlier, and keep only the best partners on the platform.</p>
+                <div class="hero-stats" id="reviewStats">
+                    <article><strong id="statTotal">0</strong><span>Reviews</span></article>
+                    <article><strong id="statAvg">0.0</strong><span>Average rating</span></article>
+                    <article><strong id="statRecommend">0%</strong><span>Would recommend</span></article>
+                    <article><strong id="statUrgent">0</strong><span>Urgent flags</span></article>
+                </div>
+            </div>
+            <div class="hero-panel-card">
+                <div class="pulse-card">
+                    <div class="pulse-badge">Live feedback</div>
+                    <h3>Modern, clear, and useful.</h3>
+                    <p>Rate the service, explain your experience, and mark if the issue needs urgent attention.</p>
+                </div>
+                <div class="mini-metrics">
+                    <span>Service quality</span>
+                    <span>Worker behavior</span>
+                    <span>Timeliness</span>
+                    <span>Value for money</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-grid">
+            <form class="feedback-card" id="reviewForm">
+                <div class="section-title">
+                    <h2>Submit your review</h2>
+                    <p>Use the form below to share a complete experience report.</p>
+                </div>
+
+                <div class="field-grid two-col">
+                    <label>
+                        Your name
+                        <input type="text" name="reviewerName" placeholder="Enter your name" required>
+                    </label>
+                    <label>
+                        You are
+                        <select name="reviewerRole" required>
+                            <option value="user" selected>User</option>
+                        </select>
+                    </label>
+                </div>
+
+                <div class="field-grid two-col">
+                    <label>
+                        Service
+                        <select name="serviceName" required>
+                            <option value="">Select a service</option>
+                            <option>Plumber Service</option>
+                            <option>AC Repair</option>
+                            <option>Salon at Home</option>
+                            <option>Electrician</option>
+                            <option>Car Cleaner</option>
+                            <option>Home Tutor</option>
+                        </select>
+                    </label>
+                    <label>
+                        Review title
+                        <input type="text" name="title" placeholder="Short summary like: Great work, but late arrival">
+                    </label>
+                </div>
+
+                <div class="score-grid">
+                    <label>
+                        Overall rating
+                        <div class="rating-input" data-field="rating"></div>
+                        <input type="hidden" name="rating" value="5">
+                    </label>
+                    <label>
+                        Timeliness
+                        <div class="rating-input" data-field="punctuality"></div>
+                        <input type="hidden" name="punctuality" value="5">
+                    </label>
+                    <label>
+                        Professionalism
+                        <div class="rating-input" data-field="professionalism"></div>
+                        <input type="hidden" name="professionalism" value="5">
+                    </label>
+                    <label>
+                        Value for money
+                        <div class="rating-input" data-field="valueForMoney"></div>
+                        <input type="hidden" name="valueForMoney" value="5">
+                    </label>
+                </div>
+
+                <div class="field-grid two-col">
+                    <label>
+                        How urgent is this issue?
+                        <select name="urgency" required>
+                            <option value="low">Low</option>
+                            <option value="medium" selected>Medium</option>
+                            <option value="high">High</option>
+                        </select>
+                    </label>
+                    <label class="checkline">
+                        <input type="checkbox" name="recommend" checked>
+                        <span>I would recommend this service to others</span>
+                    </label>
+                </div>
+
+                <label>
+                    Detailed feedback
+                    <textarea name="comment" rows="6" placeholder="Describe the service, what went well, what should improve, and whether this should affect future partner decisions." required></textarea>
+                </label>
+
+                <div class="form-actions">
+                    <button type="submit" class="submit-btn">Send feedback</button>
+                    <div class="form-note">Your feedback is stored securely and used for service quality decisions.</div>
+                </div>
+            </form>
+
+            <aside class="insight-card">
+                <div class="section-title">
+                    <h2>Decision dashboard</h2>
+                    <p>Quick signals the company can use to take action.</p>
+                </div>
+                <div class="insight-list">
+                    <article>
+                        <strong>Low ratings</strong>
+                        <span>Spot services that need training or review.</span>
+                    </article>
+                    <article>
+                        <strong>Urgent issues</strong>
+                        <span>Find serious problems that need immediate follow-up.</span>
+                    </article>
+                    <article>
+                        <strong>Repeat praise</strong>
+                        <span>Identify top workers and good service categories.</span>
+                    </article>
+                    <article>
+                        <strong>Value signals</strong>
+                        <span>Check where pricing feels fair or too expensive.</span>
+                    </article>
+                </div>
+
+                <div class="review-feed" id="reviewFeed">
+                    <div class="feed-head">
+                        <h3>Recent feedback</h3>
+                        <button type="button" id="refreshReviews" class="mini-btn">Refresh</button>
+                    </div>
+                    <div id="recentReviews" class="reviews-list"></div>
+                </div>
+            </aside>
+        </section>
+    </main>
+
+    <script src="../js/review.js"></script>
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a class="footer-logo" href="/frontend/index.html" aria-label="ServiceHub Home">
+                        <img src="/frontend/images/servicehub-logo.svg" alt="ServiceHub logo">
+                    </a>
+                    <h3>ServiceHub</h3>
+                    <p>Trusted home services, fair conversations, and reliable support for customers, workers, and partners.</p>
+                    <div class="footer-pills">
+                        <span>Verified Pros</span>
+                        <span>Fair Pricing</span>
+                        <span>Fast Booking</span>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h4>Explore</h4>
+                    <div class="footer-links">
+                        <a class="footer-link" href="/frontend/services/all-services.html">Services</a>
+                        <a class="footer-link" href="/frontend/servicesInfo/about.html">About</a>
+                        <a class="footer-link" href="/frontend/servicesInfo/partners.html">Partners</a>
+                        <a class="footer-link" href="/frontend/tranjection/wallet.html">Community Chat</a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h4>Company</h4>
+                    <div class="footer-links">
+                        <a class="footer-link" href="/frontend/servicesInfo/become-partner.html">Become Partner</a>
+                        <a class="footer-link" href="/frontend/your-booking/mybooking.html">My Bookings</a>
+                        <a class="footer-link" href="/frontend/servicesInfo/review.html">Reviews</a>
+                        <a class="footer-link" href="/frontend/profile/login.html">Login</a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h4>Why ServiceHub</h4>
+                    <p class="footer-note">Built for smooth booking, honest service, and a better experience for every home.</p>
+                    <div class="footer-links">
+                        <strong>Support</strong>
+                        <span class="footer-meta"><span>24×7 help</span><span>Fast replies</span></span>
+                        <span class="footer-meta"><span>Fair disputes</span><span>Community trust</span></span>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-meta">
+                    <span>© 2026 ServiceHub</span>
+                    <span>Made for customers, workers, and partners.</span>
+                </div>
+                <div class="footer-socials" aria-label="ServiceHub social links">
+                    <a href="https://www.linkedin.com/in/faiyaj-ansari-293413366" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                    <a href="https://github.com/Git-Hub-prog/Git-Hub-prog" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+                    <a href="https://www.instagram.com/faiyaj4553?igsh=MXBwNTJnMDR4NGs1ZA==" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                </div>
+                <div class="footer-note">A modern service platform that keeps things clear, quick, and fair.</div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

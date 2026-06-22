@@ -1,0 +1,210 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Electrician Services</title>
+    <link rel="stylesheet" href="../css/electrician.css">
+    <link rel="stylesheet" href="../css/services-theme.css">
+    <link rel="stylesheet" href="/frontend/css/footer.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="service-theme theme-electrician">
+
+<header class="main-header">
+    <h1>Electrician Services</h1>
+    <p>Professional | Reliable | Certified Experts</p>
+</header>
+
+<section class="services">
+
+    <div class="card">
+        <img src="../images/electrician-image/fan-installation.jpg">
+        <h3>Fan Installation</h3>
+        <p>Ceiling, table & wall fan setup.</p>
+        <span class="price">₹399</span>
+        <button onclick="bookService('Fan Installation', 399)">Book Now</button>
+    </div>
+
+    <div class="card">
+        <img src="../images/electrician-image/switch-board-repair.webp">
+        <h3>Switchboard Repair</h3>
+        <p>Replace burnt switches & plates.</p>
+        <span class="price">₹299</span>
+        <button onclick="bookService('Switchboard Repair', 299)">Book Now</button>
+    </div>
+
+    <div class="card">
+        <img src="../images/electrician-image/wiring-installation.jpg">
+        <h3>Wiring Installation</h3>
+        <p>Home & office electrical wiring.</p>
+        <span class="price">₹1499</span>
+        <button onclick="bookService('Wiring Installation', 1499)">Book Now</button>
+    </div>
+
+    <div class="card">
+        <img src="../images/electrician-image/light-fitting.jpg">
+        <h3>Light Fitting</h3>
+        <p>LED, tube lights & chandeliers.</p>
+        <span class="price">₹249</span>
+        <button onclick="bookService('Light Fitting', 249)">Book Now</button>
+    </div>
+
+    <div class="card">
+        <img src="../images/electrician-image/mcb-replacement.webp">
+        <h3>MCB & Fuse Replacement</h3>
+        <p>Short circuit & fuse fixing.</p>
+        <span class="price">₹349</span>
+        <button onclick="bookService('MCB & Fuse Replacement', 349)">Book Now</button>
+    </div>
+
+    <div class="card">
+        <img src="../images/electrician-image/inverter-installation.jpeg">
+        <h3>Inverter Installation</h3>
+        <p>Home inverter & battery setup.</p>
+        <span class="price">₹999</span>
+        <button onclick="bookService('Inverter Installation', 999)">Book Now</button>
+    </div>
+
+    <div class="card">
+        <img src="../images/electrician-image/fault-finding.jpeg">
+        <h3>Fault Finding</h3>
+        <p>Diagnose electrical problems.</p>
+        <span class="price">₹549</span>
+        <button onclick="bookService('Fault Finding', 549)">Book Now</button>
+    </div>
+
+    <div class="card">
+        <img src="../images/electrician-image/power-socket-installation.jpg">
+        <h3>Power Socket Installation</h3>
+        <p>Install AC & heavy load sockets.</p>
+        <span class="price">₹199</span>
+        <button onclick="bookService('Power Socket Installation', 199)">Book Now</button>
+    </div>
+
+    <div class="card">
+        <img src="../images/electrician-image/appliance-repair.jpg">
+        <h3>Appliance Repair</h3>
+        <p>Iron, mixer, fridge & oven.</p>
+        <span class="price">₹599</span>
+        <button onclick="bookService('Appliance Repair', 599)">Book Now</button>
+    </div>
+
+    <div class="card">
+        <img src="../images/electrician-image/doorbell-installation.webp">
+        <h3>Doorbell Installation</h3>
+        <p>Smart & wired doorbell fitting.</p>
+        <span class="price">₹149</span>
+        <button onclick="bookService('Doorbell Installation', 149)">Book Now</button>
+    </div>
+
+    <div class="card">
+        <img src="../images/electrician-image/fan-regulator-repair.webp">
+        <h3>Fan Regulator Repair</h3>
+        <p>Regulator replacement or repair.</p>
+        <span class="price">₹199</span>
+        <button onclick="bookService('Fan Regulator Repair', 199)">Book Now</button>
+    </div>
+
+    <div class="card">
+        <img src="../images/electrician-image/solar-panel-setup.jpg">
+        <h3>Solar Panel Setup</h3>
+        <p>Install rooftop solar system.</p>
+        <span class="price">₹4999</span>
+        <button onclick="bookService('Solar Panel Setup', 4999)">Book Now</button>
+    </div>
+
+    <div class="card">
+        <img src="../images/electrician-image/home-inspection.webp">
+        <h3>Home Inspection</h3>
+        <p>Evaluate electrical safety.</p>
+        <span class="price">₹799</span>
+        <button onclick="bookService('Home Inspection', 799)">Book Now</button>
+    </div>
+
+    <div class="card">
+        <img src="../images/electrician-image/emergency-service.jpeg">
+        <h3>Emergency Service</h3>
+        <p>24x7 urgent electrician visit.</p>
+        <span class="price">₹1999</span>
+        <button onclick="bookService('Emergency Service', 1999)">Book Now</button>
+    </div>
+
+    <div class="card">
+        <img src="../images/electrician-image/cctv-smarthome-setup.avif">
+        <h3>CCTV & Smart Home Setup</h3>
+        <p>Automation & security setup.</p>
+        <span class="price">₹3999</span>
+        <button onclick="bookService('CCTV & Smart Home Setup', 3999)">Book Now</button>
+    </div>
+
+</section>
+
+<script>
+function bookService(serviceName, price) {
+    localStorage.setItem("serviceName", serviceName);
+    localStorage.setItem("servicePrice", price);
+    window.location.href = `${window.location.pathname.includes("/frontend/") ? "/frontend" : ""}/booking-details/booking.html`;
+}
+</script>
+
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a class="footer-logo" href="/frontend/index.html" aria-label="ServiceHub Home">
+                        <img src="/frontend/images/servicehub-logo.svg" alt="ServiceHub logo">
+                    </a>
+                    <h3>ServiceHub</h3>
+                    <p>Trusted home services, fair conversations, and reliable support for customers, workers, and partners.</p>
+                    <div class="footer-pills">
+                        <span>Verified Pros</span>
+                        <span>Fair Pricing</span>
+                        <span>Fast Booking</span>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h4>Explore</h4>
+                    <div class="footer-links">
+                        <a class="footer-link" href="/frontend/services/all-services.html">Services</a>
+                        <a class="footer-link" href="/frontend/servicesInfo/about.html">About</a>
+                        <a class="footer-link" href="/frontend/servicesInfo/partners.html">Partners</a>
+                        <a class="footer-link" href="/frontend/tranjection/wallet.html">Community Chat</a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h4>Company</h4>
+                    <div class="footer-links">
+                        <a class="footer-link" href="/frontend/servicesInfo/become-partner.html">Become Partner</a>
+                        <a class="footer-link" href="/frontend/your-booking/mybooking.html">My Bookings</a>
+                        <a class="footer-link" href="/frontend/servicesInfo/review.html">Reviews</a>
+                        <a class="footer-link" href="/frontend/profile/login.html">Login</a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h4>Why ServiceHub</h4>
+                    <p class="footer-note">Built for smooth booking, honest service, and a better experience for every home.</p>
+                    <div class="footer-links">
+                        <strong>Support</strong>
+                        <span class="footer-meta"><span>24×7 help</span><span>Fast replies</span></span>
+                        <span class="footer-meta"><span>Fair disputes</span><span>Community trust</span></span>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-meta">
+                    <span>© 2026 ServiceHub</span>
+                    <span>Made for customers, workers, and partners.</span>
+                </div>
+                <div class="footer-socials" aria-label="ServiceHub social links">
+                    <a href="https://www.linkedin.com/in/faiyaj-ansari-293413366" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                    <a href="https://github.com/Git-Hub-prog/Git-Hub-prog" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+                    <a href="https://www.instagram.com/faiyaj4553?igsh=MXBwNTJnMDR4NGs1ZA==" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                </div>
+                <div class="footer-note">A modern service platform that keeps things clear, quick, and fair.</div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
+
+

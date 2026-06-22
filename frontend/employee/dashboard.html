@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Dashboard — ServiceHub</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Outfit:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="dashboard.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.6.0/dist/axios.min.js"></script>
+</head>
+
+<body>
+    <!-- NAVIGATION BAR -->
+    <nav class="navbar">
+        <div class="navbar-left">
+            <a class="navbar-logo" href="dashboard.html">
+                <div class="logo-icon">🏢</div>
+                ServiceHub
+            </a>
+            <div class="navbar-divider"></div>
+            <span class="navbar-subtitle">Employee Dashboard</span>
+        </div>
+        <div class="navbar-center">
+            <div class="search-bar">
+                <input type="text" id="searchInput" class="search-input" placeholder="Search bookings..." />
+                <span class="search-icon">🔍</span>
+            </div>
+        </div>
+        <div class="navbar-right">
+            <button class="nav-icon-btn" id="notificationBtn" title="Notifications">
+                🔔
+                <span class="notif-badge" id="notificationBadge">0</span>
+            </button>
+            <button class="nav-icon-btn" id="profileMenuBtn" title="Profile">👤</button>
+            <button class="nav-logout-btn" id="logoutBtn">
+                <span>🚪</span> Logout
+            </button>
+        </div>
+    </nav>
+
+    <!-- PROFILE DROPDOWN MENU -->
+    <div class="profile-menu" id="profileMenu">
+        <div class="profile-menu-header">
+            <div class="profile-menu-avatar">👨‍🔧</div>
+            <div class="profile-menu-info">
+                <div class="profile-menu-name" id="profileMenuName">—</div>
+                <div class="profile-menu-role">Service Professional</div>
+            </div>
+        </div>
+        <div class="profile-menu-divider"></div>
+        <button class="profile-menu-item" id="viewProfileBtn">👤 View Profile</button>
+        <button class="profile-menu-item" id="editProfileBtn">✏️ Edit Profile</button>
+        <button class="profile-menu-item" id="settingsBtn">⚙️ Settings</button>
+        <div class="profile-menu-divider"></div>
+        <button class="profile-menu-item logout" id="logoutMenuBtn">🚪 Logout</button>
+    </div>
+
+    <main class="page">
+        <!-- WELCOME SECTION -->
+        <section class="welcome-section">
+            <div class="welcome-content">
+                <div class="welcome-text">
+                    <h1 class="welcome-heading">Welcome back, <span id="welcomeName">Professional</span> 👋</h1>
+                    <p class="welcome-subtitle">Here's your performance snapshot for this week</p>
+                </div>
+                <div class="welcome-stats">
+                    <div class="welcome-stat-item">
+                        <div class="welcome-stat-value" id="welcomeJobs">0</div>
+                        <div class="welcome-stat-label">Total Jobs</div>
+                    </div>
+                    <div class="welcome-stat-divider"></div>
+                    <div class="welcome-stat-item">
+                        <div class="welcome-stat-value" id="welcomeRating">0.0</div>
+                        <div class="welcome-stat-label">Avg Rating</div>
+                    </div>
+                    <div class="welcome-stat-divider"></div>
+                    <div class="welcome-stat-item">
+                        <div class="welcome-stat-value" id="welcomeEarnings">₹0</div>
+                        <div class="welcome-stat-label">Weekly Earnings</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- WORK STATUS PANEL & PROFILE CARD -->
+        <section class="top-section">
+            <!-- WORK STATUS PANEL -->
+            <div class="work-status-card">
+                <div class="work-status-header">
+                    <h2 class="card-title">Work Status</h2>
+                    <span class="status-badge" id="currentStatusBadge">Offline</span>
+                </div>
+                
+                <div class="status-buttons">
+                    <button class="status-btn available" id="statusAvailable" data-status="available">
+                        <span class="status-icon">✓</span>
+                        Available
+                    </button>
+                    <button class="status-btn busy" id="statusBusy" data-status="busy">
+                        <span class="status-icon">⏱</span>
+                        Busy
+                    </button>
+                    <button class="status-btn on-break" id="statusBreak" data-status="on-break">
+                        <span class="status-icon">☕</span>
+                        On Break
+                    </button>
+                    <button class="status-btn offline" id="statusOffline" data-status="offline">
+                        <span class="status-icon">⊘</span>
+                        Offline
+                    </button>
+                </div>
+
+                <div class="shift-controls">
+                    <div class="shift-header">Shift Management</div>
+                    <div class="shift-time">
+                        <div class="shift-time-item">
+                            <span class="shift-time-label">Started</span>
+                            <span class="shift-time-value" id="shiftStartTime">—</span>
+                        </div>
+                        <div class="shift-time-item">
+                            <span class="shift-time-label">Hours Worked</span>
+                            <span class="shift-time-value" id="hoursWorked">0h 0m</span>
+                        </div>
+                    </div>
+                    <div class="shift-buttons">
+                        <button class="btn btn-primary-outline" id="startShiftBtn">Start Shift</button>
+                        <button class="btn btn-danger-outline" id="endShiftBtn" disabled>End Shift</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PROFILE CARD -->
+            <div class="profile-card">
+                <div class="profile-header">
+                    <div class="profile-avatar">👨‍🔧</div>
+                    <div class="profile-info">
+                        <h3 class="profile-name" id="profileName">—</h3>
+                        <p class="profile-id" id="profileId">Employee ID: —</p>
+                        <span class="profile-status-badge active" id="statusBadge">Active</span>
+                    </div>
+                </div>
+
+                <div class="profile-details">
+                    <div class="profile-detail-item">
+                        <span class="detail-label">Service Category</span>
+                        <span class="detail-value" id="profileService">—</span>
+                    </div>
+                    <div class="profile-detail-item">
+                        <span class="detail-label">Experience</span>
+                        <span class="detail-value" id="profileExperience">—</span>
+                    </div>
+                    <div class="profile-detail-item">
+                        <span class="detail-label">Mobile</span>
+                        <span class="detail-value" id="profileMobile">—</span>
+                    </div>
+                    <div class="profile-detail-item">
+                        <span class="detail-label">Email</span>
+                        <span class="detail-value" id="profileEmail">—</span>
+                    </div>
+                    <div class="profile-detail-item">
+                        <span class="detail-label">Location</span>
+                        <span class="detail-value" id="profileLocation">—</span>
+                    </div>
+                    <div class="profile-detail-item">
+                        <span class="detail-label">Joined</span>
+                        <span class="detail-value" id="profileJoined">—</span>
+                    </div>
+                </div>
+
+                <button class="btn btn-primary" id="editProfileMainBtn" style="width: 100%; margin-top: 16px;">
+                    ✏️ Edit Profile
+                </button>
+            </div>
+        </section>
+
+        <!-- STATISTICS CARDS -->
+        <section class="stats-section">
+            <div class="stats-grid">
+                <div class="stat-card blue">
+                    <div class="stat-card-top">
+                        <span class="stat-icon">📊</span>
+                        <span class="stat-label">Total Jobs</span>
+                    </div>
+                    <div class="stat-value" id="statTotalJobs">0</div>
+                    <p class="stat-hint">Every completed job builds your reputation</p>
+                </div>
+
+                <div class="stat-card purple">
+                    <div class="stat-card-top">
+                        <span class="stat-icon">💰</span>
+                        <span class="stat-label">Weekly Revenue</span>
+                    </div>
+                    <div class="stat-value" id="statWeeklyRevenue">₹0</div>
+                    <p class="stat-hint">Your skill is turning effort into earnings</p>
+                </div>
+
+                <div class="stat-card green">
+                    <div class="stat-card-top">
+                        <span class="stat-icon">⭐</span>
+                        <span class="stat-label">Avg Rating</span>
+                    </div>
+                    <div class="stat-value" id="statAvgRating">0.0</div>
+                    <p class="stat-hint">Great service creates loyal customers</p>
+                </div>
+
+                <div class="stat-card amber">
+                    <div class="stat-card-top">
+                        <span class="stat-icon">⏳</span>
+                        <span class="stat-label">Pending Jobs</span>
+                    </div>
+                    <div class="stat-value" id="statPendingJobs">0</div>
+                    <p class="stat-hint">Quick response wins trust and bookings</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- MAIN CONTENT GRID -->
+        <section class="main-grid">
+            <!-- TODAY'S TASKS -->
+            <div class="card today-tasks-card">
+                <div class="card-header">
+                    <h2 class="card-title">📋 Today's Tasks</h2>
+                    <span class="task-count" id="taskCount">0</span>
+                </div>
+                <div class="tasks-list" id="todayTasksList">
+                    <div class="empty-state">
+                        <span class="empty-icon">📭</span>
+                        <p>No tasks for today</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- JOB WORKFLOW TRACKER -->
+            <div class="card workflow-tracker-card">
+                <div class="card-header">
+                    <h2 class="card-title">🔄 Job Workflow</h2>
+                </div>
+                <div class="workflow-container" id="workflowContainer">
+                    <div class="empty-state">
+                        <span class="empty-icon">📭</span>
+                        <p>No active jobs</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RECENT BOOKINGS -->
+            <div class="card recent-bookings-card">
+                <div class="card-header">
+                    <h2 class="card-title">📅 Recent Bookings</h2>
+                    <div class="filter-buttons">
+                        <button class="filter-btn active" data-filter="all">All</button>
+                        <button class="filter-btn" data-filter="pending">Pending</button>
+                        <button class="filter-btn" data-filter="accepted">Accepted</button>
+                        <button class="filter-btn" data-filter="ontheway">On Way</button>
+                        <button class="filter-btn" data-filter="arrived">Arrived</button>
+                        <button class="filter-btn" data-filter="inprogress">In Progress</button>
+                        <button class="filter-btn" data-filter="completed">Completed</button>
+                    </div>
+                </div>
+                <div class="bookings-table">
+                    <div class="table-header">
+                        <div class="table-cell">Booking ID</div>
+                        <div class="table-cell">Customer</div>
+                        <div class="table-cell">Service</div>
+                        <div class="table-cell">Time</div>
+                        <div class="table-cell">Status</div>
+                        <div class="table-cell">Amount</div>
+                        <div class="table-cell">Actions</div>
+                    </div>
+                    <div class="table-body" id="bookingsTableBody">
+                        <div class="empty-state" style="grid-column: 1/-1; text-align: center; padding: 40px;">
+                            <span class="empty-icon">📭</span>
+                            <p>No bookings found</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- EARNINGS CHART -->
+            <div class="card earnings-chart-card">
+                <div class="card-header">
+                    <h2 class="card-title">📈 Last 7 Days Earnings</h2>
+                </div>
+                <div class="chart-container">
+                    <canvas id="earningsChart"></canvas>
+                </div>
+            </div>
+
+            <!-- NOTIFICATIONS PANEL -->
+            <div class="card notifications-card">
+                <div class="card-header">
+                    <h2 class="card-title">🔔 Recent Notifications</h2>
+                    <button class="clear-notif-btn" id="clearNotifBtn" title="Clear all">✕</button>
+                </div>
+                <div class="notifications-list" id="notificationsList">
+                    <div class="empty-state">
+                        <span class="empty-icon">📭</span>
+                        <p>No notifications</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- EDIT PROFILE MODAL -->
+    <div class="modal-overlay" id="editProfileModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h2 class="modal-title">Edit Profile</h2>
+                <button class="modal-close" id="closeEditModalBtn">✕</button>
+            </div>
+            <form id="editProfileForm" class="modal-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Full Name</label>
+                        <input type="text" id="editFullName" class="form-input" placeholder="Enter your full name" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Mobile Number</label>
+                        <input type="tel" id="editPhone" class="form-input" placeholder="Enter mobile number" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Email Address</label>
+                        <input type="email" id="editEmail" class="form-input" placeholder="Enter email" disabled>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Experience (Years)</label>
+                        <input type="number" id="editExperience" class="form-input" placeholder="Years of experience" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">City</label>
+                        <input type="text" id="editCity" class="form-input" placeholder="City" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">State</label>
+                        <input type="text" id="editState" class="form-input" placeholder="State" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Pincode</label>
+                        <input type="text" id="editPincode" class="form-input" placeholder="Pincode" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Service Category</label>
+                        <input type="text" id="editService" class="form-input" placeholder="Service" disabled>
+                    </div>
+                </div>
+
+                <div class="modal-actions">
+                    <button type="submit" class="btn btn-primary">💾 Save Changes</button>
+                    <button type="button" class="btn btn-secondary" id="cancelEditBtn">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="dashboard.js"></script>
+</body>
+
+</html>

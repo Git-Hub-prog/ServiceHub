@@ -1,0 +1,259 @@
+/* Shared animated theme for service pages */
+:root {
+    --svc-bg-1: #eef2ff;
+    --svc-bg-2: #f8fafc;
+    --svc-bg-3: #fdf2f8;
+    --svc-accent: #4f46e5;
+    --svc-accent-2: #ec4899;
+    --svc-text: #0f172a;
+    --svc-muted: #475569;
+    --svc-card-bg: rgba(255, 255, 255, 0.78);
+    --svc-border: rgba(255, 255, 255, 0.42);
+}
+
+body.service-theme {
+    margin: 0;
+    color: var(--svc-text);
+    background: linear-gradient(130deg, var(--svc-bg-1), var(--svc-bg-2), var(--svc-bg-3));
+    background-size: 220% 220%;
+    animation: pageGradientShift 16s ease infinite;
+    position: relative;
+    overflow-x: hidden;
+}
+
+body.service-theme::before,
+body.service-theme::after {
+    content: "";
+    position: fixed;
+    width: 34vw;
+    height: 34vw;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: -1;
+    filter: blur(8px);
+}
+
+body.service-theme::before {
+    left: -10vw;
+    top: -12vw;
+    background: radial-gradient(circle, color-mix(in srgb, var(--svc-accent) 42%, white 58%) 0%, rgba(255, 255, 255, 0) 70%);
+    animation: floatBlobA 11s ease-in-out infinite alternate;
+}
+
+body.service-theme::after {
+    right: -12vw;
+    bottom: -14vw;
+    background: radial-gradient(circle, color-mix(in srgb, var(--svc-accent-2) 40%, white 60%) 0%, rgba(255, 255, 255, 0) 70%);
+    animation: floatBlobB 13s ease-in-out infinite alternate;
+}
+
+body.service-theme .header,
+body.service-theme .banner,
+body.service-theme .main-header,
+body.service-theme .ac-header,
+body.service-theme .hero,
+body.service-theme .top-banner {
+    background: linear-gradient(120deg, color-mix(in srgb, var(--svc-accent) 78%, black 22%), color-mix(in srgb, var(--svc-accent-2) 70%, white 30%));
+    color: #fff;
+    border-radius: 0 0 26px 26px;
+    box-shadow: 0 20px 45px rgba(15, 23, 42, 0.18);
+    position: relative;
+    overflow: hidden;
+}
+
+body.service-theme .header::after,
+body.service-theme .banner::after,
+body.service-theme .main-header::after,
+body.service-theme .ac-header::after,
+body.service-theme .hero::after,
+body.service-theme .top-banner::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(120deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.02));
+    pointer-events: none;
+}
+
+body.service-theme .service-card,
+body.service-theme .card,
+body.service-theme .ac-card,
+body.service-theme .service-box,
+body.service-theme .tutor-card,
+body.service-theme .categories,
+body.service-theme .service-section,
+body.service-theme .navbar,
+body.service-theme .no-services {
+    background: var(--svc-card-bg);
+    border: 1px solid var(--svc-border);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+body.service-theme .service-card,
+body.service-theme .card,
+body.service-theme .ac-card,
+body.service-theme .service-box,
+body.service-theme .tutor-card {
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(15, 23, 42, 0.12);
+    transition: transform 0.28s ease, box-shadow 0.28s ease;
+}
+
+body.service-theme .service-card:hover,
+body.service-theme .card:hover,
+body.service-theme .ac-card:hover,
+body.service-theme .service-box:hover,
+body.service-theme .tutor-card:hover {
+    transform: translateY(-9px) scale(1.01);
+    box-shadow: 0 16px 34px rgba(15, 23, 42, 0.2);
+}
+
+body.service-theme h1,
+body.service-theme h2,
+body.service-theme h3 {
+    letter-spacing: 0.2px;
+}
+
+body.service-theme p {
+    color: var(--svc-muted);
+}
+
+body.service-theme .price,
+body.service-theme .rate,
+body.service-theme .card span,
+body.service-theme .service-box span,
+body.service-theme .tutor-card span {
+    color: var(--svc-accent);
+}
+
+body.service-theme button,
+body.service-theme .call-btn {
+    background: linear-gradient(120deg, var(--svc-accent), var(--svc-accent-2));
+    color: #fff;
+    border: none;
+    box-shadow: 0 10px 24px color-mix(in srgb, var(--svc-accent) 28%, transparent);
+    transition: transform 0.2s ease, filter 0.2s ease;
+}
+
+body.service-theme button:hover,
+body.service-theme .call-btn:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.06);
+}
+
+body.service-theme .services-container,
+body.service-theme .services,
+body.service-theme .ac-container,
+body.service-theme .service-grid {
+    position: relative;
+    z-index: 1;
+}
+
+/* All-services page polish */
+body.theme-all-services .navbar {
+    position: sticky;
+    top: 0;
+    border-radius: 0 0 20px 20px;
+}
+
+body.theme-all-services .nav-center::after {
+    background: linear-gradient(90deg, var(--svc-accent), var(--svc-accent-2));
+}
+
+/* Category-specific palettes */
+body.theme-plumber {
+    --svc-bg-1: #e0f2fe;
+    --svc-bg-2: #f0f9ff;
+    --svc-bg-3: #ecfeff;
+    --svc-accent: #0284c7;
+    --svc-accent-2: #0ea5e9;
+}
+
+body.theme-electrician {
+    --svc-bg-1: #fff7ed;
+    --svc-bg-2: #ffedd5;
+    --svc-bg-3: #fef3c7;
+    --svc-accent: #b45309;
+    --svc-accent-2: #f59e0b;
+}
+
+body.theme-ac {
+    --svc-bg-1: #e0f2fe;
+    --svc-bg-2: #ecfeff;
+    --svc-bg-3: #eff6ff;
+    --svc-accent: #0284c7;
+    --svc-accent-2: #22d3ee;
+}
+
+body.theme-car {
+    --svc-bg-1: #e0f2fe;
+    --svc-bg-2: #dbeafe;
+    --svc-bg-3: #eef2ff;
+    --svc-accent: #2563eb;
+    --svc-accent-2: #06b6d4;
+}
+
+body.theme-salon {
+    --svc-bg-1: #fdf2f8;
+    --svc-bg-2: #fae8ff;
+    --svc-bg-3: #fff1f2;
+    --svc-accent: #db2777;
+    --svc-accent-2: #f472b6;
+}
+
+body.theme-tutor {
+    --svc-bg-1: #ecfeff;
+    --svc-bg-2: #ecfccb;
+    --svc-bg-3: #fef9c3;
+    --svc-accent: #0f766e;
+    --svc-accent-2: #f59e0b;
+}
+
+body.theme-category {
+    --svc-bg-1: #eef2ff;
+    --svc-bg-2: #ede9fe;
+    --svc-bg-3: #f5f3ff;
+    --svc-accent: #4f46e5;
+    --svc-accent-2: #a855f7;
+}
+
+body.theme-all-services {
+    --svc-bg-1: #fff7ed;
+    --svc-bg-2: #ffe4e6;
+    --svc-bg-3: #fce7f3;
+    --svc-accent: #ea580c;
+    --svc-accent-2: #db2777;
+}
+
+@keyframes pageGradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+@keyframes floatBlobA {
+    0% { transform: translate(0, 0) scale(1); }
+    100% { transform: translate(7vw, 4vh) scale(1.14); }
+}
+
+@keyframes floatBlobB {
+    0% { transform: translate(0, 0) scale(1); }
+    100% { transform: translate(-8vw, -5vh) scale(1.12); }
+}
+
+@media (max-width: 768px) {
+    body.service-theme::before,
+    body.service-theme::after {
+        width: 60vw;
+        height: 60vw;
+    }
+
+    body.service-theme .header,
+    body.service-theme .banner,
+    body.service-theme .main-header,
+    body.service-theme .ac-header,
+    body.service-theme .hero,
+    body.service-theme .top-banner {
+        border-radius: 0 0 18px 18px;
+    }
+}

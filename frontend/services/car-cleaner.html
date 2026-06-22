@@ -1,0 +1,173 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Car Cleaning & Detailing Services</title>
+    <link rel="stylesheet" href="../css/car-cleaner.css">
+    <link rel="stylesheet" href="../css/services-theme.css">
+    <link rel="stylesheet" href="/frontend/css/footer.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="service-theme theme-car">
+
+<header class="hero">
+    <h1>Car Washing & Detailing</h1>
+    <p>Premium Cleaning • Quick Service • Affordable Rates</p>
+</header>
+
+<h2 class="service-heading">Choose Your Service</h2>
+
+<div class="services-container">
+
+    <div class="service-box">
+        <img src="../images/car-cleaner-images/exterior-wash.jpg">
+        <h3>Exterior Wash</h3>
+        <p>High-pressure wash & shampoo.</p>
+        <span>₹399</span>
+        <button onclick="bookService('Exterior Wash', 399)">Book Now</button>
+    </div>
+
+    <div class="service-box">
+        <img src="../images/car-cleaner-images/interion-deep-cleaning.jpg">
+        <h3>Interior Deep Cleaning</h3>
+        <p>Vacuum, dashboard polish & detailing.</p>
+        <span>₹999</span>
+        <button onclick="bookService('Interior Deep Cleaning', 999)">Book Now</button>
+    </div>
+
+    <div class="service-box">
+        <img src="../images/car-cleaner-images/foam-wash.jpeg">
+        <h3>Foam Wash</h3>
+        <p>Snow foam wash for premium shine.</p>
+        <span>₹699</span>
+        <button onclick="bookService('Foam Wash', 699)">Book Now</button>
+    </div>
+
+    <div class="service-box">
+        <img src="../images/car-cleaner-images/car-engine-cleaning.webp">
+        <h3>Engine Bay Cleaning</h3>
+        <p>Grease removal & polish.</p>
+        <span>₹599</span>
+        <button onclick="bookService('Engine Bay Cleaning', 599)">Book Now</button>
+    </div>
+
+    <div class="service-box">
+        <img src="../images/car-cleaner-images/headlight-issue.jpg">
+        <h3>Headlight Restoration</h3>
+        <p>Scratch removal & polishing.</p>
+        <span>₹499</span>
+        <button onclick="bookService('Headlight Restoration', 499)">Book Now</button>
+    </div>
+
+    <div class="service-box">
+        <img src="../images/car-cleaner-images/wheel-cleaner.jpg">
+        <h3>Alloy Wheel Cleaning</h3>
+        <p>Brake dust & mud removal.</p>
+        <span>₹349</span>
+        <button onclick="bookService('Alloy Wheel Cleaning', 349)">Book Now</button>
+    </div>
+
+    <div class="service-box">
+        <img src="../images/car-cleaner-images/full-body-detailing.jpg">
+        <h3>Full Body Detailing</h3>
+        <p>Shampoo + polish + vacuum.</p>
+        <span>₹1999</span>
+        <button onclick="bookService('Full Body Detailing', 1999)">Book Now</button>
+    </div>
+
+    <div class="service-box">
+        <img src="../images/car-cleaner-images/car-senitization.webp">
+        <h3>Car Sanitization</h3>
+        <p>Anti-bacterial treatment.</p>
+        <span>₹549</span>
+        <button onclick="bookService('Car Sanitization', 549)">Book Now</button>
+    </div>
+
+    <div class="service-box">
+        <img src="../images/car-cleaner-images/premium-ceramic-service.jpg">
+        <h3>Premium Ceramic Wash</h3>
+        <p>Gloss coating + wax.</p>
+        <span>₹2999</span>
+        <button onclick="bookService('Premium Ceramic Wash', 2999)">Book Now</button>
+    </div>
+
+    <div class="service-box">
+        <img src="../images/car-cleaner-images/seat-carpet-vaccum.avif">
+        <h3>Seat & Carpet Vacuum</h3>
+        <p>Deep interior vacuum.</p>
+        <span>₹399</span>
+        <button onclick="bookService('Seat & Carpet Vacuum', 399)">Book Now</button>
+    </div>
+
+</div>
+
+<!-- ✅ ONLY this JS for service page -->
+<script>
+function bookService(serviceName, price) {
+    localStorage.setItem("serviceName", serviceName);
+    localStorage.setItem("servicePrice", price);
+    window.location.href = `${window.location.pathname.includes("/frontend/") ? "/frontend" : ""}/booking-details/booking.html`;
+}
+</script>
+
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a class="footer-logo" href="/frontend/index.html" aria-label="ServiceHub Home">
+                        <img src="/frontend/images/servicehub-logo.svg" alt="ServiceHub logo">
+                    </a>
+                    <h3>ServiceHub</h3>
+                    <p>Trusted home services, fair conversations, and reliable support for customers, workers, and partners.</p>
+                    <div class="footer-pills">
+                        <span>Verified Pros</span>
+                        <span>Fair Pricing</span>
+                        <span>Fast Booking</span>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h4>Explore</h4>
+                    <div class="footer-links">
+                        <a class="footer-link" href="/frontend/services/all-services.html">Services</a>
+                        <a class="footer-link" href="/frontend/servicesInfo/about.html">About</a>
+                        <a class="footer-link" href="/frontend/servicesInfo/partners.html">Partners</a>
+                        <a class="footer-link" href="/frontend/tranjection/wallet.html">Community Chat</a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h4>Company</h4>
+                    <div class="footer-links">
+                        <a class="footer-link" href="/frontend/servicesInfo/become-partner.html">Become Partner</a>
+                        <a class="footer-link" href="/frontend/your-booking/mybooking.html">My Bookings</a>
+                        <a class="footer-link" href="/frontend/servicesInfo/review.html">Reviews</a>
+                        <a class="footer-link" href="/frontend/profile/login.html">Login</a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h4>Why ServiceHub</h4>
+                    <p class="footer-note">Built for smooth booking, honest service, and a better experience for every home.</p>
+                    <div class="footer-links">
+                        <strong>Support</strong>
+                        <span class="footer-meta"><span>24×7 help</span><span>Fast replies</span></span>
+                        <span class="footer-meta"><span>Fair disputes</span><span>Community trust</span></span>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-meta">
+                    <span>© 2026 ServiceHub</span>
+                    <span>Made for customers, workers, and partners.</span>
+                </div>
+                <div class="footer-socials" aria-label="ServiceHub social links">
+                    <a href="https://www.linkedin.com/in/faiyaj-ansari-293413366" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                    <a href="https://github.com/Git-Hub-prog/Git-Hub-prog" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+                    <a href="https://www.instagram.com/faiyaj4553?igsh=MXBwNTJnMDR4NGs1ZA==" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                </div>
+                <div class="footer-note">A modern service platform that keeps things clear, quick, and fair.</div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
+
+

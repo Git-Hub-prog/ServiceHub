@@ -1,0 +1,15 @@
+﻿<h2>Our Services</h2>
+
+<button onclick="bookService('Plumber Service')">Plumber</button>
+<button onclick="bookService('Electrician Wiring Repair')">Electrician</button>
+<button onclick="bookService('AC Repair')">AC Repair</button>
+
+<script>
+function bookService(serviceName, price) {
+  localStorage.setItem("serviceName", serviceName);
+  localStorage.setItem("servicePrice", price || 0);
+  window.location.href = `${window.location.pathname.includes("/frontend/") ? "/frontend" : ""}/booking-details/booking.html`;
+}
+</script>
+
+

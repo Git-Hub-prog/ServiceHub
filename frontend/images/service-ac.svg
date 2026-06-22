@@ -1,0 +1,26 @@
+<svg width="900" height="1100" viewBox="0 0 900 1100" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="70" y1="40" x2="830" y2="1060" gradientUnits="userSpaceOnUse"><stop stop-color="#EEF8D9"/><stop offset="1" stop-color="#FFFFFF"/></linearGradient>
+    <linearGradient id="glass" x1="220" y1="220" x2="680" y2="860" gradientUnits="userSpaceOnUse"><stop stop-color="#FFFFFF" stop-opacity="0.96"/><stop offset="1" stop-color="#E7F5C8" stop-opacity="0.72"/></linearGradient>
+    <linearGradient id="ac" x1="250" y1="420" x2="650" y2="620" gradientUnits="userSpaceOnUse"><stop stop-color="#679C19"/><stop offset="1" stop-color="#3D6C10"/></linearGradient>
+    <filter id="shadow" x="0" y="0" width="900" height="1100" filterUnits="userSpaceOnUse"><feDropShadow dx="0" dy="22" stdDeviation="22" flood-color="#0F172A" flood-opacity="0.18"/></filter>
+  </defs>
+  <rect width="900" height="1100" rx="48" fill="url(#bg)"/>
+  <circle cx="220" cy="220" r="130" fill="#D8F0A8" opacity="0.72"/>
+  <circle cx="710" cy="860" r="170" fill="#B9E5FF" opacity="0.72"/>
+  <g filter="url(#shadow)">
+    <rect x="150" y="180" width="600" height="740" rx="42" fill="url(#glass)" stroke="white"/>
+    <rect x="260" y="340" width="380" height="250" rx="34" fill="#F7FAF0"/>
+    <rect x="300" y="386" width="300" height="140" rx="24" fill="url(#ac)"/>
+    <path d="M330 420H570" stroke="#294C0A" stroke-width="10" stroke-linecap="round" opacity="0.6"/>
+    <path d="M330 455H550" stroke="#294C0A" stroke-width="10" stroke-linecap="round" opacity="0.6"/>
+    <path d="M330 490H500" stroke="#294C0A" stroke-width="10" stroke-linecap="round" opacity="0.6"/>
+    <circle cx="300" cy="456" r="28" fill="#D98C1A"/>
+    <rect x="528" y="364" width="44" height="44" rx="12" fill="#29540B"/>
+    <text x="542" y="393" font-size="24" fill="#16310A" font-family="Arial">22°C</text>
+    <path d="M450 590v74" stroke="#79B7FF" stroke-width="10" stroke-linecap="round"/>
+    <path d="M410 625h80" stroke="#79B7FF" stroke-width="10" stroke-linecap="round"/>
+    <ellipse cx="450" cy="615" rx="220" ry="30" fill="#B8C7D9" opacity="0.24"/>
+    <path d="M270 300C320 258 392 235 450 235C518 235 594 262 650 308" stroke="#FFFFFF" stroke-width="18" stroke-linecap="round" opacity="0.5"/>
+  </g>
+</svg>

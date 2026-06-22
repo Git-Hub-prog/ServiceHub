@@ -1,0 +1,242 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Community Chat | ServiceHub</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/wallet.css">
+    <link rel="stylesheet" href="/frontend/css/footer.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="left">
+            <a class="logo" href="../index.html" aria-label="ServiceHub Home">
+                <img src="../images/servicehub-logo.svg" alt="ServiceHub logo">
+            </a>
+            <div class="search-box">
+                <i class="fas fa-search" style="position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: #64748B;"></i>
+                <input 
+                    type="text"
+                    id="serviceSearch"
+                    placeholder="Search services..."
+                    onkeyup="searchServices()"
+                />
+                <div class="search-results" id="searchResults"></div>
+            </div>
+        </div>
+
+        <div class="center">
+            <a href="../index.html"><i class="fas fa-home"></i> Home</a>
+
+            <div class="dropdown">
+                <button class="drop-btn" id="servicesBtn"><i class="fas fa-tools"></i> Services <i class="fas fa-chevron-down" style="font-size: 10px; margin-left: 5px;"></i></button>
+                <div class="drop-content" id="servicesDropdown">
+                    <a href="../services/service-category.html?category=plumber">Plumber</a>
+                    <a href="../services/service-category.html?category=electrician">Electrician</a>
+                    <a href="../services/service-category.html?category=ac-repair">AC Repair</a>
+                    <a href="../services/service-category.html?category=salon">Salon at Home</a>
+                    <a href="../services/service-category.html?category=car-cleaner">Car Cleaner</a>
+                    <a href="../services/service-category.html?category=tutor">Tutor</a>
+                </div>
+            </div>
+
+            <a href="../servicesInfo/become-partner.html"><i class="fas fa-handshake"></i> Become Partner</a>
+            <a href="../servicesInfo/partners.html"><i class="fas fa-users"></i> Partner List</a>
+            <a href="../servicesInfo/about.html"><i class="fas fa-info-circle"></i> About</a>
+        </div>
+
+        <div class="right">
+            <a href="../your-booking/mybooking.html"><i class="fas fa-calendar-check"></i> My Bookings</a>
+            <a class="active" href="wallet.html"><i class="fas fa-comments"></i> Community Chat</a>
+
+            <div class="profile-menu">
+                <button id="profileBtn"><i class="fas fa-user-circle"></i> Profile <i class="fas fa-chevron-down" style="font-size: 10px; margin-left: 5px;"></i></button>
+                <div class="profile-dropdown" id="profileDropdown">
+                    <a href="../profile/login.html"><i class="fas fa-sign-in-alt"></i> Login</a>
+                    <a href="../servicesInfo/review.html"><i class="fas fa-star"></i> My Reviews</a>
+                    <a href="../profile/logout.html"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="chat-shell">
+        <section class="chat-hero">
+            <div class="hero-copy">
+                <span class="eyebrow">ServiceHub Community</span>
+                <h1>Fair chat for customers, workers, and support</h1>
+                <p>
+                    Talk openly, ask questions, share feedback, and keep every service honest.
+                    This space is built for respectful community conversation that helps everyone win.
+                </p>
+                <div class="hero-chips">
+                    <span>Customers</span>
+                    <span>Workers</span>
+                    <span>Support</span>
+                    <span>Service Advice</span>
+                </div>
+            </div>
+            <div class="hero-card">
+                <div class="hero-card-top">
+                    <span class="live-dot"></span>
+                    Live community chat
+                </div>
+                <h2>Ask. Reply. Resolve.</h2>
+                <p>Use public rooms or draft a note before posting. Every message stays visible to the community for transparency.</p>
+            </div>
+        </section>
+
+        <section class="chat-layout">
+            <aside class="chat-sidebar">
+                <div class="panel-title-block">
+                    <h2>Rooms</h2>
+                    <p>Choose the discussion that fits best.</p>
+                </div>
+                <div class="room-list" id="roomList"></div>
+
+                <div class="sidebar-card fairness-card">
+                    <h3>Fair service rules</h3>
+                    <ul>
+                        <li>Be respectful to customers and workers.</li>
+                        <li>Share real issues, not fake complaints.</li>
+                        <li>Keep pricing, timing, and quality discussions clear.</li>
+                        <li>Support can step in when a thread needs help.</li>
+                    </ul>
+                </div>
+            </aside>
+
+            <section class="chat-main">
+                <div class="chat-header">
+                    <div>
+                        <span class="room-tag" id="activeRoomTag">Community room</span>
+                        <h2 id="activeRoomTitle">General Chat</h2>
+                        <p id="activeRoomDescription">Open conversation for everyone engaging with ServiceHub.</p>
+                    </div>
+                    <div class="presence-pill">
+                        <span class="pulse"></span>
+                        <span id="activeCount">0 active voices</span>
+                    </div>
+                </div>
+
+                <div class="message-stream" id="messageStream" aria-live="polite"></div>
+
+                <div class="quick-drafts">
+                    <button type="button" class="draft-chip">Need help with a booking issue</button>
+                    <button type="button" class="draft-chip">Worker, can you confirm your timing?</button>
+                    <button type="button" class="draft-chip">Please keep the service fair and transparent</button>
+                    <button type="button" class="draft-chip">I want to share feedback about today's visit</button>
+                </div>
+
+                <form class="composer" id="chatComposer">
+                    <div class="composer-topline">
+                        <div class="identity-box">
+                            <span class="identity-label">Posting as</span>
+                            <strong id="currentIdentity">Guest</strong>
+                        </div>
+                        <label class="role-picker">
+                            <span>Role</span>
+                            <select id="roleSelect">
+                                <option value="Customer">Customer</option>
+                                <option value="Worker">Worker</option>
+                                <option value="Support">Support</option>
+                                <option value="Partner">Partner</option>
+                            </select>
+                        </label>
+                    </div>
+
+                    <textarea id="messageInput" rows="4" placeholder="Write your message, comment, or draft here..."></textarea>
+
+                    <div class="composer-actions">
+                        <button type="button" class="ghost-btn" id="saveDraftBtn">Save draft</button>
+                        <button type="button" class="ghost-btn" id="clearDraftBtn">Clear</button>
+                        <button type="submit" class="send-btn">Send message</button>
+                    </div>
+                </form>
+            </section>
+
+            <aside class="chat-sidepanel">
+                <div class="sidebar-card profile-card">
+                    <span class="section-label">Your presence</span>
+                    <h3 id="profileName">Guest</h3>
+                    <p id="profileMeta">Sign in to chat as your account and keep your discussions linked.</p>
+                </div>
+
+                <div class="sidebar-card stats-card">
+                    <span class="section-label">Community pulse</span>
+                    <div class="stat-row"><strong>Fair replies</strong><span>Always encouraged</span></div>
+                    <div class="stat-row"><strong>Active rooms</strong><span>6 public spaces</span></div>
+                    <div class="stat-row"><strong>Moderation</strong><span>Support ready</span></div>
+                </div>
+
+                <div class="sidebar-card tips-card">
+                    <span class="section-label">Chat tips</span>
+                    <p>Keep it real, stay polite, and write the issue clearly so the right person can answer quickly.</p>
+                </div>
+            </aside>
+        </section>
+    </main>
+
+    <script src="../js/script.js"></script>
+    <script src="../js/wallet.js"></script>
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a class="footer-logo" href="/frontend/index.html" aria-label="ServiceHub Home">
+                        <img src="/frontend/images/servicehub-logo.svg" alt="ServiceHub logo">
+                    </a>
+                    <h3>ServiceHub</h3>
+                    <p>Trusted home services, fair conversations, and reliable support for customers, workers, and partners.</p>
+                    <div class="footer-pills">
+                        <span>Verified Pros</span>
+                        <span>Fair Pricing</span>
+                        <span>Fast Booking</span>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h4>Explore</h4>
+                    <div class="footer-links">
+                        <a class="footer-link" href="/frontend/services/all-services.html">Services</a>
+                        <a class="footer-link" href="/frontend/servicesInfo/about.html">About</a>
+                        <a class="footer-link" href="/frontend/servicesInfo/partners.html">Partners</a>
+                        <a class="footer-link" href="/frontend/tranjection/wallet.html">Community Chat</a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h4>Company</h4>
+                    <div class="footer-links">
+                        <a class="footer-link" href="/frontend/servicesInfo/become-partner.html">Become Partner</a>
+                        <a class="footer-link" href="/frontend/your-booking/mybooking.html">My Bookings</a>
+                        <a class="footer-link" href="/frontend/servicesInfo/review.html">Reviews</a>
+                        <a class="footer-link" href="/frontend/profile/login.html">Login</a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h4>Why ServiceHub</h4>
+                    <p class="footer-note">Built for smooth booking, honest service, and a better experience for every home.</p>
+                    <div class="footer-links">
+                        <strong>Support</strong>
+                        <span class="footer-meta"><span>24×7 help</span><span>Fast replies</span></span>
+                        <span class="footer-meta"><span>Fair disputes</span><span>Community trust</span></span>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-meta">
+                    <span>© 2026 ServiceHub</span>
+                    <span>Made for customers, workers, and partners.</span>
+                </div>
+                <div class="footer-socials" aria-label="ServiceHub social links">
+                    <a href="https://www.linkedin.com/in/faiyaj-ansari-293413366" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                    <a href="https://github.com/Git-Hub-prog/Git-Hub-prog" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+                    <a href="https://www.instagram.com/faiyaj4553?igsh=MXBwNTJnMDR4NGs1ZA==" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                </div>
+                <div class="footer-note">A modern service platform that keeps things clear, quick, and fair.</div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

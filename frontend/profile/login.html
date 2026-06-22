@@ -1,0 +1,49 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ServiceHub | Login</title>
+    <link rel="stylesheet" href="../css/login.css">
+    <link rel="stylesheet" href="/frontend/css/footer.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="auth-scene">
+        <div class="background-orbs">
+            <div class="orb orb-1"></div>
+            <div class="orb orb-2"></div>
+            <div class="orb orb-3"></div>
+        </div>
+
+        <div class="auth-container">
+            <div class="glass-card" id="loginCard">
+                <div class="card-header">
+                    <h1>Login</h1>
+                    <p>Welcome back. Access your services in one click.</p>
+                </div>
+
+                <form id="loginForm" class="auth-form">
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" placeholder="Enter your email" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" placeholder="Enter your password" required>
+                    </div>
+
+                    <button type="submit" class="btn-primary">Login</button>
+                </form>
+
+                <div class="auth-footer">
+                    <p>Don't have an account? <a href="register.html">Create Account</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/login.js"></script>
+</body>
+</html>
