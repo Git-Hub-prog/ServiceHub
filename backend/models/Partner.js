@@ -91,6 +91,10 @@ const partnerSchema = new mongoose.Schema({
         type: String,
         required: [true, 'Please add an address']
     },
+    preferredShift: {
+        type: String,
+        default: null
+    },
     createdAt: {
         type: Date,
         default: Date.now

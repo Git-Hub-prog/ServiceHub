@@ -52,15 +52,31 @@
 }
 
 /* Dropdown */
+.profile-dropdown {
+    position: relative;
+}
+
+/* Invisible hover zone bridge */
+.profile-dropdown::before {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    height: 12px;
+    pointer-events: auto;
+}
+
 .profile-dropdown .dropdown {
     display: none;
     position: absolute;
-    top: 30px;
+    top: calc(100% + 12px);
     right: 0;
     background: white;
     list-style: none;
     box-shadow: 0 4px 10px rgba(0,0,0,0.1);
     padding: 10px 0;
+    pointer-events: auto;
 }
 
 .profile-dropdown:hover .dropdown {

@@ -37,6 +37,7 @@ document.addEventListener("DOMContentLoaded", function () {
             email: document.getElementById("email").value.trim(),
             phone: normalizePhone(document.getElementById("phone").value),
             service: document.getElementById("service").value,
+            preferredShift: document.getElementById("shift").value,
             experience: parseInt(document.getElementById("experience").value),
             address: document.getElementById("address").value.trim()
         };

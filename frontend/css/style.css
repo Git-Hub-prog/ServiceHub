@@ -206,15 +206,27 @@ body {
     gap: 5px;
 }
 
+/* Invisible hover zone bridge */
+.dropdown::before,
+.profile-menu::before {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    height: 15px;
+    pointer-events: auto;
+}
+
 .drop-content,
 .profile-dropdown {
     display: none;
     position: absolute;
     background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(10px);
-    top: 150%;
+    top: calc(100% + 15px);
     left: 50%;
-    transform: translateX(-50%) translateY(10px);
+    transform: translateX(-50%) translateY(0);
     padding: 10px 0;
     border-radius: 12px;
     box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
@@ -223,7 +235,7 @@ body {
     min-width: 180px;
     opacity: 0;
     pointer-events: none;
-    transition: var(--transition);
+    transition: all 0.2s ease;
 }
 
 .dropdown:hover .drop-content,
@@ -232,7 +244,6 @@ body {
 .profile-dropdown.show {
     display: block;
     opacity: 1;
-    transform: translateX(-50%) translateY(0);
     pointer-events: auto;
 }
 

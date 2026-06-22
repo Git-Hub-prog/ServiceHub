@@ -18,7 +18,8 @@ body{
 .booking-navbar .nav-links{list-style:none;display:flex;align-items:center;gap:18px;margin:0;padding:0}
 .booking-navbar .nav-links a{color:#1e293b;text-decoration:none;font-weight:600;font-size:0.95rem}
 .booking-navbar .profile-dropdown{position:relative}
-.booking-navbar .dropdown{display:none;position:absolute;right:0;top:calc(100% + 10px);min-width:160px;background:rgba(255,255,255,0.98);border:1px solid rgba(15,23,42,0.1);border-radius:14px;box-shadow:0 16px 40px rgba(15,23,42,0.14);list-style:none;padding:8px;margin:0}
+.booking-navbar .profile-dropdown::before{content:'';position:absolute;top:100%;left:0;right:0;height:12px;pointer-events:auto}
+.booking-navbar .dropdown{display:none;position:absolute;right:0;top:calc(100% + 12px);min-width:160px;background:rgba(255,255,255,0.98);border:1px solid rgba(15,23,42,0.1);border-radius:14px;box-shadow:0 16px 40px rgba(15,23,42,0.14);list-style:none;padding:8px;margin:0;pointer-events:auto}
 .booking-navbar .profile-dropdown:hover .dropdown,.booking-navbar .profile-dropdown:focus-within .dropdown{display:block}
 .booking-navbar .dropdown a{display:block;padding:10px 12px;border-radius:10px}
 .booking-navbar .dropdown a:hover{background:rgba(37,99,235,0.08)}

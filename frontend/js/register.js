@@ -10,7 +10,14 @@ document.getElementById("registerForm").addEventListener("submit", async functio
         return;
     }
 
+    const submitButton = this.querySelector(".btn-primary");
+    
     try {
+        if (submitButton) {
+            submitButton.disabled = true;
+            submitButton.textContent = "Registering...";
+        }
+
         const response = await fetch('http://localhost:5000/api/auth/register', {
             method: 'POST',
             headers: {
@@ -30,5 +37,10 @@ document.getElementById("registerForm").addEventListener("submit", async functio
     } catch (error) {
         console.error("Error:", error);
         alert("Server error, please try again later.");
+    } finally {
+        if (submitButton) {
+            submitButton.disabled = false;
+            submitButton.textContent = "Register";
+        }
     }
 });

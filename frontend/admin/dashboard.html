@@ -3,12 +3,354 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Admin Console - ServiceHub</title>
+  <title>Admin Dashboard - ServiceHub</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="../css/dashboard.css">
+  <!-- CSS additions inline to make it look even more premium -->
+  <style>
+    /* Styling enhancements for dashboard layout */
+    .menu button {
+      width: 100%;
+      text-align: left;
+      background: transparent;
+      border: 1px solid transparent;
+      color: var(--text-2);
+      padding: 12px 16px;
+      font-size: 14px;
+      font-weight: 600;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      transition: all var(--transition);
+      margin-bottom: 8px;
+    }
+    .menu button:hover {
+      background: rgba(255, 255, 255, 0.04);
+      color: var(--text-1);
+    }
+    .menu button.active {
+      background: var(--teal-dim);
+      border-color: var(--border-act);
+      color: var(--teal);
+    }
+    .hidden {
+      display: none !important;
+    }
+    .btn {
+      height: 38px;
+      padding: 0 16px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border);
+      background: var(--navy-light);
+      color: var(--text-1);
+      font-weight: 600;
+      font-family: var(--font-body);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all var(--transition);
+    }
+    .btn:hover {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: var(--teal);
+      color: var(--text-1);
+    }
+    .btn.primary {
+      background: linear-gradient(135deg, var(--teal), #0f766e);
+      border: none;
+      color: #fff;
+    }
+    .btn.primary:hover {
+      filter: brightness(1.1);
+      box-shadow: 0 4px 16px var(--teal-glow);
+    }
+    .btn.bad {
+      background: var(--red-dim);
+      border-color: rgba(244, 63, 94, 0.3);
+      color: var(--red);
+    }
+    .btn.bad:hover {
+      background: rgba(244, 63, 94, 0.25);
+      border-color: var(--red);
+    }
+    .btn.alt {
+      background: var(--gold-dim);
+      border-color: rgba(245, 158, 11, 0.3);
+      color: var(--gold);
+    }
+    .btn.alt:hover {
+      background: rgba(245, 158, 11, 0.25);
+      border-color: var(--gold);
+    }
+    .toolbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .toolbar-left, .toolbar-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .search-input {
+      height: 38px;
+      padding: 0 14px;
+      background: var(--navy-mid);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      color: var(--text-1);
+      font-size: 13px;
+      min-width: 240px;
+    }
+    .search-input:focus {
+      outline: none;
+      border-color: var(--teal);
+    }
+    select.filter-select {
+      height: 38px;
+      padding: 0 12px;
+      background: var(--navy-mid);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      color: var(--text-1);
+      font-size: 13px;
+      cursor: pointer;
+    }
+    select.filter-select:focus {
+      outline: none;
+      border-color: var(--teal);
+    }
+    /* Modal styles */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      background: rgba(5, 10, 20, 0.85);
+      backdrop-filter: blur(10px);
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .modal-overlay.show {
+      display: flex;
+    }
+    .modal-box {
+      background: #111a2e;
+      border: 1px solid var(--border-act);
+      border-radius: var(--radius-lg);
+      width: 100%;
+      max-width: 800px;
+      max-height: 90vh;
+      display: flex;
+      flex-direction: column;
+      box-shadow: var(--shadow-card);
+      animation: modal-in 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .modal-box.medium {
+      max-width: 600px;
+    }
+    .modal-header {
+      padding: 20px 24px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .modal-title {
+      font-family: var(--font-display);
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text-1);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .modal-close {
+      background: transparent;
+      border: none;
+      color: var(--text-2);
+      font-size: 20px;
+      cursor: pointer;
+      transition: color var(--transition);
+    }
+    .modal-close:hover {
+      color: var(--red);
+    }
+    .modal-body {
+      padding: 24px;
+      overflow-y: auto;
+      flex: 1;
+    }
+    .modal-footer {
+      padding: 20px 24px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: flex-end;
+      gap: 12px;
+    }
+    .detail-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+    .detail-item {
+      background: rgba(255,255,255,0.02);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 12px 16px;
+    }
+    .detail-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      color: var(--text-2);
+      margin-bottom: 4px;
+      font-weight: 600;
+    }
+    .detail-value {
+      font-size: 14px;
+      color: var(--text-1);
+      font-weight: 500;
+    }
+    /* Pagination styling */
+    .pagination {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 24px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+    }
+    .pagination-info {
+      color: var(--text-2);
+      font-size: 13px;
+    }
+    .pagination-buttons {
+      display: flex;
+      gap: 8px;
+    }
+    .page-btn {
+      height: 32px;
+      padding: 0 12px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border);
+      background: var(--navy-light);
+      color: var(--text-1);
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: all var(--transition);
+    }
+    .page-btn:hover:not(:disabled) {
+      border-color: var(--teal);
+      color: var(--teal);
+    }
+    .page-btn:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+    /* Tag colors */
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      padding: 4px 8px;
+      border-radius: 12px;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+    .tag.ok {
+      background: var(--green-dim);
+      color: var(--green);
+    }
+    .tag.warn {
+      background: var(--gold-dim);
+      color: var(--gold);
+    }
+    .tag.bad {
+      background: var(--red-dim);
+      color: var(--red);
+    }
+    .tag.info {
+      background: var(--blue-dim);
+      color: var(--blue);
+    }
+    /* Form additions */
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    /* CSV Export / Reports styling */
+    .analytics-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px;
+      margin-bottom: 28px;
+    }
+    .report-card {
+      background: var(--navy-light);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 20px;
+    }
+    .report-card h4 {
+      font-family: var(--font-display);
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text-1);
+      margin-bottom: 16px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 10px;
+    }
+    .simple-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .list-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 13px;
+    }
+    .list-row .name {
+      font-weight: 600;
+      color: var(--text-1);
+    }
+    .list-row .meta {
+      color: var(--text-2);
+      font-size: 12px;
+    }
+    .list-row .value {
+      font-family: var(--font-display);
+      font-weight: 700;
+      color: var(--teal);
+    }
+    .override-history {
+      margin-top: 14px;
+      padding: 10px 12px;
+      background: rgba(245, 158, 11, 0.05);
+      border: 1px dashed rgba(245, 158, 11, 0.25);
+      border-radius: var(--radius-sm);
+      font-size: 12px;
+      color: var(--gold);
+    }
+  </style>
 </head>
 <body>
   <div class="layout">
+    <!-- SIDEBAR -->
     <aside class="side">
       <div class="brand">
         <i class="fas fa-layer-group"></i> ServiceHub
@@ -17,17 +359,20 @@
         <button data-view="overview" class="active">
           <i class="fas fa-chart-line"></i> Overview
         </button>
-        <button data-view="partners">
-          <i class="fas fa-user-tie"></i> Partners
-        </button>
-        <button data-view="bookings">
-          <i class="fas fa-calendar-check"></i> Bookings
-        </button>
         <button data-view="users">
           <i class="fas fa-users"></i> Users
         </button>
-        <button data-view="services">
-          <i class="fas fa-tools"></i> Services
+        <button data-view="employees">
+          <i class="fas fa-user-tie"></i> Employees
+        </button>
+        <button data-view="partners">
+          <i class="fas fa-user-plus"></i> Partner Requests
+        </button>
+        <button data-view="status">
+          <i class="fas fa-wifi"></i> Live Status
+        </button>
+        <button data-view="analytics">
+          <i class="fas fa-file-invoice-dollar"></i> Reports & Analytics
         </button>
       </div>
       <button id="logoutBtn" class="logout">
@@ -35,6 +380,7 @@
       </button>
     </aside>
 
+    <!-- MAIN PANEL -->
     <main class="main">
 
       <!-- NAVBAR -->
@@ -44,123 +390,319 @@
             <i class="fas fa-bars"></i>
           </button>
           <div>
-            <h1 class="title">Admin Console</h1>
-            <p class="sub">Manage your platform, real-time insights</p>
+            <h1 class="title">Admin Dashboard</h1>
+            <p class="sub" id="adminWelcome">Welcome back, Admin</p>
           </div>
         </div>
         <div class="navbar-right">
-          <div class="search-box">
-            <input type="text" id="globalSearch" placeholder="🔍 Search bookings, users...">
-          </div>
-          <button class="navbar-btn" title="Notifications">
-            <i class="fas fa-bell"></i>
+          <button class="nav-icon-btn" title="Refresh Page" onclick="window.location.reload()">
+            <i class="fas fa-sync-alt"></i>
           </button>
-          <button class="navbar-btn" title="Admin Profile">
-            <i class="fas fa-user-circle"></i>
+          <button class="nav-icon-btn" title="System Settings">
+            <i class="fas fa-cog"></i>
           </button>
         </div>
       </div>
 
-      <div id="apiNote" class="note"></div>
+      <!-- TOAST/NOTE CONTAINER -->
+      <div id="apiNote" class="note" style="display: none; margin: 16px 40px 0; background: var(--red-dim); border: 1px solid var(--red); color: var(--red); padding: 12px; border-radius: 8px;"></div>
 
-      <!-- ===== OVERVIEW VIEW ===== -->
-      <section id="view-overview" class="view">
-        <!-- Metric Cards -->
-        <div class="grid" id="metricCards"></div>
+      <div class="page">
 
-        <!-- Service Overview -->
-        <div style="margin-top: 24px;">
-          <h3 style="font-size: 18px; font-weight: 700; margin-bottom: 16px; color: var(--ink);">
-            📊 Service Overview
-          </h3>
-          <div class="service-grid" id="serviceOverview"></div>
-        </div>
-
-        <!-- Charts Section -->
-        <div style="margin-top: 28px; display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 20px;">
-          <div style="background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 20px; box-shadow: 0 2px 12px rgba(0,0,0,0.06); min-height: 380px;">
-            <h4 style="font-weight: 700; color: var(--ink); margin-bottom: 16px;">💰 Revenue Trend</h4>
-            <div style="position: relative; height: 320px; width: 100%;">
-              <canvas id="revenueChart"></canvas>
+        <!-- ===== OVERVIEW VIEW ===== -->
+        <section id="view-overview" class="view">
+          <div class="welcome-banner">
+            <div>
+              <p class="welcome-tag">Operational Control</p>
+              <h2 class="welcome-heading">Platform Live Health</h2>
+              <p class="welcome-sub">Monitor user bookings, active jobs, and monthly revenue performance in real-time.</p>
+            </div>
+            <div class="welcome-meta">
+              <div class="meta-pill">
+                <span class="val" id="bannerRevenue">₹0</span>
+                <span class="lbl">This Month</span>
+              </div>
+              <div class="meta-divider"></div>
+              <div class="meta-pill">
+                <span class="val" id="bannerBookings">0</span>
+                <span class="lbl">Total Bookings</span>
+              </div>
             </div>
           </div>
-          <div style="background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 20px; box-shadow: 0 2px 12px rgba(0,0,0,0.06); min-height: 380px;">
-            <h4 style="font-weight: 700; color: var(--ink); margin-bottom: 16px;">📈 Booking Trends</h4>
-            <div style="position: relative; height: 320px; width: 100%;">
-              <canvas id="bookingChart"></canvas>
+
+          <!-- Overview Stats Cards Grid -->
+          <div class="grid" id="overviewCards">
+            <div class="card"><div class="k">Total Users</div><div class="v" id="statUsers">-</div></div>
+            <div class="card"><div class="k">Total Employees</div><div class="v" id="statEmployees">-</div></div>
+            <div class="card"><div class="k">Total Bookings</div><div class="v" id="statBookings">-</div></div>
+            <div class="card"><div class="k">Active Jobs</div><div class="v" id="statActiveJobs">-</div></div>
+            <div class="card"><div class="k">Revenue This Month</div><div class="v" id="statRevenue">-</div></div>
+          </div>
+
+          <!-- Quick Actions Grid -->
+          <div style="margin-top: 32px;">
+            <h3 class="section-title">
+              <span class="icon"><i class="fas fa-bolt"></i></span> Quick Control Center
+            </h3>
+            <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px;">
+              <button class="btn primary" onclick="showView('users'); openAddUserModal();" style="height: 50px; font-size: 14px; justify-content: center;">
+                <i class="fas fa-user-plus"></i> Add New Customer
+              </button>
+              <button class="btn primary" onclick="showView('employees'); openAddEmployeeModal();" style="height: 50px; font-size: 14px; justify-content: center; background: linear-gradient(135deg, var(--gold), #d97706);">
+                <i class="fas fa-user-shield"></i> Create Employee Profile
+              </button>
+              <button class="btn" onclick="showView('partners')" style="height: 50px; font-size: 14px; justify-content: center;">
+                <i class="fas fa-id-card"></i> Verify Partner Applications
+              </button>
+              <button class="btn" onclick="showView('status')" style="height: 50px; font-size: 14px; justify-content: center;">
+                <i class="fas fa-signal"></i> Live Worker Monitor
+              </button>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <section id="view-partners" class="view panel hidden">
-        <h3>Partners</h3>
-        <div class="toolbar">
-          <select id="partnerStatusFilter">
-            <option value="">All statuses</option>
-            <option value="pending">Pending</option>
-            <option value="approved">Approved</option>
-            <option value="rejected">Rejected</option>
-          </select>
-          <button id="loadPartners" class="btn">Reload Partners</button>
-        </div>
-        <table>
-          <thead><tr><th>Name</th><th>Email</th><th>Service</th><th>Status</th><th>Actions</th></tr></thead>
-          <tbody id="partnersBody"></tbody>
-        </table>
-      </section>
+        <!-- ===== USERS VIEW ===== -->
+        <section id="view-users" class="view hidden">
+          <div class="toolbar">
+            <div class="toolbar-left">
+              <h3 class="section-title" style="margin-bottom: 0;">
+                <span class="icon"><i class="fas fa-users"></i></span> Registered Customers
+              </h3>
+              <input type="text" id="userSearchInput" class="search-input" placeholder="Search by name, email...">
+              <select id="userRoleFilter" class="filter-select">
+                <option value="">All Roles</option>
+                <option value="user">User</option>
+                <option value="partner">Partner</option>
+                <option value="admin">Admin</option>
+              </select>
+            </div>
+            <div class="toolbar-right">
+              <button class="btn primary" onclick="openAddUserModal()">
+                <i class="fas fa-user-plus"></i> Add User
+              </button>
+              <button class="btn" onclick="loadUsersData()">
+                <i class="fas fa-redo"></i> Reload
+              </button>
+            </div>
+          </div>
 
-      <section id="view-bookings" class="view panel hidden">
-        <h3>Bookings</h3>
-        <div class="toolbar">
-          <select id="bookingStatusFilter">
-            <option value="">All booking status</option>
-            <option value="pending">Pending</option>
-            <option value="completed">Completed</option>
-            <option value="cancelled">Cancelled</option>
-          </select>
-          <button id="loadBookings" class="btn">Reload Bookings</button>
-        </div>
-        <table>
-          <thead><tr><th>Service</th><th>Customer</th><th>Completed By</th><th>Status</th><th>Payment</th><th>Price</th><th>Action</th></tr></thead>
-          <tbody id="bookingsBody"></tbody>
-        </table>
-      </section>
+          <div class="table-wrap glass-card" style="padding: 16px;">
+            <table class="bookings-table">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Email</th>
+                  <th>Role</th>
+                  <th style="text-align: right;">Actions</th>
+                </tr>
+              </thead>
+              <tbody id="usersTableBody">
+                <!-- User rows will be loaded dynamically -->
+              </tbody>
+            </table>
 
-      <section id="view-users" class="view panel hidden">
-        <h3>Users (Customers Only)</h3>
-        <div class="toolbar">
-          <input id="userSearch" placeholder="Search name/email">
-          <button id="loadUsers" class="btn">Reload Users</button>
-        </div>
-        <table>
-          <thead><tr><th>Name</th><th>Email</th><th>Role</th></tr></thead>
-          <tbody id="usersBody"></tbody>
-        </table>
-      </section>
+            <div class="pagination">
+              <div class="pagination-info" id="usersPaginationInfo">Showing page 0 of 0</div>
+              <div class="pagination-buttons">
+                <button class="page-btn" id="usersPrevBtn" disabled><i class="fas fa-chevron-left"></i> Prev</button>
+                <button class="page-btn" id="usersNextBtn" disabled>Next <i class="fas fa-chevron-right"></i></button>
+              </div>
+            </div>
+          </div>
+        </section>
 
-      <section id="view-services" class="view panel hidden">
-        <h3>Service Categories</h3>
-        <div class="toolbar">
-          <input id="svcCategoryId" placeholder="categoryId (e.g. plumber)">
-          <input id="svcCategoryTitle" placeholder="categoryTitle (e.g. Plumbing)">
-          <button id="createServiceBtn" class="btn">Create Category</button>
-          <button id="loadServices" class="btn alt">Reload Categories</button>
-        </div>
-        <table>
-          <thead><tr><th>Category ID</th><th>Title</th><th>Services Count</th></tr></thead>
-          <tbody id="servicesBody"></tbody>
-        </table>
-      </section>
-    </main>
-  </div>
+        <!-- ===== EMPLOYEES VIEW ===== -->
+        <section id="view-employees" class="view hidden">
+          <div class="toolbar">
+            <div class="toolbar-left">
+              <h3 class="section-title" style="margin-bottom: 0;">
+                <span class="icon"><i class="fas fa-user-tie"></i></span> Service Employees
+              </h3>
+              <input type="text" id="employeeSearchInput" class="search-input" placeholder="Search name, ID, email...">
+              <select id="employeeCategoryFilter" class="filter-select">
+                <option value="">All Categories</option>
+                <option value="plumber">Plumber</option>
+                <option value="electrician">Electrician</option>
+                <option value="ac-repair">AC Repair</option>
+                <option value="salon">Salon</option>
+                <option value="car-cleaner">Car Cleaner</option>
+                <option value="tutor">Tutor</option>
+              </select>
+            </div>
+            <div class="toolbar-right">
+              <button class="btn primary" onclick="openAddEmployeeModal()">
+                <i class="fas fa-plus"></i> Add Employee
+              </button>
+              <button class="btn" onclick="loadEmployeesData()">
+                <i class="fas fa-redo"></i> Reload
+              </button>
+            </div>
+          </div>
 
-  <!-- FOOTER -->
-  <footer class="site-footer">
+          <div class="table-wrap glass-card" style="padding: 16px;">
+            <table class="bookings-table">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Name</th>
+                  <th>Service Category</th>
+                  <th>Experience</th>
+                  <th>Rating</th>
+                  <th>Status</th>
+                  <th style="text-align: right;">Actions</th>
+                </tr>
+              </thead>
+              <tbody id="employeesTableBody">
+                <!-- Employee rows will be loaded dynamically -->
+              </tbody>
+            </table>
+
+            <div class="pagination">
+              <div class="pagination-info" id="employeesPaginationInfo">Showing page 0 of 0</div>
+              <div class="pagination-buttons">
+                <button class="page-btn" id="employeesPrevBtn" disabled><i class="fas fa-chevron-left"></i> Prev</button>
+                <button class="page-btn" id="employeesNextBtn" disabled>Next <i class="fas fa-chevron-right"></i></button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ===== PARTNER APPLICATIONS VIEW ===== -->
+        <section id="view-partners" class="view hidden">
+          <div class="toolbar">
+            <div class="toolbar-left">
+              <h3 class="section-title" style="margin-bottom: 0;">
+                <span class="icon"><i class="fas fa-user-plus"></i></span> Partner Registration Requests
+              </h3>
+              <select id="partnerStatusFilter" class="filter-select">
+                <option value="pending">Pending Requests</option>
+                <option value="approved">Approved Applications</option>
+                <option value="rejected">Rejected Applications</option>
+                <option value="">All Applications</option>
+              </select>
+            </div>
+            <div class="toolbar-right">
+              <button class="btn" onclick="loadPartnerRequests()">
+                <i class="fas fa-redo"></i> Reload Requests
+              </button>
+            </div>
+          </div>
+
+          <div class="table-wrap glass-card" style="padding: 16px;">
+            <table class="bookings-table">
+              <thead>
+                <tr>
+                  <th>Applicant Name</th>
+                  <th>Email</th>
+                  <th>Phone</th>
+                  <th>Service Category</th>
+                  <th>Shift</th>
+                  <th>Experience</th>
+                  <th>Status</th>
+                  <th style="text-align: right;">Actions</th>
+                </tr>
+              </thead>
+              <tbody id="partnersTableBody">
+                <!-- Requests loaded dynamically -->
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- ===== LIVE STATUS VIEW ===== -->
+        <section id="view-status" class="view hidden">
+          <div class="toolbar">
+            <div class="toolbar-left">
+              <h3 class="section-title" style="margin-bottom: 0;">
+                <span class="icon"><i class="fas fa-wifi"></i></span> Employee Live Status Monitoring
+              </h3>
+            </div>
+            <div class="toolbar-right">
+              <button class="btn" onclick="loadLiveStatus()">
+                <i class="fas fa-redo"></i> Refresh Live Status
+              </button>
+            </div>
+          </div>
+
+          <div class="table-wrap glass-card" style="padding: 16px;">
+            <table class="bookings-table">
+              <thead>
+                <tr>
+                  <th>Employee ID</th>
+                  <th>Name</th>
+                  <th>Service Category</th>
+                  <th>Status</th>
+                  <th>Current Shift</th>
+                  <th>Active Jobs</th>
+                  <th>Last Active</th>
+                </tr>
+              </thead>
+              <tbody id="liveStatusTableBody">
+                <!-- Status loaded dynamically -->
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- ===== ANALYTICS VIEW ===== -->
+        <section id="view-analytics" class="view hidden">
+          <div class="toolbar" style="margin-bottom: 28px;">
+            <div class="toolbar-left">
+              <h3 class="section-title" style="margin-bottom: 0;">
+                <span class="icon"><i class="fas fa-chart-bar"></i></span> Platform Reports & Analytics
+              </h3>
+            </div>
+            <div class="toolbar-right">
+              <button class="btn primary" onclick="exportAnalyticsCSV()">
+                <i class="fas fa-download"></i> Export Analytics CSV
+              </button>
+              <button class="btn" onclick="loadAnalyticsData()">
+                <i class="fas fa-redo"></i> Refresh Analytics
+              </button>
+            </div>
+          </div>
+
+          <!-- Charts Section -->
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); gap: 24px; margin-bottom: 32px;">
+            <div class="report-card" style="min-height: 380px;">
+              <h4>💰 Revenue Trends (Past 6 Months)</h4>
+              <div style="position: relative; height: 300px; width: 100%;">
+                <canvas id="revenueTrendChartCanvas"></canvas>
+              </div>
+            </div>
+            <div class="report-card" style="min-height: 380px;">
+              <h4>📈 Booking Trends (Status Breakdown)</h4>
+              <div style="position: relative; height: 300px; width: 100%;">
+                <canvas id="bookingBreakdownChartCanvas"></canvas>
+              </div>
+            </div>
+          </div>
+
+          <!-- Top Tables Grid -->
+          <div class="analytics-grid">
+            <div class="report-card">
+              <h4>🏆 Top Service Employees</h4>
+              <div class="simple-list" id="topEmployeesList">
+                <!-- Loaded dynamically -->
+              </div>
+            </div>
+            <div class="report-card">
+              <h4>🛠️ Top Service Categories</h4>
+              <div class="simple-list" id="topServicesList">
+                <!-- Loaded dynamically -->
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </div>
+
+      <!-- FOOTER -->
+      <footer class="site-footer">
         <div class="footer-inner">
           <div class="footer-grid">
             <div class="footer-brand">
-              <div style="width: 40px; height: 40px; background: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 24px; margin-bottom: 12px;">🏠</div>
+              <div style="width: 40px; height: 40px; background: linear-gradient(135deg, #0d9488 0%, #0f766e 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 20px; margin-bottom: 12px;">🏠</div>
               <h3>ServiceHub</h3>
               <p>Trusted home services, fair conversations, and reliable support for customers, workers, and partners.</p>
               <div class="footer-pills">
@@ -173,28 +715,23 @@
               <h4>Explore</h4>
               <div class="footer-links">
                 <a class="footer-link" href="#" onclick="showView('overview')">Dashboard</a>
-                <a class="footer-link" href="../servicesInfo/about.html">About</a>
-                <a class="footer-link" href="../servicesInfo/partners.html">Partners</a>
-                <a class="footer-link" href="../tranjection/wallet.html">Community Chat</a>
+                <a class="footer-link" href="/frontend/servicesInfo/about.html">About</a>
+                <a class="footer-link" href="/frontend/servicesInfo/partners.html">Partners</a>
+                <a class="footer-link" href="/frontend/tranjection/wallet.html">Community Chat</a>
               </div>
             </div>
             <div class="footer-column">
               <h4>Company</h4>
               <div class="footer-links">
-                <a class="footer-link" href="../servicesInfo/become-partner.html">Become Partner</a>
-                <a class="footer-link" href="#" onclick="showView('bookings')">My Bookings</a>
-                <a class="footer-link" href="../servicesInfo/review.html">Reviews</a>
-                <a class="footer-link" href="../profile/login.html">Login</a>
+                <a class="footer-link" href="/frontend/servicesInfo/become-partner.html">Become Partner</a>
+                <a class="footer-link" href="/frontend/your-booking/mybooking.html">My Bookings</a>
+                <a class="footer-link" href="/frontend/servicesInfo/review.html">Reviews</a>
+                <a class="footer-link" href="/frontend/profile/login.html">Login</a>
               </div>
             </div>
             <div class="footer-column">
               <h4>Why ServiceHub</h4>
               <p class="footer-note">Built for smooth admin management, honest service, and a better experience for every platform.</p>
-              <div class="footer-links">
-                <strong>Support</strong>
-                <span class="footer-meta"><span>24/7 help</span><span>Fast replies</span></span>
-                <span class="footer-meta"><span>Fair disputes</span><span>Community trust</span></span>
-              </div>
             </div>
           </div>
           <div class="footer-bottom">
@@ -202,15 +739,340 @@
               <span>© 2026 ServiceHub</span>
               <span>Made for customers, workers, and partners.</span>
             </div>
-            <div class="footer-socials" aria-label="ServiceHub social links">
-              <a href="https://www.linkedin.com/in/faiyaj-ansari-293413366" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
-              <a href="https://github.com/Git-Hub-prog/Git-Hub-prog" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
-              <a href="https://www.instagram.com/faiyaj4553?igsh=MXBwNTJnMDR4NGs1ZA==" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <div class="footer-socials">
+              <a href="https://github.com" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github"></i></a>
             </div>
             <div class="footer-note">A modern admin platform that keeps things clear, quick, and fair.</div>
           </div>
         </div>
       </footer>
+    </main>
+  </div>
+
+  <!-- ==========================================
+       MODALS SECTION
+       ========================================== -->
+
+  <!-- ADD/EDIT USER MODAL -->
+  <div id="userModal" class="modal-overlay">
+    <div class="modal-box medium">
+      <div class="modal-header">
+        <h4 class="modal-title" id="userModalTitle"><i class="fas fa-user-plus"></i> Add New User</h4>
+        <button class="modal-close" onclick="closeUserModal()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <form id="userForm">
+          <input type="hidden" id="userFormId">
+          <div class="form-group">
+            <label class="form-label" for="userFormName">Full Name</label>
+            <input type="text" id="userFormName" class="form-input" placeholder="E.g. John Doe" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="userFormEmail">Email Address</label>
+            <input type="email" id="userFormEmail" class="form-input" placeholder="E.g. john@example.com" required>
+          </div>
+          <div class="form-group" id="userFormPasswordGroup">
+            <label class="form-label" for="userFormPassword">Password</label>
+            <input type="password" id="userFormPassword" class="form-input" placeholder="Minimum 6 characters">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="userFormRole">Account Role</label>
+            <select id="userFormRole" class="form-input">
+              <option value="user">User (Customer)</option>
+              <option value="partner">Partner (Worker)</option>
+              <option value="admin">Admin</option>
+            </select>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button class="btn" onclick="closeUserModal()">Cancel</button>
+        <button class="btn primary" id="userFormSubmitBtn" onclick="submitUserForm()">Save User</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- USER DETAILS AND BOOKING HISTORY MODAL -->
+  <div id="userDetailsModal" class="modal-overlay">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h4 class="modal-title"><i class="fas fa-id-card"></i> Customer Details & Booking History</h4>
+        <button class="modal-close" onclick="closeUserDetailsModal()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <!-- Customer Profile details -->
+        <div class="detail-grid">
+          <div class="detail-item">
+            <div class="detail-label">Name</div>
+            <div class="detail-value" id="userDetailName">-</div>
+          </div>
+          <div class="detail-item">
+            <div class="detail-label">Email</div>
+            <div class="detail-value" id="userDetailEmail">-</div>
+          </div>
+          <div class="detail-item">
+            <div class="detail-label">Account Role</div>
+            <div class="detail-value" id="userDetailRole">-</div>
+          </div>
+          <div class="detail-item">
+            <div class="detail-label">Account Created</div>
+            <div class="detail-value" id="userDetailCreated">-</div>
+          </div>
+        </div>
+
+        <h4 style="font-family: var(--font-display); font-size: 15px; margin-bottom: 12px; border-bottom: 1px solid var(--border); padding-bottom: 8px; color: var(--text-1);">
+          📋 Bookings History
+        </h4>
+        <div class="table-wrap">
+          <table class="bookings-table" style="min-width: 100%;">
+            <thead>
+              <tr>
+                <th>Service</th>
+                <th>Date / Shift</th>
+                <th>Address</th>
+                <th>Assigned To</th>
+                <th>Amount</th>
+                <th>Status</th>
+                <th>Payment</th>
+                <th style="text-align: right;">Action</th>
+              </tr>
+            </thead>
+            <tbody id="userDetailBookingsBody">
+              <!-- Bookings will be loaded dynamically -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn" onclick="closeUserDetailsModal()">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- PAYMENT STATUS OVERRIDE MODAL -->
+  <div id="overridePaymentModal" class="modal-overlay">
+    <div class="modal-box medium" style="z-index: 1100;">
+      <div class="modal-header">
+        <h4 class="modal-title"><i class="fas fa-exclamation-triangle"></i> Override Payment Status</h4>
+        <button class="modal-close" onclick="closeOverrideModal()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <input type="hidden" id="overrideBookingId">
+        <div class="form-group">
+          <label class="form-label">New Payment Status</label>
+          <select id="overridePaymentStatus" class="form-input">
+            <option value="pending">Pending</option>
+            <option value="paid">Paid</option>
+            <option value="failed">Failed</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="overrideReason">Reason for Manual Override</label>
+          <textarea id="overrideReason" class="form-input" style="height: 90px; padding: 10px;" placeholder="Provide a reason for overriding this payment status (e.g. Cash received, gateway refund issue...)" required></textarea>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn" onclick="closeOverrideModal()">Cancel</button>
+        <button class="btn primary alt" onclick="submitPaymentOverride()">Apply Override</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ADD/EDIT EMPLOYEE MODAL -->
+  <div id="employeeModal" class="modal-overlay">
+    <div class="modal-box medium">
+      <div class="modal-header">
+        <h4 class="modal-title" id="employeeModalTitle"><i class="fas fa-user-plus"></i> Add New Employee</h4>
+        <button class="modal-close" onclick="closeEmployeeModal()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <form id="employeeForm">
+          <input type="hidden" id="employeeFormId">
+          <div class="form-group">
+            <label class="form-label" for="employeeFormName">Full Name</label>
+            <input type="text" id="employeeFormName" class="form-input" placeholder="E.g. Priya Patel" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="employeeFormEmail">Email Address</label>
+            <input type="email" id="employeeFormEmail" class="form-input" placeholder="E.g. priya@email.com" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="employeeFormPhone">Phone Number</label>
+            <input type="tel" id="employeeFormPhone" class="form-input" placeholder="E.g. +91 98765 43210" required>
+          </div>
+          <div class="form-group" id="employeeFormPasswordGroup">
+            <label class="form-label" for="employeeFormPassword">Password</label>
+            <input type="password" id="employeeFormPassword" class="form-input" placeholder="Minimum 6 characters">
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="employeeFormCategory">Service Category</label>
+              <select id="employeeFormCategory" class="form-input" required>
+                <option value="plumber">Plumber</option>
+                <option value="electrician">Electrician</option>
+                <option value="ac-repair">AC Repair</option>
+                <option value="salon">Salon</option>
+                <option value="car-cleaner">Car Cleaner</option>
+                <option value="tutor">Tutor (Home Tutor)</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="employeeFormExperience">Experience (Years)</label>
+              <input type="number" id="employeeFormExperience" class="form-input" min="0" value="0">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="employeeFormStatus">Employee Status</label>
+            <select id="employeeFormStatus" class="form-input">
+              <option value="active">Active</option>
+              <option value="offline">Offline</option>
+              <option value="on-leave">On Leave</option>
+            </select>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button class="btn" onclick="closeEmployeeModal()">Cancel</button>
+        <button class="btn primary" id="employeeFormSubmitBtn" onclick="submitEmployeeForm()">Save Employee</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- EMPLOYEE DETAILS MODAL -->
+  <div id="employeeDetailsModal" class="modal-overlay">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h4 class="modal-title"><i class="fas fa-id-badge"></i> Employee Profile & Performance</h4>
+        <button class="modal-close" onclick="closeEmployeeDetailsModal()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="detail-grid">
+          <div class="detail-item">
+            <div class="detail-label">Employee ID</div>
+            <div class="detail-value" id="empDetailId">-</div>
+          </div>
+          <div class="detail-item">
+            <div class="detail-label">Full Name</div>
+            <div class="detail-value" id="empDetailName">-</div>
+          </div>
+          <div class="detail-item">
+            <div class="detail-label">Email</div>
+            <div class="detail-value" id="empDetailEmail">-</div>
+          </div>
+          <div class="detail-item">
+            <div class="detail-label">Phone</div>
+            <div class="detail-value" id="empDetailPhone">-</div>
+          </div>
+          <div class="detail-item">
+            <div class="detail-label">Category</div>
+            <div class="detail-value" id="empDetailCategory">-</div>
+          </div>
+          <div class="detail-item">
+            <div class="detail-label">Experience</div>
+            <div class="detail-value" id="empDetailExperience">-</div>
+          </div>
+          <div class="detail-item">
+            <div class="detail-label">Average Rating</div>
+            <div class="detail-value" id="empDetailRating">-</div>
+          </div>
+          <div class="detail-item">
+            <div class="detail-label">Jobs Completed</div>
+            <div class="detail-value" id="empDetailJobs">-</div>
+          </div>
+        </div>
+
+        <h4 style="font-family: var(--font-display); font-size: 15px; margin-bottom: 12px; border-bottom: 1px solid var(--border); padding-bottom: 8px; color: var(--text-1);">
+          💼 Handled Jobs History
+        </h4>
+        <div class="table-wrap">
+          <table class="bookings-table" style="min-width: 100%;">
+            <thead>
+              <tr>
+                <th>Booking ID</th>
+                <th>Customer Name</th>
+                <th>Booking Date</th>
+                <th>Address</th>
+                <th>Amount</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody id="empDetailJobsBody">
+              <!-- Completed jobs will be loaded dynamically -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn" onclick="closeEmployeeDetailsModal()">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- PARTNER REQUEST DETAILS MODAL -->
+  <div id="partnerDetailsModal" class="modal-overlay">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h4 class="modal-title"><i class="fas fa-id-card"></i> Partner Application Details</h4>
+        <button class="modal-close" onclick="closePartnerDetailsModal()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="detail-grid">
+          <div class="detail-item">
+            <div class="detail-label">Full Name</div>
+            <div class="detail-value" id="partnerDetailName">-</div>
+          </div>
+          <div class="detail-item">
+            <div class="detail-label">Email Address</div>
+            <div class="detail-value" id="partnerDetailEmail">-</div>
+          </div>
+          <div class="detail-item">
+            <div class="detail-label">Phone / Mobile</div>
+            <div class="detail-value" id="partnerDetailPhone">-</div>
+          </div>
+          <div class="detail-item">
+            <div class="detail-label">Service Category</div>
+            <div class="detail-value" id="partnerDetailCategory">-</div>
+          </div>
+          <div class="detail-item">
+            <div class="detail-label">Preferred Shift</div>
+            <div class="detail-value" id="partnerDetailShift">-</div>
+          </div>
+          <div class="detail-item">
+            <div class="detail-label">Experience</div>
+            <div class="detail-value" id="partnerDetailExperience">-</div>
+          </div>
+          <div class="detail-item" style="grid-column: span 2;">
+            <div class="detail-label">Service Area Address</div>
+            <div class="detail-value" id="partnerDetailAddress">-</div>
+          </div>
+          <div class="detail-item">
+            <div class="detail-label">Application Date</div>
+            <div class="detail-value" id="partnerDetailDate">-</div>
+          </div>
+          <div class="detail-item">
+            <div class="detail-label">Application Status</div>
+            <div class="detail-value" id="partnerDetailStatus">-</div>
+          </div>
+        </div>
+
+        <div id="credentialsNotice" style="display: none; background: var(--teal-dim); border: 1px solid var(--border-act); padding: 14px; border-radius: 8px; margin-top: 16px;">
+          <h5 style="color: var(--teal); font-weight: 700; margin-bottom: 6px;"><i class="fas fa-check-circle"></i> Employee Account Activated!</h5>
+          <p style="font-size: 13px; color: var(--text-1); margin-bottom: 4px;">The application was approved and an employee account has been automatically configured:</p>
+          <div style="font-family: monospace; font-size: 13px; color: var(--text-2);">
+            <div><strong>Employee ID:</strong> <span id="credEmpId"></span></div>
+            <div><strong>Login Email:</strong> <span id="credEmail"></span></div>
+            <div><strong>Temporary Password:</strong> welcome123</div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer" id="partnerDetailsFooter">
+        <button class="btn" onclick="closePartnerDetailsModal()">Close</button>
+        <button class="btn bad" id="partnerRejectBtn">Reject Request</button>
+        <button class="btn primary" id="partnerApproveBtn">Approve Application</button>
+      </div>
+    </div>
+  </div>
+
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="../js/admin-dashboard.js"></script>
 </body>

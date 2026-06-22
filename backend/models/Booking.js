@@ -29,6 +29,10 @@ const bookingSchema = new mongoose.Schema({
     contactNumber: { type: String, default: '' },
     serviceType: { type: String, default: '' }
   },
+  shift: { type: String, default: null },
+  startTime: { type: String, default: null },
+  paymentOverrideReason: { type: String, default: null },
+  paymentOverrideBy: { type: String, default: null },
   completedBy: {
     employeeName: { type: String, default: null },
     employeeUserId: { type: String, default: null },

@@ -1,21 +1,5 @@
 const loginForm = document.getElementById("loginForm");
-const loginCard = document.getElementById("loginCard");
-const loginButton = loginForm ? loginForm.querySelector(".btn") : null;
-
-if (loginCard) {
-    loginCard.addEventListener("mousemove", (event) => {
-        const rect = loginCard.getBoundingClientRect();
-        const x = event.clientX - rect.left;
-        const y = event.clientY - rect.top;
-        const rotateY = ((x / rect.width) - 0.5) * 10;
-        const rotateX = ((y / rect.height) - 0.5) * -10;
-        loginCard.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(0)`;
-    });
-
-    loginCard.addEventListener("mouseleave", () => {
-        loginCard.style.transform = "rotateX(0deg) rotateY(0deg)";
-    });
-}
+const loginButton = loginForm ? loginForm.querySelector(".btn-primary") : null;
 
 loginForm.addEventListener("submit", async function(e){
     e.preventDefault();
